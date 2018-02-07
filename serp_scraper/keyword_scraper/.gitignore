@@ -1,0 +1,4 @@
+*.jpg
+phantomjs 
+ghostdriver.log 
+data

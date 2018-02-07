@@ -1,0 +1,8 @@
+venv
+phantomjs
+ghostdriver.log
+.JPEG
+.PNG
+.GIF
+images
+*.pyc
