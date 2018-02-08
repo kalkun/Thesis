@@ -13,27 +13,31 @@ from PIL import Image
 
 class Scraper:
 
-	def __init__(self, keyword, searchEngine, n_pages_per_keyword = 1):
+	def __init__(self, keyword, folder, n_pages_per_keyword = 1, limitRes = -1):
 		self.keyword = keyword
-		self.searchEngine = searchEngine
+		self.limitRes = limitRes
+		self.folder = folder
 		self.n_pages_per_keyword = n_pages_per_keyword
 		self.config = serpscrap.Config()
 		self.scrap = serpscrap.SerpScrap()
 		self.results = None
 
-	def scrape(self):
-		self.config.set('search_type', 'image')
-		self.config.set('num_pages_for_keyword', self.n_pages_per_keyword)
-		self.config.set('search_engines', [self.searchEngine])
-		self.scrap.init(config=self.config.get(), keywords=[self.keyword])
-		self.results = self.scrap.run()
+	def scrape(self, searchEng):
+		if (searchEng == 'google'):
+			self.config.set('search_type', 'image')
+			self.config.set('num_pages_for_keyword', self.n_pages_per_keyword)
+			self.scrap.init(config=self.config.get(), keywords=[self.keyword])
+			self.results = self.scrap.run()
+			self.downloadImages()
+		else:
+			print("no handlers for " + str(searchEng))
 
-	def downloadImages(self, folder, limit = -1):
-		createFolder(folder)
-		for result in self.results[:limit]:
+	def downloadImages(self):
+		createFolder(self.folder)
+		for result in self.results[:self.limitRes]:
 			url = result['serp_url']
 			print("downloading url: " + url)
-			saveImageFromUrl(url, folder)
+			saveImageFromUrl(url, self.folder)
 
 def saveImageFromUrl(url, folder):
 

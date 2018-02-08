@@ -20,26 +20,30 @@ def main():
 	)
 
 	parser.add_argument(
-	    'search_engines',
-	    metavar='seareng',
-	    help='The search engines to be scraped from, separated by a comma.',
-	)
+		'--sr','--list', 
+		nargs='+',
+		metavar = 'seareng',
+		default = ['google'],
+		help='search engines separated by spaces')
+
 	parser.add_argument(
 	    '--npages',
 	    help='The number of page results to be scraped',
 	    default='1',
 	)
-
 	parser.add_argument(
 	    '--limitres',
 	    help='Limit the number of results to a given number',
 	    default='-1',
+	    type = int,
 	)
 	args = parser.parse_args()
-	print(dir(keyword_scraper))
-	scraper = keyword_scraper.Scraper(args.key_words, args.search_engines, args.npages)
-	scraper.scrape()
-	scraper.downloadImages(args.download_folder, int(args.limitres))
+	print(args.sr)
+	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.npages, args.limitres)
+	
+	for searchEng in args.sr:
+		scraper.scrape(searchEng)
+	
 
 
 if __name__ == '__main__':
