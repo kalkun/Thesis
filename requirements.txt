@@ -13,3 +13,4 @@ selenium==3.8.1
 SerpScrap==0.10.1
 six==1.11.0
 SQLAlchemy==1.1.15
+Wheel

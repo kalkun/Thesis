@@ -9,6 +9,8 @@ import urllib.request
 import imagehash
 import serpscrap
 from PIL import Image
+from bs4 import BeautifulSoup
+import json
 
 
 class Scraper:
@@ -19,21 +21,38 @@ class Scraper:
 		self.folder = folder
 		self.n_pages_per_keyword = n_pages_per_keyword
 		self.config = serpscrap.Config()
+		self.config.set('search_type', 'image')
+		self.config.set('num_pages_for_keyword', self.n_pages_per_keyword)
 		self.scrap = serpscrap.SerpScrap()
-		self.results = None
+		self.bing_base_url = "http://www.bing.com/images/search?q=" 
+		self.bing_end_url = "&FORM=HDRSC2"
+		self.bing_header ={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+		createFolder(self.folder)
+	
 
 	def scrape(self, searchEng):
 		if (searchEng == 'google'):
-			self.config.set('search_type', 'image')
-			self.config.set('num_pages_for_keyword', self.n_pages_per_keyword)
-			self.scrap.init(config=self.config.get(), keywords=[self.keyword])
-			self.results = self.scrap.run()
-			self.downloadImages()
+			print("scraping google")
+			self.scrapeGoogle(self.keyword)
+		elif(searchEng == 'bing'):
+			print("scraping bing")
+			self.scrapeBing(self.keyword)
 		else:
 			print("no handlers for " + str(searchEng))
 
-	def downloadImages(self):
-		createFolder(self.folder)
+	def scrapeBing(self,keyword):
+			query_url = self.bing_base_url + keyword + self.bing_end_url
+			soup = get_soup(query_url,self.bing_header)
+			for a in soup.find_all("a",{"class":"iusc"})[:self.limitRes]:
+				mad = json.loads(a["mad"])
+				url = mad["turl"]
+				#print(url)
+				print("downloading url: " + url)
+				saveImageFromUrl(url, self.folder)
+
+	def scrapeGoogle(self, keyword):
+		self.scrap.init(config=self.config.get(), keywords=[keyword])
+		self.results = self.scrap.run()
 		for result in self.results[:self.limitRes]:
 			url = result['serp_url']
 			print("downloading url: " + url)
@@ -56,3 +75,9 @@ def createFolder(folder_path):
 	if (not os.path.exists(folder_path)):
 		os.mkdir(folder_path)
 
+def get_soup(url,header):
+	#return BeautifulSoup(urllib2.urlopen(urllib2.Request(url,headers=header)),
+	# 'html.parser')
+	return BeautifulSoup(urllib.request.urlopen(
+	    urllib.request.Request(url,headers=header)),
+	'html.parser')
