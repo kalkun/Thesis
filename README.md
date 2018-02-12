@@ -54,7 +54,8 @@ pc.insertImage(
    source        = 'google search',
    origin        = 'test',
    url           = 'example.com',
-   tags          = ['protest', 'africa', 'example', 'test']
+   tags          = ['protest', 'africa', 'example', 'test'],
+   label         = .5
 )
 ```
 
