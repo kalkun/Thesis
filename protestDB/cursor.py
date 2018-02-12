@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 import datetime
-from os.path import basename, exists as file_exists
+from os.path import basename, splitext, exists as file_exists
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import exc
 from PIL import Image
+import imghdr
 import imagehash
 
 from protestDB import models
@@ -16,24 +19,70 @@ class ProtestCursor:
     """
     def __init__(self):
         self.session = sessionmaker(
-            bind=Connection.engine if Connection.engine is not None else Connection.setupEngine()
+            bind=Connection.setupEngine()
         )()
+
+        self.valid_images = ["jpg", "jpeg", "png"]
+
+
+    def instance_exists(self, modelClass, **kwargs):
+        """ Returns True if instance exists filtering
+            based on the provided keyword arguments
+            otherwise False
+        """
+        q = self.session.query(modelClass).filter_by(**kwargs)
+        return self.session.query(q.exists())
+
+
+    def get_or_create(self, modelClass, **kwargs):
+        """ If object exists it will just be returned,
+            otherwise it will be created first, then returned.
+
+            See: https://stackoverflow.com/a/6078058
+        """
+        instance = self.session.query(modelClass).filter_by(
+            **kwargs
+        ).one_or_none()
+
+        if not instance is None:
+            return instance
+
+        instance = modelClass(**kwargs)
+        self.session.add(instance)
+        self.session.commit()
+        return instance
+
+
+    def update_or_create(self, modelClass, **kwargs):
+        """ Update instance if exists, otherwise create it
+            Requires all mandatory fields to be provided
+            in order to create instance.
+        """
+        instance = self.get_or_create(modelClass, **kwargs)
+        for key, value in kwargs.items():
+            if getattr(instance, key) == value:
+                continue
+            setattr(instance, key, value)
+
+        self.session.commit()
+        return instance
 
 
     def insertImage(
         self,
         path_and_name,
         source,
-        imgtype,
-        timestamp=None,
+        origin,
         url=None,
-        label=None # TODO: providing label results in an insertion into the label tabel
+        timestamp=None,
+        label=None,
+        tags=None
     ):
         """ Creates new image row in Image table
             Arguments are:
                 `path_and_name` The path and name to the image file, can be relative or absolute.
                 `source`        The source of the image.
-                `imgtype`       Enum of:
+                `origin`        Enum of:
                                 ```
                                     test | local | online
                                 ```
@@ -41,36 +90,93 @@ class ProtestCursor:
                                         if file is not locally stored and image is to be retrieved
                                         using the `url` argument.
                 `timestamp`     Optional, will be set to current timestamp otherwise.
-                `url`           Should be set if `imgtype` is online.
+                `url`           Should be set if `origin` is online.
         """
 
-        if not imgtype in ['test', 'local', 'online']:
-            raise ValueError("imgtype must be either: 'local', 'online', or 'test'. Found: %s" % imgtype)
-
-        if imgtype == 'online' and url is None:
-            raise ValueError("Argument 'url' must be set when imgtype is 'online'")
-
-        if not file_exists(path_and_name) and not imgtype == 'test':
-            raise ValueError("File not found for image path: %s" % path_and_name)
-
-        img_hash = path_and_name if imgtype == 'test' else imagehash.average_hash(Image.open(path_and_name))
-        self.session.add(
-            models.Images(
-                imageHASH   = str(img_hash),
-                name        = basename(path_and_name),
-                source      = source,
-                imgtype     = imgtype,
-                timestamp   = timestamp or datetime.datetime.now(),
-                url         = url
-            )
-        )
-        try:
-            self.session.commit()
-        except exc.IntegrityError as e:
-            self.session.rollback()
+        if not origin in ['test', 'local', 'online']:
             raise ValueError(
-                "Image already exists with hash %s for image named: %s" % (
-                    img_hash,
-                    basename(path_and_name)
+                "origin must be either: 'local', 'online', or 'test'. Found: %s" % origin
+            )
+
+        if origin == 'online' and url is None:
+            raise ValueError(
+                "Argument 'url' must be set when origin is 'online'"
+            )
+
+        if not origin == 'test' and not file_exists(path_and_name):
+            raise ValueError(
+                "File not found for image path: %s" % path_and_name
+            )
+
+        if not tags is None and type(tags) != list:
+            raise TypeError(
+                "'tags' must be of type list, was '%s' for argument: '%s'" % (
+                    type(tags),
+                    tags
                 )
             )
+
+        filename = basename(path_and_name)
+        extension = splitext(filename)[1]
+
+        if not origin == 'test' and not imghdr.what(path_and_name) in self.valid_images:
+            raise ValueError(
+                "'%s' is not a valid image, must be one of '%s'" % (
+                    path_and_name,
+                    ', '.join(self.valid_images)
+                )
+            )
+
+        img_hash = path_and_name if origin == 'test' else imagehash.average_hash(Image.open(path_and_name))
+
+        img = self.update_or_create(
+            models.Images,
+            imageHASH   = str(img_hash),
+            name        = filename,
+            filetype    = extension,
+            source      = source,
+            origin      = origin,
+            timestamp   = timestamp or datetime.datetime.now(),
+            url         = url
+        )
+
+        if not tags is None:
+            for t in tags:
+                self.insertTag(
+                    t,
+                    img.imageHASH,
+                )
+        return img
+
+
+
+    def insertTag(
+        self,
+        tagname,
+        imagehash
+    ):
+        """ Creates a new tag entrance if the tagname is not previously known.
+            then creates a link to the image.
+
+            Returns a tuple of the entry in TaggedImages table, linking the image
+            and the tagname, as well as the tagname instance.
+        """
+
+        tag = self.get_or_create(
+            models.Tags,
+            tagName=tagname.lower()
+        )
+
+        if not self.instance_exists(models.Images, imageHASH=imagehash):
+            raise ValueError("No image exists with imageHASH id: '%s'" % imagehash)
+
+        image_tag_rel = self.get_or_create(
+            models.TaggedImages,
+            imageID = imagehash,
+            tagID   = tag.tagID
+        )
+
+        self.session.commit()
+
+        return image_tag_rel, tag
+

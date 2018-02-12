@@ -1,4 +1,12 @@
-from sqlalchemy import *
+from sqlalchemy import (
+    Boolean,
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+)
 from sqlalchemy.ext.declarative import declarative_base
 
 #metadata = MetaData()
@@ -13,9 +21,10 @@ class Images(Base):
     imageHASH   = Column(String(100), primary_key=True)
     name        = Column(String(100), nullable=False)
     source      = Column(String(100), nullable=False)
+    filetype    = Column(String(100), nullable=False)
     timestamp   = Column(DateTime, nullable=False)
     url         = Column(String(100), nullable=True)
-    imgtype     = Column(String(100), nullable=False)
+    origin      = Column(String(100), nullable=False)
 
     def __repr__(self):
         return "<Image hash='%s', name='%s'>" % (self.imageHASH, self.name)
@@ -48,18 +57,18 @@ class TaggedImages(Base):
                 self.taggedImageID, self.imageID, self.tagID)
 
 
-class Votes(Base):
+class Comparisons(Base):
     """
     A model class for comparison based votes
     """
 
     __tablename__ = "Votes"
 
-    voteID      = Column(Integer, primary_key=True)
-    imageID_1   = Column(String(100), ForeignKey('Images.imageHASH'))
-    imageID_2   = Column(String(100), ForeignKey('Images.imageHASH'))
-    vote        = Column(Integer, nullable=False)
-    timestamp   = Column(DateTime, nullable=False)
+    comparisonID = Column(Integer, primary_key=True)
+    imageID_1    = Column(String(100), ForeignKey('Images.imageHASH'))
+    imageID_2    = Column(String(100), ForeignKey('Images.imageHASH'))
+    vote         = Column(Integer, nullable=False)
+    timestamp    = Column(DateTime, nullable=False)
 
     def __repr__(self):
         return "<Votes id='%s', imageID_1='%s', imageID_2='%s', vote='%s'>" % (

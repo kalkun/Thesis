@@ -29,21 +29,25 @@ once the library is imported.
 
 **Example usage:**
 ```python
-import protestDB
+from protestDB.cursor import ProtestCursor
 # create a cursor:
-dbCursor = protestDB.engine.ProtestCursor()
+pc = ProtestCursor()
 
 # insert image file using `insertImage` method:
-dbCursor.insertImage(
+pc.insertImage(
    path_and_name = 'example_image.png',
    source        = 'google search',
-   imgtype       = 'local',
+   origin        = 'test',
+   url           = 'example.com',
+   tags          = ['protest', 'africa', 'example', 'test']
 )
 ```
 
+The above, will also make insertions into `Tags` table and link them to the image
+through the `TaggedImages` table.
+
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
-
 
 
 ## Serp Scraper
