@@ -25,6 +25,7 @@ class Images(Base):
     timestamp   = Column(DateTime, nullable=False)
     url         = Column(String(100), nullable=True)
     origin      = Column(String(100), nullable=False)
+    position    = Column(Integer, nullable=True)
 
     def __repr__(self):
         return "<Image hash='%s', name='%s'>" % (self.imageHASH, self.name)

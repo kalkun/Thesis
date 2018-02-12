@@ -89,6 +89,7 @@ class ProtestCursor:
         source,
         origin,
         url=None,
+        position=None,
         timestamp=None,
         label=None,
         tags=None
@@ -152,7 +153,8 @@ class ProtestCursor:
             source      = source,
             origin      = origin,
             timestamp   = timestamp or datetime.datetime.now(),
-            url         = url
+            url         = url,
+            position    = position
         )
 
         if not label is None:
