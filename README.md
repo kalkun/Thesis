@@ -36,7 +36,7 @@ alembic upgrade head
 ```
 
 ### Configure
-Set the path for the `*.db` SQLite file in the `config.py` file.
+Set the path for the `*.db` SQLite file in the `alembic.ini` file. The syntax is folowing the [python configparser](https://docs.python.org/3.5/library/configparser.html).
 
 ### Usage
 This module will create the database file given by `config.py` if it does not exists
@@ -54,7 +54,8 @@ pc.insertImage(
    source        = 'google search',
    origin        = 'test',
    url           = 'example.com',
-   tags          = ['protest', 'africa', 'example', 'test']
+   tags          = ['protest', 'africa', 'example', 'test'],
+   label         = .5
 )
 ```
 

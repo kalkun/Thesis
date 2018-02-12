@@ -11,6 +11,7 @@ import imagehash
 from protestDB import models
 from protestDB.engine import Connection
 
+
 class ProtestCursor:
     """
         This class defines common methods
@@ -24,6 +25,18 @@ class ProtestCursor:
         self.engine = Connection.engine
 
         self.valid_images = ["jpg", "jpeg", "png"]
+
+
+    def try_commit(self, session=None):
+        """ Rollbacks on commit failure,
+            then reraise the error
+        """
+        session = session or self.session
+        try:
+            session.commit()
+        except:
+            session.rollback()
+            raise
 
 
     def instance_exists(self, modelClass, **kwargs):
@@ -50,7 +63,8 @@ class ProtestCursor:
 
         instance = modelClass(**kwargs)
         self.session.add(instance)
-        self.session.commit()
+        self.try_commit()
+
         return instance
 
 
@@ -65,7 +79,7 @@ class ProtestCursor:
                 continue
             setattr(instance, key, value)
 
-        self.session.commit()
+        self.try_commit()
         return instance
 
 
@@ -130,30 +144,48 @@ class ProtestCursor:
 
         img_hash = path_and_name if origin == 'test' else imagehash.average_hash(Image.open(path_and_name))
 
-        try:
-            img = self.update_or_create(
-                models.Images,
-                imageHASH   = str(img_hash),
-                name        = filename,
-                filetype    = extension,
-                source      = source,
-                origin      = origin,
-                timestamp   = timestamp or datetime.datetime.now(),
-                url         = url
+        img = self.update_or_create(
+            models.Images,
+            imageHASH   = str(img_hash),
+            name        = filename,
+            filetype    = extension,
+            source      = source,
+            origin      = origin,
+            timestamp   = timestamp or datetime.datetime.now(),
+            url         = url
+        )
+
+        if not label is None:
+            self.insertLabel(
+                img.imageHASH,
+                label
             )
 
-            if not tags is None:
-                for t in tags:
-                    self.insertTag(
-                        t,
-                        img.imageHASH,
-                    )
-            return img
-        except:
-            self.session.rollback()
-            raise
+        if not tags is None:
+            for t in tags:
+                self.insertTag(
+                    t,
+                    img.imageHASH,
+                )
+        return img
 
-        return None
+
+
+    def insertLabel(
+        self,
+        imageId,
+        label,
+        timestamp=None
+    ):
+        """ Inserts a label for an image in the scale [0, 1]
+            where 1 indicates the most violent, and 0 no violence.
+        """
+        self.get_or_create(
+            models.Labels,
+            imageID     = imageId,
+            label       = label,
+            timestamp   = timestamp or datetime.datetime.now()
+        )
 
 
 
@@ -169,14 +201,10 @@ class ProtestCursor:
             and the tagname, as well as the tagname instance.
         """
 
-        try:
-            tag = self.get_or_create(
-                models.Tags,
-                tagName=tagname.lower()
-            )
-        except:
-            self.session.rollback()
-            raise
+        tag = self.get_or_create(
+            models.Tags,
+            tagName=tagname.lower()
+        )
 
         if not self.instance_exists(models.Images, imageHASH=imagehash):
             raise ValueError("No image exists with imageHASH id: '%s'" % imagehash)
@@ -187,11 +215,7 @@ class ProtestCursor:
             tagID   = tag.tagID
         )
 
-        try:
-            self.session.commit()
-        except:
-            self.session.rollback()
-            raise
+        self.try_commit()
 
         return image_tag_rel, tag
 
