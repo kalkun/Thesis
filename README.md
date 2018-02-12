@@ -59,6 +59,6 @@ scraped will be saved, the key word to be scraped (currently supports only one)
 and the search engines (currently only supports google). Look in the help for 
 additional arguments
 ```
-python serp_driver.py data potato google
+python serp_driver.py  images --sr google --key_words "jenifer anistion" "pamela anderson" --limitres 15
 ```
 
