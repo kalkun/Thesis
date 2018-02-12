@@ -15,7 +15,7 @@ class Connection:
 
     @staticmethod
     def setupEngine(db_name_and_path=db_name):
-        if Connection.engine is not None:
+        if not Connection.engine is None:
             return Connection.engine
         Connection.engine = create_engine('sqlite+pysqlite:///%s' % db_name_and_path, module=sqlite)
         return Connection.engine
