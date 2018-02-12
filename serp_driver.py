@@ -1,5 +1,5 @@
 	
-from serp_scraper.keyword_scraper import keyword_scraper
+from serp_scraper import keyword_scraper
 import argparse
 
 def main():
@@ -31,20 +31,15 @@ def main():
 	)
 
 	parser.add_argument(
-	    '--npages',
-	    help='The number of page results to be scraped',
-	    default='1',
+	    '--n_images',
+	    help='The number of images to be scraped per key word per search engine',
+	    default='10',
 	    type = int,
 	)
-	parser.add_argument(
-	    '--limitres',
-	    help='Limit the number of results to a given number per keyword per search engine',
-	    default='-1',
-	    type = int,
-	)
+
 	args = parser.parse_args()
 	#print(args.key_words)
-	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.npages, args.limitres)
+	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images)
 	
 	for searchEng in args.sr:
 		scraper.scrape(searchEng)

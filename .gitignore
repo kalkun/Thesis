@@ -5,4 +5,5 @@ ghostdriver.log
 .PNG
 .GIF
 images
+*.pycghostdriver.log
 *.pyc
