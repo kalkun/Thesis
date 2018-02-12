@@ -19,6 +19,21 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Add a symbolic link to the `protestDB` module:
+```
+ln -s `pwd`/protestDB venv/lib/python3.5/site-packages/protestDB
+```
+The above command assumes that the current directory is the project root folder.
+
+### Migrate schema
+Schema needs to be migrated using `alembic` whenever schematic changes occur, such as
+a new table being added or columns being modified.
+
+Migrations can be done from project root, using:
+```
+alembic revision --autogenerate
+alembic upgrade head
+```
 
 ### Configure
 Set the path for the `*.db` SQLite file in the `config.py` file.

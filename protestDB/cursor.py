@@ -21,6 +21,7 @@ class ProtestCursor:
         self.session = sessionmaker(
             bind=Connection.setupEngine()
         )()
+        self.engine = Connection.engine
 
         self.valid_images = ["jpg", "jpeg", "png"]
 
@@ -129,24 +130,30 @@ class ProtestCursor:
 
         img_hash = path_and_name if origin == 'test' else imagehash.average_hash(Image.open(path_and_name))
 
-        img = self.update_or_create(
-            models.Images,
-            imageHASH   = str(img_hash),
-            name        = filename,
-            filetype    = extension,
-            source      = source,
-            origin      = origin,
-            timestamp   = timestamp or datetime.datetime.now(),
-            url         = url
-        )
+        try:
+            img = self.update_or_create(
+                models.Images,
+                imageHASH   = str(img_hash),
+                name        = filename,
+                filetype    = extension,
+                source      = source,
+                origin      = origin,
+                timestamp   = timestamp or datetime.datetime.now(),
+                url         = url
+            )
 
-        if not tags is None:
-            for t in tags:
-                self.insertTag(
-                    t,
-                    img.imageHASH,
-                )
-        return img
+            if not tags is None:
+                for t in tags:
+                    self.insertTag(
+                        t,
+                        img.imageHASH,
+                    )
+            return img
+        except:
+            self.session.rollback()
+            raise
+
+        return None
 
 
 
@@ -162,10 +169,14 @@ class ProtestCursor:
             and the tagname, as well as the tagname instance.
         """
 
-        tag = self.get_or_create(
-            models.Tags,
-            tagName=tagname.lower()
-        )
+        try:
+            tag = self.get_or_create(
+                models.Tags,
+                tagName=tagname.lower()
+            )
+        except:
+            self.session.rollback()
+            raise
 
         if not self.instance_exists(models.Images, imageHASH=imagehash):
             raise ValueError("No image exists with imageHASH id: '%s'" % imagehash)
@@ -176,7 +187,11 @@ class ProtestCursor:
             tagID   = tag.tagID
         )
 
-        self.session.commit()
+        try:
+            self.session.commit()
+        except:
+            self.session.rollback()
+            raise
 
         return image_tag_rel, tag
 

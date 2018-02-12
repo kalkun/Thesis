@@ -12,5 +12,5 @@ scipy==1.0.0
 selenium==3.8.1
 SerpScrap==0.10.1
 six==1.11.0
-SQLAlchemy==1.1.15
-Wheel
+SQLAlchemy==1.2.2
+alembic==0.9.7

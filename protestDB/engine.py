@@ -1,7 +1,10 @@
 from sqlalchemy import create_engine
 from sqlite3 import dbapi2 as sqlite
 
-from protestDB.config import *
+import configparser
+config = configparser.ConfigParser()
+config.read("alembic.ini")
+db_name=config['alembic']['db_name']
 
 class Connection:
 
