@@ -17,18 +17,22 @@ import time
 from io import BytesIO
 import requests
 from selenium.webdriver.common.keys import Keys
+from protestDB.cursor import ProtestCursor
 
 
 class Scraper:
 
 
-	def __init__(self, keywords, folder, n_images, timeout):
+	def __init__(self, keywords, folder, n_images, timeout, includedb, label):
+		self.includedb = includedb
+		self.label = label
 		self.keywords = keywords
 		self.timeout = timeout
 		self.n_images = n_images
 		self.folder = folder
 		self.bing_limit = 210
 		self.bing_images_per_page = 35
+		self.pc = ProtestCursor()
 		self.google_base_url = "https://www.google.co.in/search?q="
 		self.google_end_url = "&source=lnms&tbm=isch"
 		self.bing_base_url = "http://www.bing.com/images/search?q=" 
@@ -74,12 +78,10 @@ class Scraper:
 			query_url = self.bing_base_url + query + self.bing_end_url + "&first=" + str(first) + "&count=" + str(self.bing_images_per_page)
 			soup = get_soup(query_url,self.bing_header)
 			for a in soup.find_all("a",{"class":"iusc"}):
-				mad = json.loads(a["mad"])
-				turl = mad["turl"]
 				m = json.loads(a["m"])
 				url = m["murl"]
 				print("(image " + str(current_image) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-				saveImageFromUrl(url, self.folder, self.timeout)
+				self.saveImageFromUrl(url, self.folder, self.timeout, "bing")
 				if((current_image >= self.n_images) or current_image > self.bing_limit):
 					print('-' * 80)
 					print('\n')
@@ -121,7 +123,7 @@ class Scraper:
 		for img in imges:
 			url = json.loads(img.get_attribute('innerHTML'))["ou"]
 			print("(image " + str(img_count) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-			saveImageFromUrl(url, self.folder, self.timeout)
+			self.saveImageFromUrl(url, self.folder, self.timeout, "google")
 			img_count += 1
 
 			if (img_count > self.n_images):
@@ -129,26 +131,35 @@ class Scraper:
 		driver.quit()
 
 
-def saveImageFromUrl(url, folder, timeout):
-	"""
-	Given an image, tries to download it saving it in the givel folder. The name of the file is the 
-	image average hash plus the extension detected by PIL
-	Params:
-		folder: the folder name
-	"""
+	def saveImageFromUrl(self, url, folder, timeout, source, tags = None):
+		"""
+		Given an image, tries to download it saving it in the givel folder. The name of the file is the 
+		image average hash plus the extension detected by PIL
+		Params:
+			folder: the folder name
+		"""
 
-	try:
-		r = requests.get(url, timeout = timeout)
-		img = Image.open(BytesIO(r.content))
-		#imgpath, headers = urllib.request.urlretrieve(url)
-		#img = Image.open(imgpath)
-		imgHash = str(imagehash.average_hash(img))
-		filename = imgHash + '.' + img.format
-		path = os.path.join(folder, filename)
-		img.save(path)
-	except Exception as e:
-		print(e)
-		print("somenthing went wrong scraping the image url")
+		try:
+			r = requests.get(url, timeout = timeout)
+			img = Image.open(BytesIO(r.content))
+			#imgpath, headers = urllib.request.urlretrieve(url)
+			#img = Image.open(imgpath)
+			imgHash = str(imagehash.average_hash(img))
+			filename = imgHash + '.' + img.format
+			path = os.path.join(folder, filename)
+			img.save(path)
+			if(self.includedb):
+				self.pc.insertImage(
+		   			path_and_name = imgHash,
+		   			source        = source,
+		   			origin        = 'test',
+		   			url           = url,
+		   			tags          = tags,
+		   			label         = self.label
+				)
+		except Exception as e:
+			print(e)
+			print("somenthing went wrong scraping the image url")
 
 def createFolder(folder_path):
 	"""

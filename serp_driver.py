@@ -15,6 +15,14 @@ def main():
 	)
 
 	parser.add_argument(
+		'include_db',
+		metavar='includedb',
+		help='0 or 1 if to include the images on the database or not. 0 does not include, 1 includes',
+		type=int,
+		choices=[0,1],
+	)
+
+	parser.add_argument(
 		'--sr',
 		nargs='+',
 		metavar = 'search engines',
@@ -44,13 +52,29 @@ def main():
 	    type = float,
 	)
 
+	parser.add_argument(
+		'--label',
+		metavar='label',
+		help='a float between 0 and 1',
+		type=float,
+		choices=[Range(0,1)],
+	)
+
 	args = parser.parse_args()
-	#print(args.key_words)
-	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images, args.timeout)
+	#print(args.label)
+	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images, args.timeout, args.include_db, args.label)
 	
 	for searchEng in args.sr:
 		scraper.scrape(searchEng)
 	
+
+class Range(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+    def __eq__(self, other):
+        return self.start <= other <= self.end
+
 
 
 if __name__ == '__main__':
