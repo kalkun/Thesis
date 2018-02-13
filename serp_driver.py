@@ -23,6 +23,15 @@ def main():
 	)
 
 	parser.add_argument(
+		'type',
+		metavar='type',
+		help=' "local" if the images are to be saved on your local pc, "test" if these images are to be\
+		disregarded or online if they are to sit in the cloud, or "online".',
+		type=str,
+		choices=["local", "online", "test"],
+	)
+
+	parser.add_argument(
 		'--sr',
 		nargs='+',
 		metavar = 'search engines',
@@ -62,7 +71,8 @@ def main():
 
 	args = parser.parse_args()
 	#print(args.label)
-	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images, args.timeout, args.include_db, args.label)
+	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images,\
+	args.timeout, args.include_db, args.label, args.type)
 	
 	for searchEng in args.sr:
 		scraper.scrape(searchEng)

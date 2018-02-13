@@ -23,8 +23,9 @@ from protestDB.cursor import ProtestCursor
 class Scraper:
 
 
-	def __init__(self, keywords, folder, n_images, timeout, includedb, label):
+	def __init__(self, keywords, folder, n_images, timeout, includedb, label, tpe):
 		self.includedb = includedb
+		self.type = tpe
 		self.label = label
 		self.keywords = keywords
 		self.timeout = timeout
@@ -70,6 +71,7 @@ class Scraper:
 		print("scraping keyword: " + keyword + " on bing")
 		print('\n')
 		query= keyword.split()
+		tags = query
 		query='+'.join(query)
 		current_image = 1
 		current_page = 1
@@ -81,7 +83,7 @@ class Scraper:
 				m = json.loads(a["m"])
 				url = m["murl"]
 				print("(image " + str(current_image) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-				self.saveImageFromUrl(url, self.folder, self.timeout, "bing")
+				self.saveImageFromUrl(url, self.folder, self.timeout, "bing", tags)
 				if((current_image >= self.n_images) or current_image > self.bing_limit):
 					print('-' * 80)
 					print('\n')
@@ -99,6 +101,7 @@ class Scraper:
 		print("scraping keyword: " + keyword + " on google")
 		print('\n')
 		query= keyword.split()
+		ẗags=query
 		query='+'.join(query)
 		query_url = self.google_base_url + query + self.google_end_url
 		driver = webdriver.Chrome()
@@ -123,7 +126,7 @@ class Scraper:
 		for img in imges:
 			url = json.loads(img.get_attribute('innerHTML'))["ou"]
 			print("(image " + str(img_count) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-			self.saveImageFromUrl(url, self.folder, self.timeout, "google")
+			self.saveImageFromUrl(url, self.folder, self.timeout, "google", ẗags)
 			img_count += 1
 
 			if (img_count > self.n_images):
@@ -150,9 +153,9 @@ class Scraper:
 			img.save(path)
 			if(self.includedb):
 				self.pc.insertImage(
-		   			path_and_name = imgHash,
+		   			path_and_name = path,
 		   			source        = source,
-		   			origin        = 'test',
+		   			origin        = self.type,
 		   			url           = url,
 		   			tags          = tags,
 		   			label         = self.label
