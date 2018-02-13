@@ -6,13 +6,20 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
     String,
+    Table,
 )
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
-#metadata = MetaData()
 Base = declarative_base()
 # THEN WHEN CREATING:
 # Base.metadata.create_all(engine)
+
+TaggedImages = Table("TaggedImages",
+    Base.metadata,
+    Column("imageID", String(100), ForeignKey("Images.imageHASH")),
+    Column("tagID", Integer, ForeignKey('Tags.tagID'))
+)
 
 class Images(Base):
 
@@ -27,6 +34,13 @@ class Images(Base):
     origin      = Column(String(100), nullable=False)
     position    = Column(Integer, nullable=True)
 
+    # relationship fields:
+    labels      = relationship("Labels")
+    tags        = relationship("Tags",
+                    secondary=TaggedImages,
+                    back_populates="images",
+                )
+
     def __repr__(self):
         return "<Image hash='%s', name='%s'>" % (self.imageHASH, self.name)
 
@@ -39,23 +53,15 @@ class Tags(Base):
     tagID   = Column(Integer, primary_key=True)
     tagName = Column(String(100), nullable=False)
 
+    # relationship fields:
+    images  = relationship("Images",
+                secondary=TaggedImages,
+                back_populates="tags",
+            )
+
     def __repr__(self):
         return "<Tags id='%s', name='%s', id='%s'>" % (
                 self.tagID, self.tagName, self.tagID)
-
-
-
-class TaggedImages(Base):
-
-    __tablename__   = "TaggedImages"
-
-    taggedImageID   = Column(Integer, primary_key=True)
-    imageID         = Column(String(100), ForeignKey('Images.imageHASH'))
-    tagID           = Column(Integer, ForeignKey('Tags.tagID'))
-
-    def __repr__(self):
-        return "<TaggedImages id='%s', imageID='%s', tagID='%s'>" % (
-                self.taggedImageID, self.imageID, self.tagID)
 
 
 class Comparisons(Base):

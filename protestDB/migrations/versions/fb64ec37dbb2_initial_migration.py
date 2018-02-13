@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 8f3e86803e43
+Revision ID: fb64ec37dbb2
 Revises: 
-Create Date: 2018-02-12 15:58:02.300459
+Create Date: 2018-02-13 13:55:27.333055
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8f3e86803e43'
+revision = 'fb64ec37dbb2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,6 +26,7 @@ def upgrade():
     sa.Column('timestamp', sa.DateTime(), nullable=False),
     sa.Column('url', sa.String(length=100), nullable=True),
     sa.Column('origin', sa.String(length=100), nullable=False),
+    sa.Column('position', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('imageHASH')
     )
     op.create_table('Tags',
@@ -50,12 +51,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('protestVoteID')
     )
     op.create_table('TaggedImages',
-    sa.Column('taggedImageID', sa.Integer(), nullable=False),
     sa.Column('imageID', sa.String(length=100), nullable=True),
     sa.Column('tagID', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['imageID'], ['Images.imageHASH'], ),
-    sa.ForeignKeyConstraint(['tagID'], ['Tags.tagID'], ),
-    sa.PrimaryKeyConstraint('taggedImageID')
+    sa.ForeignKeyConstraint(['tagID'], ['Tags.tagID'], )
     )
     op.create_table('Votes',
     sa.Column('comparisonID', sa.Integer(), nullable=False),

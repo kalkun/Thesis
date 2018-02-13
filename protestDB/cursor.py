@@ -165,12 +165,12 @@ class ProtestCursor:
 
         if not tags is None:
             for t in tags:
-                self.insertTag(
-                    t,
-                    img.imageHASH,
+                img.tags.append(
+                    models.Tags(tagName=t)
                 )
-        return img
 
+        self.try_commit()
+        return img
 
 
     def insertLabel(
