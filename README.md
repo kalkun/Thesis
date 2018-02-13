@@ -42,7 +42,7 @@ Set the path for the `*.db` SQLite file in the `alembic.ini` file. The syntax is
 This module will create the database file given by `config.py` if it does not exists
 once the library is imported.
 
-**Example usage:**
+**Example insertion:**
 ```python
 from protestDB.cursor import ProtestCursor
 # create a cursor:
@@ -61,6 +61,18 @@ pc.insertImage(
 
 The above, will also make insertions into `Tags` table and link them to the image
 through the `TaggedImages` table.
+
+**Example filtering:**
+```python
+# Custom query, e.g. get list of all images with the tag 'protest':
+protestTag = pc.session.query(
+    models.Tags
+).filter_by(
+    tagName='protest'
+).one()
+
+protest_images = protestTag.images
+```
 
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
