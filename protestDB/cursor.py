@@ -48,6 +48,21 @@ class ProtestCursor:
         return self.session.query(q.exists())
 
 
+    def get(self, modelClass, **kwargs):
+        """ Returns exactly one instance or None
+            Example usage:
+            ```
+            get(models.Tags, tagName='protest')
+            ```
+        """
+        return self.session.query(modelClass).filter_by(**kwargs).one_or_none()
+
+    def getTag(self, tagName):
+        """ Returns tag identified by `tagName` or None
+        """
+        return self.get(models.Tags, tagName=tagName)
+
+
     def get_or_create(self, modelClass, **kwargs):
         """ If object exists it will just be returned,
             otherwise it will be created first, then returned.
