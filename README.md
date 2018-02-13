@@ -34,8 +34,8 @@ db_name = protest_images.db
 image_dir = images
 ```
 Where the first indicates the name of the database file located in the project root directory. The second variable `image_dir` indicates the folder in which the locally saved images are to be found.
-For example unpacking the UCLA paper images into the `image_dir` directory, leads to the following structure:
-- `image_dir/`
+For example unpacking the UCLA paper images into the `image_dir` directory (as it is set in the above), leads to the following structure:
+- `images/`
       - `UCLA-protest/`
          - `annot_test.txt`
          - `annot_train.txt`
