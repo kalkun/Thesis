@@ -42,7 +42,7 @@ class Images(Base):
                 )
 
     def __repr__(self):
-        return "<Image hash='%s', name='%s'>" % (self.imageHASH, self.name)
+        return "<Image imageHASH='%s', name='%s'>" % (self.imageHASH, self.name)
 
 
 
@@ -60,8 +60,8 @@ class Tags(Base):
             )
 
     def __repr__(self):
-        return "<Tags id='%s', name='%s', id='%s'>" % (
-                self.tagID, self.tagName, self.tagID)
+        return "<Tags id='%s', tagName='%s'" % (
+                self.tagID, self.tagName)
 
 
 class Comparisons(Base):
@@ -113,5 +113,5 @@ class Labels(Base):
     label       = Column(Float, nullable=False)
 
     def __repr__(self):
-        return "<Labels id='%s', imageID='%s', label='%s'>" % (
+        return "<Labels labelID='%s', imageID='%s', label='%s'>" % (
                 self.labelID, self.imageID, self.label)
