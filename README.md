@@ -78,12 +78,8 @@ through the `TaggedImages` table.
 ```python
 import protestDB.models as models
 
-# Custom query, e.g. get list of all images with the tag 'protest':
-protestTag = pc.session.query(
-    models.Tags
-).filter_by(
-    tagName='protest'
-).one()
+# Get list of all images with the tag 'protest':
+protestTag = pc.getTag("protest")
 
 protest_images = protestTag.images
 ```
