@@ -83,7 +83,7 @@ class Scraper:
 				m = json.loads(a["m"])
 				url = m["murl"]
 				print("(image " + str(current_image) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-				self.saveImageFromUrl(url, self.folder, self.timeout, "bing", tags)
+				self.saveImageFromUrl(url, self.folder, self.timeout, "bing", current_image, tags)
 				if((current_image >= self.n_images) or current_image > self.bing_limit):
 					print('-' * 80)
 					print('\n')
@@ -126,7 +126,7 @@ class Scraper:
 		for img in imges:
 			url = json.loads(img.get_attribute('innerHTML'))["ou"]
 			print("(image " + str(img_count) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-			self.saveImageFromUrl(url, self.folder, self.timeout, "google", ẗags)
+			self.saveImageFromUrl(url, self.folder, self.timeout, "google", img_count, ẗags)
 			img_count += 1
 
 			if (img_count > self.n_images):
@@ -134,7 +134,7 @@ class Scraper:
 		driver.quit()
 
 
-	def saveImageFromUrl(self, url, folder, timeout, source, tags = None):
+	def saveImageFromUrl(self, url, folder, timeout, source, pos, tags = None):
 		"""
 		Given an image, tries to download it saving it in the givel folder. The name of the file is the 
 		image average hash plus the extension detected by PIL
@@ -158,7 +158,8 @@ class Scraper:
 		   			origin        = self.type,
 		   			url           = url,
 		   			tags          = tags,
-		   			label         = self.label
+		   			label         = self.label,
+		   			position 	  = pos,
 				)
 		except Exception as e:
 			print(e)
