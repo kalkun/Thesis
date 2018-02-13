@@ -165,9 +165,10 @@ class ProtestCursor:
 
         if not tags is None:
             for t in tags:
-                img.tags.append(
-                    models.Tags(tagName=t.lower())
-                )
+                self.insertTag(
+                    t,
+                    img.imageHASH,
+        )
 
         self.try_commit()
         return img
@@ -211,15 +212,12 @@ class ProtestCursor:
         if not self.instance_exists(models.Images, imageHASH=imagehash):
             raise ValueError("No image exists with imageHASH id: '%s'" % imagehash)
 
-        image_tag_rel = self.get_or_create(
-            models.TaggedImages,
-            imageID = imagehash,
-            tagID   = tag.tagID
-        )
+        img = self.session.query(models.Images).get(imagehash)
+        img.tags.append(tag)
 
         self.try_commit()
 
-        return image_tag_rel, tag
+        return tag
 
 
     def removeImage(
