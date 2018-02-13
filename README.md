@@ -34,14 +34,8 @@ db_name = protest_images.db
 image_dir = images
 ```
 Where the first indicates the name of the database file located in the project root directory. The second variable `image_dir` indicates the folder in which the locally saved images are to be found.
-For example unpacking the UCLA paper images into the `image_dir` directory (as it is set in the above), leads to the following structure:
-- `images/`
-      - `UCLA-protest/`
-         - `annot_test.txt`
-         - `annot_train.txt`
-         - `img/`
-            - `test`
-            - `train`
+
+Since images are referred in the database by their exact filename, all images can just be saved in a flat hierachy in the root of `image_dir`. This assumes that all filenames are globally unique.
 
 ### Migrate schema
 Schema needs to be migrated using `alembic` whenever schematic changes occur, such as
@@ -82,6 +76,8 @@ through the `TaggedImages` table.
 
 **Example filtering:**
 ```python
+import protestDB.models as models
+
 # Custom query, e.g. get list of all images with the tag 'protest':
 protestTag = pc.session.query(
     models.Tags
@@ -91,6 +87,21 @@ protestTag = pc.session.query(
 
 protest_images = protestTag.images
 ```
+
+Below is an example of printing out the number of images for each tag in the database.
+
+**Example tag stats:**
+```python
+tags = pc.session.query(models.Tags).all()
+
+for tag in tags:
+    print("{:<15} {:d}".format(
+        tag.tagName,
+        len(tag.images))
+    )
+```
+
+The above prints out a two column table where the first column has a fixed width of 15 and is left-aligned.
 
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
