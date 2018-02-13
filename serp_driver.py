@@ -19,7 +19,7 @@ def main():
 		nargs='+',
 		metavar = 'search engines',
 		default = ['google'],
-		help='search engines separated by spaces'
+		help='search engines separated by spaces. Default is google'
 	)
 
 	parser.add_argument(
@@ -32,14 +32,21 @@ def main():
 
 	parser.add_argument(
 	    '--n_images',
-	    help='The number of images to be scraped per key word per search engine',
+	    help='The number of images to be scraped per key word per search engine. Defaulted to 10 images',
 	    default='10',
 	    type = int,
 	)
 
+	parser.add_argument(
+	    '--timeout',
+	    help='Timeout in seconds. Defaulted to 10 seconds',
+	    default='10',
+	    type = float,
+	)
+
 	args = parser.parse_args()
 	#print(args.key_words)
-	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images)
+	scraper = keyword_scraper.Scraper(args.key_words, args.download_folder, args.n_images, args.timeout)
 	
 	for searchEng in args.sr:
 		scraper.scrape(searchEng)

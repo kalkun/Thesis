@@ -70,15 +70,24 @@ documentation on the possible parameters and their meaning.
 
 This code defines a commandline interface for scraping images.
 
-Get usage information:
+### Get usage information:
 ```
 python serp_driver.py --help
 ```
-Otherwise the general idea is to provide a path to a directory where the images
-scraped will be saved, the key word to be scraped (currently supports only one)
-and the search engines (currently only supports google). Look in the help for 
-additional arguments
+Otherwise the general idea is to provide a path to a directory where the images scraped will be saved, the key words to be scraped and the search engines (currently supports google and bing). Look in the help for additional arguments
+
+### Limits
+Bing has a limit of 210 images where google goes up to 800 in principle.
+
+### Usage
+
+Minimum arguments
 ```
-python serp_driver.py  images --sr google --key_words "jenifer anistion" "pamela anderson" --limitres 15
+python serp_driver.py images --key_words "jenifer anistion" "cats"
+```
+
+All arguments
+```
+python serp_driver.py images --sr google bing --key_words "jenifer anistion" "cats" --n_images 100 --timeout 10
 ```
 
