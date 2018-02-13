@@ -1300,7 +1300,9 @@ ________________________________________________________________________________
 Inserting test-00649.jpg 
 ________________________________________________________________________________
 Inserting test-00650.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff80000000', 'test-00651.jpg', 'UCLA', '.jpg', '2018-02-13 16:56:10.492260', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff80000000', 'test-00651.jpg', 'UCLA', '.jpg', '2018-02-13 16:56:10.492260', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-00652.jpg 
 ________________________________________________________________________________
 Inserting test-00653.jpg 
@@ -1846,7 +1848,9 @@ ________________________________________________________________________________
 Inserting test-00923.jpg 
 ________________________________________________________________________________
 Inserting test-00924.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000007fffffffff', 'test-00925.jpg', 'UCLA', '.jpg', '2018-02-13 16:57:26.862735', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000007fffffffff', 'test-00925.jpg', 'UCLA', '.jpg', '2018-02-13 16:57:26.862735', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-00926.jpg 
 ________________________________________________________________________________
 Inserting test-00927.jpg 
@@ -2412,7 +2416,9 @@ ________________________________________________________________________________
 Inserting test-01207.jpg 
 ________________________________________________________________________________
 Inserting test-01208.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-01209.jpg', 'UCLA', '.jpg', '2018-02-13 16:58:46.414267', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-01209.jpg', 'UCLA', '.jpg', '2018-02-13 16:58:46.414267', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01210.jpg 
 ________________________________________________________________________________
 Inserting test-01211.jpg 
@@ -2520,7 +2526,9 @@ ________________________________________________________________________________
 Inserting test-01262.jpg 
 ________________________________________________________________________________
 Inserting test-01263.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01264.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:01.157490', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01264.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:01.157490', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01265.jpg 
 ________________________________________________________________________________
 Inserting test-01266.jpg 
@@ -2680,7 +2688,9 @@ ________________________________________________________________________________
 Inserting test-01343.jpg 
 ________________________________________________________________________________
 Inserting test-01344.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-01345.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:26.866575', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-01345.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:26.866575', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01346.jpg 
 ________________________________________________________________________________
 Inserting test-01347.jpg 
@@ -2736,7 +2746,9 @@ ________________________________________________________________________________
 Inserting test-01372.jpg 
 ________________________________________________________________________________
 Inserting test-01373.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-01374.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:33.750914', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-01374.jpg', 'UCLA', '.jpg', '2018-02-13 16:59:33.750914', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01375.jpg 
 ________________________________________________________________________________
 Inserting test-01376.jpg 
@@ -3082,7 +3094,9 @@ ________________________________________________________________________________
 Inserting test-01546.jpg 
 ________________________________________________________________________________
 Inserting test-01547.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-01548.jpg', 'UCLA', '.jpg', '2018-02-13 17:00:21.197222', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-01548.jpg', 'UCLA', '.jpg', '2018-02-13 17:00:21.197222', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01549.jpg 
 ________________________________________________________________________________
 Inserting test-01550.jpg 
@@ -3184,7 +3198,9 @@ ________________________________________________________________________________
 Inserting test-01598.jpg 
 ________________________________________________________________________________
 Inserting test-01599.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01600.jpg', 'UCLA', '.jpg', '2018-02-13 17:00:34.662846', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01600.jpg', 'UCLA', '.jpg', '2018-02-13 17:00:34.662846', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01601.jpg 
 ________________________________________________________________________________
 Inserting test-01602.jpg 
@@ -3560,7 +3576,9 @@ ________________________________________________________________________________
 Inserting test-01787.jpg 
 ________________________________________________________________________________
 Inserting test-01788.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-01789.jpg', 'UCLA', '.jpg', '2018-02-13 17:01:24.539252', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-01789.jpg', 'UCLA', '.jpg', '2018-02-13 17:01:24.539252', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01790.jpg 
 ________________________________________________________________________________
 Inserting test-01791.jpg 
@@ -3580,7 +3598,9 @@ ________________________________________________________________________________
 Inserting test-01798.jpg 
 ________________________________________________________________________________
 Inserting test-01799.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01800.jpg', 'UCLA', '.jpg', '2018-02-13 17:01:26.787505', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-01800.jpg', 'UCLA', '.jpg', '2018-02-13 17:01:26.787505', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-01801.jpg 
 ________________________________________________________________________________
 Inserting test-01802.jpg 
@@ -4008,7 +4028,9 @@ ________________________________________________________________________________
 Inserting test-02013.jpg 
 ________________________________________________________________________________
 Inserting test-02014.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02015.jpg', 'UCLA', '.jpg', '2018-02-13 17:02:26.697212', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02015.jpg', 'UCLA', '.jpg', '2018-02-13 17:02:26.697212', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02016.jpg 
 ________________________________________________________________________________
 Inserting test-02017.jpg 
@@ -4330,7 +4352,9 @@ ________________________________________________________________________________
 Inserting test-02175.jpg 
 ________________________________________________________________________________
 Inserting test-02176.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-02177.jpg', 'UCLA', '.jpg', '2018-02-13 17:03:24.391202', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-02177.jpg', 'UCLA', '.jpg', '2018-02-13 17:03:24.391202', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02178.jpg 
 ________________________________________________________________________________
 Inserting test-02179.jpg 
@@ -4486,7 +4510,9 @@ ________________________________________________________________________________
 Inserting test-02254.jpg 
 ________________________________________________________________________________
 Inserting test-02255.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02256.jpg', 'UCLA', '.jpg', '2018-02-13 17:03:48.685548', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02256.jpg', 'UCLA', '.jpg', '2018-02-13 17:03:48.685548', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02257.jpg 
 ________________________________________________________________________________
 Inserting test-02258.jpg 
@@ -4632,7 +4658,9 @@ ________________________________________________________________________________
 Inserting test-02328.jpg 
 ________________________________________________________________________________
 Inserting test-02329.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-02330.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:12.829018', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-02330.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:12.829018', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02331.jpg 
 ________________________________________________________________________________
 Inserting test-02332.jpg 
@@ -4706,9 +4734,13 @@ ________________________________________________________________________________
 Inserting test-02366.jpg 
 ________________________________________________________________________________
 Inserting test-02367.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff4300000000', 'test-02368.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:22.901727', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff4300000000', 'test-02368.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:22.901727', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02369.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-02370.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:23.041170', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-02370.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:23.041170', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02371.jpg 
 ________________________________________________________________________________
 Inserting test-02372.jpg 
@@ -4740,7 +4772,9 @@ ________________________________________________________________________________
 Inserting test-02385.jpg 
 ________________________________________________________________________________
 Inserting test-02386.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-02387.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:26.951729', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-02387.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:26.951729', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02388.jpg 
 ________________________________________________________________________________
 Inserting test-02389.jpg 
@@ -4782,7 +4816,9 @@ ________________________________________________________________________________
 Inserting test-02407.jpg 
 ________________________________________________________________________________
 Inserting test-02408.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-02409.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:33.395453', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-02409.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:33.395453', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02410.jpg 
 ________________________________________________________________________________
 Inserting test-02411.jpg 
@@ -4820,7 +4856,9 @@ ________________________________________________________________________________
 Inserting test-02427.jpg 
 ________________________________________________________________________________
 Inserting test-02428.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-02429.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:37.509815', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-02429.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:37.509815', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02430.jpg 
 ________________________________________________________________________________
 Inserting test-02431.jpg 
@@ -4904,7 +4942,9 @@ ________________________________________________________________________________
 Inserting test-02470.jpg 
 ________________________________________________________________________________
 Inserting test-02471.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-02472.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:50.086359', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-02472.jpg', 'UCLA', '.jpg', '2018-02-13 17:04:50.086359', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02473.jpg 
 ________________________________________________________________________________
 Inserting test-02474.jpg 
@@ -5214,7 +5254,9 @@ ________________________________________________________________________________
 Inserting test-02626.jpg 
 ________________________________________________________________________________
 Inserting test-02627.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02628.jpg', 'UCLA', '.jpg', '2018-02-13 17:05:29.672552', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02628.jpg', 'UCLA', '.jpg', '2018-02-13 17:05:29.672552', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02629.jpg 
 ________________________________________________________________________________
 Inserting test-02630.jpg 
@@ -5410,7 +5452,9 @@ ________________________________________________________________________________
 Inserting test-02725.jpg 
 ________________________________________________________________________________
 Inserting test-02726.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02727.jpg', 'UCLA', '.jpg', '2018-02-13 17:05:52.020083', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02727.jpg', 'UCLA', '.jpg', '2018-02-13 17:05:52.020083', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02728.jpg 
 ________________________________________________________________________________
 Inserting test-02729.jpg 
@@ -5508,7 +5552,9 @@ ________________________________________________________________________________
 Inserting test-02775.jpg 
 ________________________________________________________________________________
 Inserting test-02776.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02777.jpg', 'UCLA', '.jpg', '2018-02-13 17:06:03.019105', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('00000000ffffffff', 'test-02777.jpg', 'UCLA', '.jpg', '2018-02-13 17:06:03.019105', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02778.jpg 
 ________________________________________________________________________________
 Inserting test-02779.jpg 
@@ -5894,7 +5940,9 @@ ________________________________________________________________________________
 Inserting test-02969.jpg 
 ________________________________________________________________________________
 Inserting test-02970.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02971.jpg', 'UCLA', '.jpg', '2018-02-13 17:06:52.591265', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-02971.jpg', 'UCLA', '.jpg', '2018-02-13 17:06:52.591265', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-02972.jpg 
 ________________________________________________________________________________
 Inserting test-02973.jpg 
@@ -6198,7 +6246,9 @@ ________________________________________________________________________________
 Inserting test-03122.jpg 
 ________________________________________________________________________________
 Inserting test-03123.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-03124.jpg', 'UCLA', '.jpg', '2018-02-13 17:07:37.240655', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-03124.jpg', 'UCLA', '.jpg', '2018-02-13 17:07:37.240655', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-03125.jpg 
 ________________________________________________________________________________
 Inserting test-03126.jpg 
@@ -6406,7 +6456,9 @@ ________________________________________________________________________________
 Inserting test-03227.jpg 
 ________________________________________________________________________________
 Inserting test-03228.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0f00000000', 'test-03229.jpg', 'UCLA', '.jpg', '2018-02-13 17:08:04.113236', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0f00000000', 'test-03229.jpg', 'UCLA', '.jpg', '2018-02-13 17:08:04.113236', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-03230.jpg 
 ________________________________________________________________________________
 Inserting test-03231.jpg 
@@ -8116,7 +8168,9 @@ ________________________________________________________________________________
 Inserting test-04083.jpg 
 ________________________________________________________________________________
 Inserting test-04084.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffff80000000000', 'test-04085.jpg', 'UCLA', '.jpg', '2018-02-13 17:11:52.643548', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffff80000000000', 'test-04085.jpg', 'UCLA', '.jpg', '2018-02-13 17:11:52.643548', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04086.jpg 
 ________________________________________________________________________________
 Inserting test-04087.jpg 
@@ -9108,7 +9162,9 @@ ________________________________________________________________________________
 Inserting test-04580.jpg 
 ________________________________________________________________________________
 Inserting test-04581.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-04582.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:01.679662', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-04582.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:01.679662', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04583.jpg 
 ________________________________________________________________________________
 Inserting test-04584.jpg 
@@ -9202,13 +9258,17 @@ ________________________________________________________________________________
 Inserting test-04628.jpg 
 ________________________________________________________________________________
 Inserting test-04629.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff7f3f00000000', 'test-04630.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:13.293022', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff7f3f00000000', 'test-04630.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:13.293022', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04631.jpg 
 ________________________________________________________________________________
 Inserting test-04632.jpg 
 ________________________________________________________________________________
 Inserting test-04633.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-04634.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:14.314260', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-04634.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:14.314260', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04635.jpg 
 ________________________________________________________________________________
 Inserting test-04636.jpg 
@@ -9234,7 +9294,9 @@ ________________________________________________________________________________
 Inserting test-04646.jpg 
 ________________________________________________________________________________
 Inserting test-04647.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-04648.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:19.004337', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-04648.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:19.004337', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04649.jpg 
 ________________________________________________________________________________
 Inserting test-04650.jpg 
@@ -9340,7 +9402,9 @@ ________________________________________________________________________________
 Inserting test-04700.jpg 
 ________________________________________________________________________________
 Inserting test-04701.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff000000', 'test-04702.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:32.950308', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff000000', 'test-04702.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:32.950308', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04703.jpg 
 ________________________________________________________________________________
 Inserting test-04704.jpg 
@@ -9522,7 +9586,9 @@ ________________________________________________________________________________
 Inserting test-04792.jpg 
 ________________________________________________________________________________
 Inserting test-04793.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-04794.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:58.814464', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffffffffff', 'test-04794.jpg', 'UCLA', '.jpg', '2018-02-13 17:14:58.814464', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04795.jpg 
 ________________________________________________________________________________
 Inserting test-04796.jpg 
@@ -9536,7 +9602,9 @@ ________________________________________________________________________________
 Inserting test-04800.jpg 
 ________________________________________________________________________________
 Inserting test-04801.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-04802.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:00.643131', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-04802.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:00.643131', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04803.jpg 
 ________________________________________________________________________________
 Inserting test-04804.jpg 
@@ -9578,7 +9646,9 @@ ________________________________________________________________________________
 Inserting test-04822.jpg 
 ________________________________________________________________________________
 Inserting test-04823.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-04824.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:04.391680', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-04824.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:04.391680', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04825.jpg 
 ________________________________________________________________________________
 Inserting test-04826.jpg 
@@ -9806,7 +9876,9 @@ ________________________________________________________________________________
 Inserting test-04937.jpg 
 ________________________________________________________________________________
 Inserting test-04938.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0f00000000', 'test-04939.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:37.157611', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0f00000000', 'test-04939.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:37.157611', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04940.jpg 
 ________________________________________________________________________________
 Inserting test-04941.jpg 
@@ -9816,7 +9888,9 @@ ________________________________________________________________________________
 Inserting test-04943.jpg 
 ________________________________________________________________________________
 Inserting test-04944.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000fefe000000', 'test-04945.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:37.800844', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000fefe000000', 'test-04945.jpg', 'UCLA', '.jpg', '2018-02-13 17:15:37.800844', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-04946.jpg 
 ________________________________________________________________________________
 Inserting test-04947.jpg 
@@ -10038,7 +10112,9 @@ ________________________________________________________________________________
 Inserting test-05055.jpg 
 ________________________________________________________________________________
 Inserting test-05056.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-05057.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:03.494452', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-05057.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:03.494452', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05058.jpg 
 ________________________________________________________________________________
 Inserting test-05059.jpg 
@@ -10112,7 +10188,9 @@ ________________________________________________________________________________
 Inserting test-05093.jpg 
 ________________________________________________________________________________
 Inserting test-05094.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff000000', 'test-05095.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:15.500900', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff000000', 'test-05095.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:15.500900', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05096.jpg 
 ________________________________________________________________________________
 Inserting test-05097.jpg 
@@ -10188,7 +10266,9 @@ ________________________________________________________________________________
 Inserting test-05132.jpg 
 ________________________________________________________________________________
 Inserting test-05133.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-05134.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:24.829827', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-05134.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:24.829827', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05135.jpg 
 ________________________________________________________________________________
 Inserting test-05136.jpg 
@@ -10226,7 +10306,9 @@ ________________________________________________________________________________
 Inserting test-05152.jpg 
 ________________________________________________________________________________
 Inserting test-05153.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-05154.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:31.071846', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-05154.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:31.071846', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05155.jpg 
 ________________________________________________________________________________
 Inserting test-05156.jpg 
@@ -10286,7 +10368,9 @@ ________________________________________________________________________________
 Inserting test-05183.jpg 
 ________________________________________________________________________________
 Inserting test-05184.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-05185.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:36.642431', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-05185.jpg', 'UCLA', '.jpg', '2018-02-13 17:16:36.642431', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05186.jpg 
 ________________________________________________________________________________
 Inserting test-05187.jpg 
@@ -10534,7 +10618,9 @@ ________________________________________________________________________________
 Inserting test-05308.jpg 
 ________________________________________________________________________________
 Inserting test-05309.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-05310.jpg', 'UCLA', '.jpg', '2018-02-13 17:17:11.631114', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-05310.jpg', 'UCLA', '.jpg', '2018-02-13 17:17:11.631114', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05311.jpg 
 ________________________________________________________________________________
 Inserting test-05312.jpg 
@@ -10738,7 +10824,9 @@ ________________________________________________________________________________
 Inserting test-05411.jpg 
 ________________________________________________________________________________
 Inserting test-05412.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-05413.jpg', 'UCLA', '.jpg', '2018-02-13 17:17:40.231045', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-05413.jpg', 'UCLA', '.jpg', '2018-02-13 17:17:40.231045', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05414.jpg 
 ________________________________________________________________________________
 Inserting test-05415.jpg 
@@ -10952,7 +11040,9 @@ ________________________________________________________________________________
 Inserting test-05519.jpg 
 ________________________________________________________________________________
 Inserting test-05520.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-05521.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:06.012473', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff000000ffff', 'test-05521.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:06.012473', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05522.jpg 
 ________________________________________________________________________________
 Inserting test-05523.jpg 
@@ -11002,7 +11092,9 @@ ________________________________________________________________________________
 Inserting test-05545.jpg 
 ________________________________________________________________________________
 Inserting test-05546.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff00000000ff', 'test-05547.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:13.376203', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff00000000ff', 'test-05547.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:13.376203', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05548.jpg 
 ________________________________________________________________________________
 Inserting test-05549.jpg 
@@ -11224,7 +11316,9 @@ ________________________________________________________________________________
 Inserting test-05657.jpg 
 ________________________________________________________________________________
 Inserting test-05658.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff0f0000000000', 'test-05659.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:47.065263', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff0f0000000000', 'test-05659.jpg', 'UCLA', '.jpg', '2018-02-13 17:18:47.065263', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05660.jpg 
 ________________________________________________________________________________
 Inserting test-05661.jpg 
@@ -11782,9 +11876,13 @@ ________________________________________________________________________________
 Inserting test-05937.jpg 
 ________________________________________________________________________________
 Inserting test-05938.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-05939.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:02.337728', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-05939.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:02.337728', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05940.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffbf00000000', 'test-05941.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:02.998029', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffbf00000000', 'test-05941.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:02.998029', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-05942.jpg 
 ________________________________________________________________________________
 Inserting test-05943.jpg 
@@ -12070,7 +12168,9 @@ ________________________________________________________________________________
 Inserting test-06083.jpg 
 ________________________________________________________________________________
 Inserting test-06084.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff4000000000', 'test-06085.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:38.127958', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff4000000000', 'test-06085.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:38.127958', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06086.jpg 
 ________________________________________________________________________________
 Inserting test-06087.jpg 
@@ -12122,11 +12222,15 @@ ________________________________________________________________________________
 Inserting test-06110.jpg 
 ________________________________________________________________________________
 Inserting test-06111.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('007e7e7e7e7e7e00', 'test-06112.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:45.995760', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('007e7e7e7e7e7e00', 'test-06112.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:45.995760', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06113.jpg 
 ________________________________________________________________________________
 Inserting test-06114.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-06115.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:46.270900', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-06115.jpg', 'UCLA', '.jpg', '2018-02-13 17:20:46.270900', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06116.jpg 
 ________________________________________________________________________________
 Inserting test-06117.jpg 
@@ -12538,7 +12642,9 @@ ________________________________________________________________________________
 Inserting test-06320.jpg 
 ________________________________________________________________________________
 Inserting test-06321.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffffe00000000', 'test-06322.jpg', 'UCLA', '.jpg', '2018-02-13 17:21:38.469939', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffffe00000000', 'test-06322.jpg', 'UCLA', '.jpg', '2018-02-13 17:21:38.469939', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06323.jpg 
 ________________________________________________________________________________
 Inserting test-06324.jpg 
@@ -12610,7 +12716,9 @@ ________________________________________________________________________________
 Inserting test-06357.jpg 
 ________________________________________________________________________________
 Inserting test-06358.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff030000100000', 'test-06359.jpg', 'UCLA', '.jpg', '2018-02-13 17:21:47.630309', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff030000100000', 'test-06359.jpg', 'UCLA', '.jpg', '2018-02-13 17:21:47.630309', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06360.jpg 
 ________________________________________________________________________________
 Inserting test-06361.jpg 
@@ -12808,7 +12916,9 @@ ________________________________________________________________________________
 Inserting test-06457.jpg 
 ________________________________________________________________________________
 Inserting test-06458.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06459.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:17.790794', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06459.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:17.790794', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06460.jpg 
 ________________________________________________________________________________
 Inserting test-06461.jpg 
@@ -12820,7 +12930,9 @@ ________________________________________________________________________________
 Inserting test-06464.jpg 
 ________________________________________________________________________________
 Inserting test-06465.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-06466.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:19.530964', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-06466.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:19.530964', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06467.jpg 
 ________________________________________________________________________________
 Inserting test-06468.jpg 
@@ -12832,7 +12944,9 @@ ________________________________________________________________________________
 Inserting test-06471.jpg 
 ________________________________________________________________________________
 Inserting test-06472.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff3c0000', 'test-06473.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:20.789130', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('000000ffff3c0000', 'test-06473.jpg', 'UCLA', '.jpg', '2018-02-13 17:22:20.789130', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06474.jpg 
 ________________________________________________________________________________
 Inserting test-06475.jpg 
@@ -13288,7 +13402,9 @@ ________________________________________________________________________________
 Inserting test-06700.jpg 
 ________________________________________________________________________________
 Inserting test-06701.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff7f0000000000', 'test-06702.jpg', 'UCLA', '.jpg', '2018-02-13 17:23:33.304548', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff7f0000000000', 'test-06702.jpg', 'UCLA', '.jpg', '2018-02-13 17:23:33.304548', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06703.jpg 
 ________________________________________________________________________________
 Inserting test-06704.jpg 
@@ -13478,7 +13594,9 @@ ________________________________________________________________________________
 Inserting test-06796.jpg 
 ________________________________________________________________________________
 Inserting test-06797.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-06798.jpg', 'UCLA', '.jpg', '2018-02-13 17:23:57.042993', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-06798.jpg', 'UCLA', '.jpg', '2018-02-13 17:23:57.042993', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06799.jpg 
 ________________________________________________________________________________
 Inserting test-06800.jpg 
@@ -13510,7 +13628,9 @@ ________________________________________________________________________________
 Inserting test-06813.jpg 
 ________________________________________________________________________________
 Inserting test-06814.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06815.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:02.620125', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06815.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:02.620125', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06816.jpg 
 ________________________________________________________________________________
 Inserting test-06817.jpg 
@@ -13656,7 +13776,9 @@ ________________________________________________________________________________
 Inserting test-06887.jpg 
 ________________________________________________________________________________
 Inserting test-06888.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffffc00000000', 'test-06889.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:22.393464', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffffc00000000', 'test-06889.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:22.393464', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06890.jpg 
 ________________________________________________________________________________
 Inserting test-06891.jpg 
@@ -13720,7 +13842,9 @@ ________________________________________________________________________________
 Inserting test-06920.jpg 
 ________________________________________________________________________________
 Inserting test-06921.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06922.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:31.286183', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-06922.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:31.286183', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06923.jpg 
 ________________________________________________________________________________
 Inserting test-06924.jpg 
@@ -13728,7 +13852,9 @@ ________________________________________________________________________________
 Inserting test-06925.jpg 
 ________________________________________________________________________________
 Inserting test-06926.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff800000000000', 'test-06927.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:33.317433', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff800000000000', 'test-06927.jpg', 'UCLA', '.jpg', '2018-02-13 17:24:33.317433', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-06928.jpg 
 ________________________________________________________________________________
 Inserting test-06929.jpg 
@@ -13964,7 +14090,9 @@ ________________________________________________________________________________
 Inserting test-07044.jpg 
 ________________________________________________________________________________
 Inserting test-07045.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0600000000', 'test-07046.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:08.384672', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0600000000', 'test-07046.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:08.384672', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07047.jpg 
 ________________________________________________________________________________
 Inserting test-07048.jpg 
@@ -13972,7 +14100,9 @@ ________________________________________________________________________________
 Inserting test-07049.jpg 
 ________________________________________________________________________________
 Inserting test-07050.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff000000ff', 'test-07051.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:09.254596', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff000000ff', 'test-07051.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:09.254596', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07052.jpg 
 ________________________________________________________________________________
 Inserting test-07053.jpg 
@@ -14110,7 +14240,9 @@ ________________________________________________________________________________
 Inserting test-07119.jpg 
 ________________________________________________________________________________
 Inserting test-07120.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07121.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:29.109382', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07121.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:29.109382', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07122.jpg 
 ________________________________________________________________________________
 Inserting test-07123.jpg 
@@ -14152,7 +14284,9 @@ ________________________________________________________________________________
 Inserting test-07141.jpg 
 ________________________________________________________________________________
 Inserting test-07142.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-07143.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:34.909137', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff000000ffffffff', 'test-07143.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:34.909137', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07144.jpg 
 ________________________________________________________________________________
 Inserting test-07145.jpg 
@@ -14196,7 +14330,9 @@ ________________________________________________________________________________
 Inserting test-07164.jpg 
 ________________________________________________________________________________
 Inserting test-07165.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff3f3f00000000', 'test-07166.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:40.851109', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff3f3f00000000', 'test-07166.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:40.851109', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07167.jpg 
 ________________________________________________________________________________
 Inserting test-07168.jpg 
@@ -14236,7 +14372,9 @@ ________________________________________________________________________________
 Inserting test-07185.jpg 
 ________________________________________________________________________________
 Inserting test-07186.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07187.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:46.531630', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07187.jpg', 'UCLA', '.jpg', '2018-02-13 17:25:46.531630', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07188.jpg 
 ________________________________________________________________________________
 Inserting test-07189.jpg 
@@ -14342,7 +14480,9 @@ ________________________________________________________________________________
 Inserting test-07239.jpg 
 ________________________________________________________________________________
 Inserting test-07240.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-07241.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:04.369472', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-07241.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:04.369472', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07242.jpg 
 ________________________________________________________________________________
 Inserting test-07243.jpg 
@@ -14386,7 +14526,9 @@ ________________________________________________________________________________
 Inserting test-07262.jpg 
 ________________________________________________________________________________
 Inserting test-07263.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07264.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:11.600855', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07264.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:11.600855', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07265.jpg 
 ________________________________________________________________________________
 Inserting test-07266.jpg 
@@ -14602,7 +14744,9 @@ ________________________________________________________________________________
 Inserting test-07371.jpg 
 ________________________________________________________________________________
 Inserting test-07372.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffe000000000', 'test-07373.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:50.159450', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffe000000000', 'test-07373.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:50.159450', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07374.jpg 
 ________________________________________________________________________________
 Inserting test-07375.jpg 
@@ -14638,7 +14782,9 @@ ________________________________________________________________________________
 Inserting test-07390.jpg 
 ________________________________________________________________________________
 Inserting test-07391.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-07392.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:55.460397', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-07392.jpg', 'UCLA', '.jpg', '2018-02-13 17:26:55.460397', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07393.jpg 
 ________________________________________________________________________________
 Inserting test-07394.jpg 
@@ -15026,7 +15172,9 @@ ________________________________________________________________________________
 Inserting test-07585.jpg 
 ________________________________________________________________________________
 Inserting test-07586.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff000000ffffff', 'test-07587.jpg', 'UCLA', '.jpg', '2018-02-13 17:27:49.475288', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff000000ffffff', 'test-07587.jpg', 'UCLA', '.jpg', '2018-02-13 17:27:49.475288', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07588.jpg 
 ________________________________________________________________________________
 Inserting test-07589.jpg 
@@ -15058,7 +15206,9 @@ ________________________________________________________________________________
 Inserting test-07602.jpg 
 ________________________________________________________________________________
 Inserting test-07603.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff000000ffffff', 'test-07604.jpg', 'UCLA', '.jpg', '2018-02-13 17:27:52.560789', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff000000ffffff', 'test-07604.jpg', 'UCLA', '.jpg', '2018-02-13 17:27:52.560789', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07605.jpg 
 ________________________________________________________________________________
 Inserting test-07606.jpg 
@@ -15132,7 +15282,9 @@ ________________________________________________________________________________
 Inserting test-07640.jpg 
 ________________________________________________________________________________
 Inserting test-07641.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000fffffffc0000', 'test-07642.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:02.280403', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000fffffffc0000', 'test-07642.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:02.280403', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07643.jpg 
 ________________________________________________________________________________
 Inserting test-07644.jpg 
@@ -15178,7 +15330,9 @@ ________________________________________________________________________________
 Inserting test-07664.jpg 
 ________________________________________________________________________________
 Inserting test-07665.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07666.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:09.491522', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07666.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:09.491522', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07667.jpg 
 ________________________________________________________________________________
 Inserting test-07668.jpg 
@@ -15324,7 +15478,9 @@ ________________________________________________________________________________
 Inserting test-07738.jpg 
 ________________________________________________________________________________
 Inserting test-07739.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07740.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:30.787305', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07740.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:30.787305', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07741.jpg 
 ________________________________________________________________________________
 Inserting test-07742.jpg 
@@ -15352,7 +15508,9 @@ ________________________________________________________________________________
 Inserting test-07753.jpg 
 ________________________________________________________________________________
 Inserting test-07754.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07755.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:34.723918', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff0000000000', 'test-07755.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:34.723918', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07756.jpg 
 ________________________________________________________________________________
 Inserting test-07757.jpg 
@@ -15462,7 +15620,9 @@ ________________________________________________________________________________
 Inserting test-07809.jpg 
 ________________________________________________________________________________
 Inserting test-07810.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07811.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:48.115483', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff00000000', 'test-07811.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:48.115483', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07812.jpg 
 ________________________________________________________________________________
 Inserting test-07813.jpg 
@@ -15482,7 +15642,9 @@ ________________________________________________________________________________
 Inserting test-07820.jpg 
 ________________________________________________________________________________
 Inserting test-07821.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff000000ff', 'test-07822.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:51.363336', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffffff000000ff', 'test-07822.jpg', 'UCLA', '.jpg', '2018-02-13 17:28:51.363336', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07823.jpg 
 ________________________________________________________________________________
 Inserting test-07824.jpg 
@@ -15546,7 +15708,9 @@ ________________________________________________________________________________
 Inserting test-07853.jpg 
 ________________________________________________________________________________
 Inserting test-07854.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-07855.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:01.332278', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('0000ffffffff0000', 'test-07855.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:01.332278', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07856.jpg 
 ________________________________________________________________________________
 Inserting test-07857.jpg 
@@ -15658,7 +15822,9 @@ ________________________________________________________________________________
 Inserting test-07910.jpg 
 ________________________________________________________________________________
 Inserting test-07911.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-07912.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:18.631280', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffff00000000ffff', 'test-07912.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:18.631280', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07913.jpg 
 ________________________________________________________________________________
 Inserting test-07914.jpg 
@@ -15734,7 +15900,9 @@ ________________________________________________________________________________
 Inserting test-07949.jpg 
 ________________________________________________________________________________
 Inserting test-07950.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffef800000000', 'test-07951.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:28.045428', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('fffffef800000000', 'test-07951.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:28.045428', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07952.jpg 
 ________________________________________________________________________________
 Inserting test-07953.jpg 
@@ -15756,7 +15924,9 @@ ________________________________________________________________________________
 Inserting test-07961.jpg 
 ________________________________________________________________________________
 Inserting test-07962.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('e0d86b6763c97c1c', 'test-07963.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:30.316173', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('e0d86b6763c97c1c', 'test-07963.jpg', 'UCLA', '.jpg', '2018-02-13 17:29:30.316173', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-07964.jpg 
 ________________________________________________________________________________
 Inserting test-07965.jpg 
@@ -15906,7 +16076,9 @@ ________________________________________________________________________________
 Inserting test-08037.jpg 
 ________________________________________________________________________________
 Inserting test-08038.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff0000000000ffff', 'test-08039.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:06.286880', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ff0000000000ffff', 'test-08039.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:06.286880', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-08040.jpg 
 ________________________________________________________________________________
 Inserting test-08041.jpg 
@@ -15986,7 +16158,9 @@ ________________________________________________________________________________
 Inserting test-08078.jpg 
 ________________________________________________________________________________
 Inserting test-08079.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff00000000ff', 'test-08080.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:17.406809', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('ffffff00000000ff', 'test-08080.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:17.406809', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-08081.jpg 
 ________________________________________________________________________________
 Inserting test-08082.jpg 
@@ -16122,7 +16296,9 @@ ________________________________________________________________________________
 Inserting test-08147.jpg 
 ________________________________________________________________________________
 Inserting test-08148.jpg 
-________________________________________________________________________________(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('07cbe8c0c0c00602', 'test-08149.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:41.003500', None, 'local', None)]________________________________________________________________________________
+________________________________________________________________________________
+(sqlite3.IntegrityError) UNIQUE constraint failed: Images.imageHASH [SQL: 'INSERT INTO "Images" ("imageHASH", name, source, filetype, timestamp, url, origin, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: ('07cbe8c0c0c00602', 'test-08149.jpg', 'UCLA', '.jpg', '2018-02-13 17:30:41.003500', None, 'local', None)]
+________________________________________________________________________________
 Inserting test-08150.jpg 
 ________________________________________________________________________________
 Inserting test-08151.jpg 
