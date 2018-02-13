@@ -25,6 +25,24 @@ ln -s `pwd`/protestDB venv/lib/python3.5/site-packages/protestDB
 ```
 The above command assumes that the current directory is the project root folder.
 
+Configurations are set in `alembic.ini`. Especially the following two fields are relevant to set:
+```
+# DB name: 
+db_name = protest_images.db
+
+# image location:
+image_dir = images
+```
+Where the first indicates the name of the database file located in the project root directory. The second variable `image_dir` indicates the folder in which the locally saved images are to be found.
+For example unpacking the UCLA paper images into the `image_dir` directory, leads to the following structure:
+- `image_dir/`
+      - `UCLA-protest/`
+         - `annot_test.txt`
+         - `annot_train.txt`
+         - `img/`
+            - `test`
+            - `train`
+
 ### Migrate schema
 Schema needs to be migrated using `alembic` whenever schematic changes occur, such as
 a new table being added or columns being modified.
