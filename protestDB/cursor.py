@@ -221,3 +221,37 @@ class ProtestCursor:
 
         return image_tag_rel, tag
 
+
+    def removeImage(
+        self,
+        image
+    ):
+        """ Given either a models.Images instance or a
+            string defining an imageHASH, the given image
+            will be deletede from the database.
+        """
+        if type(image) == models.Images:
+            self.session.delete(image)
+        else:
+            img = self.session.query(models.Image).get(image)
+            self.session.delete(img)
+
+        self.try_commit()
+
+
+    def clearDB(
+        self,
+        confirm=False
+    ):
+        """ Deletes the entire database, you generally wont need this!
+        """
+        if confirm == False:
+            raise ValueError(
+                "Should set argument 'confirm' explicitly to invoke this method"
+            )
+        for table in dir(models):
+            tmpTable = getattr(models, table)
+            if hasattr(tmpTable, "__tablename__"):
+                self.session.query(tmpTable).delete()
+
+        self.try_commit()
