@@ -166,7 +166,7 @@ class ProtestCursor:
         if not tags is None:
             for t in tags:
                 img.tags.append(
-                    models.Tags(tagName=t)
+                    models.Tags(tagName=t.lower())
                 )
 
         self.try_commit()
