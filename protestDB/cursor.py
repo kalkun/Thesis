@@ -56,6 +56,16 @@ class ProtestCursor:
         """
         return self.session.query(modelClass).filter_by(**kwargs).one_or_none()
 
+    def getImage(self, imagehash=None):
+        """ Returns the image identified by `imagehash`
+            if `imagehash` is None then all images are returned
+        """
+        if imagehash is None:
+            return self.session.query(models.Images).all()
+
+        return self.get(models.Images, imageHASH=imagehash)
+
+
     def getTag(self, tagName=None):
         """ Returns tag identified by `tagName` or None
             if tagName is None, returns a list of all tags
