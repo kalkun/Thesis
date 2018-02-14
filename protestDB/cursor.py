@@ -13,8 +13,7 @@ from protestDB.engine import Connection
 
 
 class ProtestCursor:
-    """
-        This class defines common methods
+    """ This class defines common methods
         to interfacing with the protest database
         through SQLAlchemy
     """
@@ -57,9 +56,13 @@ class ProtestCursor:
         """
         return self.session.query(modelClass).filter_by(**kwargs).one_or_none()
 
-    def getTag(self, tagName):
+    def getTag(self, tagName=None):
         """ Returns tag identified by `tagName` or None
+            if tagName is None, returns a list of all tags
         """
+        if tagName is None:
+            return self.session.query(models.Tags).all()
+
         return self.get(models.Tags, tagName=tagName)
 
 
@@ -112,7 +115,7 @@ class ProtestCursor:
         """ Creates new image row in Image table
             Arguments are:
                 `path_and_name` The path and name to the image file, can be relative or absolute.
-                `source`        The source of the image.
+                `source`        The source of the image. E.g. 'google' or 'UCLA'.
                 `origin`        Enum of:
                                 ```
                                     test | local | online
@@ -120,8 +123,11 @@ class ProtestCursor:
                                 where online should only be used
                                         if file is not locally stored and image is to be retrieved
                                         using the `url` argument.
-                `timestamp`     Optional, will be set to current timestamp otherwise.
                 `url`           Should be set if `origin` is online.
+                `position`      The position of an image search that the image appeared in.
+                `timestamp`     Optional, will be set to current timestamp otherwise.
+                `label`         A label indicating whether the image is violent or not.
+                `tags`          An optional list of tags associated with the image.
         """
 
         if not origin in ['test', 'local', 'online']:
