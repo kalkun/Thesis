@@ -234,6 +234,34 @@ class ProtestCursor:
 
         return tag
 
+    def insertComparison(
+        self,
+        imageID_1,
+        imageID_2,
+        vote,
+        timestamp=None,
+    ):
+        """ Small handle to insert a comparison vote """
+        return self.get_or_create(
+            models.Comparisons,
+            imageID_1=imageID_1,
+            imageID_2=imageID_2,
+            timestamp=timestamp or datetime.datetime.now(),
+        )
+
+    def insertProtestNonProtestVotes(
+        self,
+        imageID,
+        is_Protest,
+        timestamp=None,
+    ):
+        """ Handle to insert protest vs non protest votes into DB """
+        return self.get_or_create(
+            models.ProtestNonProtestVotes,
+            imageID=imageID,
+            is_protest=is_protest,
+            timestamp=timestamp or datetime.datetime.now(),
+        )
 
     def removeImage(
         self,
