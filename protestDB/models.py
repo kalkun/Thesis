@@ -10,6 +10,12 @@ from sqlalchemy import (
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from PIL import Image
+from os.path import join
+import configparser
+config = configparser.ConfigParser()
+config.read("alembic.ini")
+image_dir  = config['alembic']['image_dir']
 
 Base = declarative_base()
 # THEN WHEN CREATING:
@@ -40,6 +46,15 @@ class Images(Base):
                     secondary=TaggedImages,
                     back_populates="images",
                 )
+
+    def get_image(self):
+        """ return a PIL image representation of this image """
+        return Image.open(join(image_dir, self.name))
+
+    def show(self):
+        """ A method for showing the image represented by an instantiation of this model
+        """
+        self.get_image().show()
 
     def __repr__(self):
         return "<Image imageHASH='%s', name='%s'>" % (self.imageHASH, self.name)

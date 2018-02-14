@@ -99,9 +99,15 @@ for tag in tags:
 
 The above prints out a two column table where the first column has a fixed width of 15 and is left-aligned.
 
+**Example show image:**
+```python
+t = pc.getTag("fire")
+img = t.images[0]
+img.show()
+```
+
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
-
 
 ## Serp Scraper
 
