@@ -1,0 +1,8 @@
+search_term, search_engine, n_images, label
+protest violent, google, 300, 1.0
+riots, bing, 100, 1.0
+riots, google, 150, 1.0
+street violence, google, 400, 1.0
+peaceful protest, google, 60, 0.0
+peaceful protest, bing, 100, 0.0
+peaceful demonstration, google, 380, 0.0

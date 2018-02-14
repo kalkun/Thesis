@@ -101,7 +101,7 @@ class Scraper:
 		print("scraping keyword: " + keyword + " on google")
 		print('\n')
 		query= keyword.split()
-		ẗags=query
+		tags=query
 		query='+'.join(query)
 		query_url = self.google_base_url + query + self.google_end_url
 		driver = webdriver.Chrome()
@@ -126,7 +126,7 @@ class Scraper:
 		for img in imges:
 			url = json.loads(img.get_attribute('innerHTML'))["ou"]
 			print("(image " + str(img_count) + " out of " + str(self.n_images) + ")" + "downloading url: " + url)
-			self.saveImageFromUrl(url, self.folder, self.timeout, "google", img_count, ẗags)
+			self.saveImageFromUrl(url, self.folder, self.timeout, "google", img_count, tags)
 			img_count += 1
 
 			if (img_count > self.n_images):
