@@ -128,3 +128,16 @@ All arguments
 python serp_driver.py images --sr google bing --key_words "jenifer anistion" "cats" --n_images 100 --timeout 10
 ```
 
+
+## Serp Search terms scraper
+
+This is a script built to automate multiple searches configured in a csv file in the following format:
+
+| search_term | search_engine | n_images | label |
+| ------------| :------------:| :------: | :---: |
+| cats        | google        |  300     | 1     |
+| dogs        | bing          |  332     | 0     |
+
+Just pass the path to the csv file as an argument to the script
+
+Attention: **When used, it will automatically add it to the db!!**
