@@ -60,7 +60,6 @@ class ProtestCursor:
     def getImage(self, imagehash=None):
         """ Returns the image identified by `imagehash`
         """
-
         return self.get(models.Images, imageHASH=imagehash)
 
 
@@ -71,9 +70,7 @@ class ProtestCursor:
 
     def getTag(self, tagName=None):
         """ Returns tag identified by `tagName` or None
-            if tagName is None, returns a list of all tags
         """
-
         return self.get(models.Tags, tagName=tagName)
 
 
