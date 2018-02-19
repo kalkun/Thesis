@@ -88,7 +88,7 @@ class ProtestCursor:
     def getTag(self, tagName):
         """ Returns tag identified by `tagName` or None
         """
-        return self.get(models.Tags, tagName=tagName)
+        return self.get(models.Tags, tagName=tagName.lower())
 
 
     def getTags(self):
@@ -96,7 +96,7 @@ class ProtestCursor:
         return self.session.query(models.Tags).all()
 
 
-    def get_or_create(self, modelClass, **kwargs):
+    def get_or_create(self, modelClass, do_commit=True, **kwargs):
         """ If object exists it will just be returned,
             otherwise it will be created first, then returned.
 
@@ -111,25 +111,45 @@ class ProtestCursor:
 
         instance = modelClass(**kwargs)
         self.session.add(instance)
-        self.try_commit()
+        if do_commit:
+            self.try_commit()
 
         return instance
 
 
-    def update_or_create(self, modelClass, **kwargs):
+    def update_or_create(self, modelClass, do_commit=True, **kwargs):
         """ Update instance if exists, otherwise create it
             Requires all mandatory fields to be provided
             in order to create instance.
         """
-        instance = self.get_or_create(modelClass, **kwargs)
+        instance = self.get_or_create(modelClass, do_commit=do_commit, **kwargs)
         for key, value in kwargs.items():
             if getattr(instance, key) == value:
                 continue
             setattr(instance, key, value)
 
-        self.try_commit()
+        if do_commit:
+            self.try_commit()
         return instance
 
+    def insertImageLater(self, **kwargs):
+        """ Wrapper for `insertImage` that sets the `do_commit` to False
+            but only calls the insertImage if the hash of the requested image
+            does not already exist, thereby avoiding later conflicts so that
+            bulk insertions may be done reliably.
+
+            Returns Image if it is being created, otherwise None
+        """
+        img_hash = self.__compute_imagehash(kwargs['path_and_name'])
+        if self.instance_exists(models.Images, imageHASH=img_hash):
+            return None
+        else:
+            return self.insertImage(**kwargs)
+
+    def __compute_imagehash(self, path_and_name, as_string=True):
+        """ Returns imagehash given an image """
+        img_hash = imagehash.dhash(Image.open(path_and_name))
+        return str(img_hash) if as_string else img_hash
 
     def insertImage(
         self,
@@ -140,7 +160,8 @@ class ProtestCursor:
         position=None,
         timestamp=None,
         label=None,
-        tags=None
+        tags=None,
+        do_commit=True,
     ):
         """ Creates new image row in Image table
             Arguments are:
@@ -194,24 +215,26 @@ class ProtestCursor:
                 )
             )
 
-        img_hash = path_and_name if origin == 'test' else imagehash.dhash(Image.open(path_and_name))
+        img_hash = path_and_name if origin == 'test' else self.__compute_imagehash(path_and_name)
 
         img = self.update_or_create(
             models.Images,
-            imageHASH   = str(img_hash),
+            imageHASH   = img_hash,
             name        = filename,
             filetype    = extension,
             source      = source,
             origin      = origin,
             timestamp   = timestamp or datetime.datetime.now(),
             url         = url,
-            position    = position
+            position    = position,
+            do_commit   = do_commit,
         )
 
         if not label is None:
             self.insertLabel(
                 img.imageHASH,
-                label
+                label,
+                do_commit=do_commit,
             )
 
         if not tags is None:
@@ -219,9 +242,11 @@ class ProtestCursor:
                 self.insertTag(
                     t,
                     img.imageHASH,
+                    do_commit=do_commit,
         )
 
-        self.try_commit()
+        if do_commit:
+            self.try_commit()
         return img
 
 
@@ -229,7 +254,8 @@ class ProtestCursor:
         self,
         imageId,
         label,
-        timestamp=None
+        timestamp=None,
+        do_commit=True,
     ):
         """ Inserts a label for an image in the scale [0, 1]
             where 1 indicates the most violent, and 0 no violence.
@@ -238,7 +264,8 @@ class ProtestCursor:
             models.Labels,
             imageID     = imageId,
             label       = label,
-            timestamp   = timestamp or datetime.datetime.now()
+            timestamp   = timestamp or datetime.datetime.now(),
+            do_commit   = do_commit,
         )
 
 
@@ -246,7 +273,8 @@ class ProtestCursor:
     def insertTag(
         self,
         tagname,
-        imagehash
+        imagehash,
+        do_commit=True,
     ):
         """ Creates a new tag entrance if the tagname is not previously known.
             then creates a link to the image.
@@ -257,7 +285,8 @@ class ProtestCursor:
 
         tag = self.get_or_create(
             models.Tags,
-            tagName=tagname.lower()
+            tagName     = tagname.lower(),
+            do_commit   = do_commit,
         )
 
         if not self.instance_exists(models.Images, imageHASH=imagehash):
@@ -266,7 +295,8 @@ class ProtestCursor:
         img = self.session.query(models.Images).get(imagehash)
         img.tags.append(tag)
 
-        self.try_commit()
+        if do_commit:
+            self.try_commit()
 
         return tag
 
@@ -276,6 +306,7 @@ class ProtestCursor:
         imageID_2,
         vote,
         timestamp=None,
+        do_commit=True,
     ):
         """ Small handle to insert a comparison vote """
         return self.get_or_create(
@@ -283,6 +314,7 @@ class ProtestCursor:
             imageID_1=imageID_1,
             imageID_2=imageID_2,
             timestamp=timestamp or datetime.datetime.now(),
+            do_commit=do_commit,
         )
 
     def insertProtestNonProtestVotes(
@@ -290,6 +322,7 @@ class ProtestCursor:
         imageID,
         is_Protest,
         timestamp=None,
+        do_commit=True,
     ):
         """ Handle to insert protest vs non protest votes into DB """
         return self.get_or_create(
@@ -297,11 +330,13 @@ class ProtestCursor:
             imageID=imageID,
             is_protest=is_protest,
             timestamp=timestamp or datetime.datetime.now(),
+            do_commit=do_commit,
         )
 
     def removeImage(
         self,
-        image
+        image,
+        do_commit=True,
     ):
         """ Given either a models.Images instance or a
             string defining an imageHASH, the given image
@@ -313,7 +348,8 @@ class ProtestCursor:
             img = self.session.query(models.Image).get(image)
             self.session.delete(img)
 
-        self.try_commit()
+        if do_commit:
+            self.try_commit()
 
 
     def clearDB(
