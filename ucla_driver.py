@@ -12,6 +12,7 @@ import imagehash
 config = configparser.ConfigParser()
 config.read("alembic.ini")
 
+
 from protestDB.cursor import ProtestCursor
 import protestDB.models as models
 
@@ -51,16 +52,33 @@ def main(**kwargs):
         c = 0
         for img in all_images:
             c += 1
-            print("%s %s" % (c, img))
+            sys.stdout.write('\r')
+            #print("%s %s %s" % (c, img, len(img.tags)))
+            # the exact output you're looking for:
+            step = c/len(all_images)
+            sys.stdout.write("[%-50s] %d%%" % ('='*int(step*50), step*100))
+            sys.stdout.flush()
             try:
-                dhash = str(imagehash.dhash(img.get_image()))
+                o = img.get_image()
+                dhash = str(imagehash.dhash(o))
+                ahash = str(imagehash.average_hash(o))
             except FileNotFoundError:
                 print("FILE NOT FOUND %s" % img)
-                pc.removeImage(img)
+                #pc.removeImage(img)
                 continue
+
+            for ti in pc.query(models.TaggedImages).filter_by(imageID=ahash):
+                tag = pc.get(models.Tags, tagID=ti.tagID)
+                img.tags.append(tag)
+
+            for l in pc.query(models.Labels).filter_by(imageID=ahash):
+                l.imageID = dhash
+
             if pc.instance_exists(models.Images, imageHASH=dhash):
-                print("ALREADY EXISTS: %s" % img)
+                sys.stdout.write('\r')
+                #print("ALREADY EXISTS: %s" % img)
                 continue
+
 
             img.imageHASH = dhash
         pc.try_commit()

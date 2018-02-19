@@ -333,6 +333,18 @@ class ProtestCursor:
             do_commit=do_commit,
         )
 
+
+    def remove(
+        self,
+        obj,
+        do_commit=True
+    ):
+        """ Given a model object, the instance will be deleted """
+        self.session.delete(obj)
+        if do_commit:
+            self.try_commit()
+
+
     def removeImage(
         self,
         image,
