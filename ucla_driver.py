@@ -1,33 +1,88 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import csv
+from PIL import Image
+import re
+import psutil
 import argparse
 import configparser
+import imagehash
 config = configparser.ConfigParser()
 config.read("alembic.ini")
 
 from protestDB.cursor import ProtestCursor
+import protestDB.models as models
 
 def main(**kwargs):
     image_dir = config['alembic']['image_dir']
-    ucla_dir  = kwargs['ucla_dir']
-    full_path = os.path.join(image_dir, ucla_dir)
 
     pc = ProtestCursor()
 
-    if not os.path.exists(full_path):
-        raise ValueError(
-            "Cannot find UCLA image folder '%s' in image directory '%s'" % (
-                ucla_dir,
-                image_dir,
-            )
-        )
+    if kwargs['validate_logs']:
+        r_hash = re.compile("[0-9a-zA-Z]{16}")
+        r_name = re.compile("(test|train)-[0-9]+.jpg")
+        log_file = kwargs['log_file']
+        with open(log_file, "r") as f:
+            print("{:<16} {:<16} {:<16} {:<16}".format("Name", "aHash", "pHash 1", "pHash 2"))
+            for line in f:
+                if not "IntegrityError" in line:
+                    continue
+                line = line.strip()
+                hash = r_hash.search(line).group(0)
+                name = r_name.search(line).group(0)
+                img = pc.getImage(hash)
+                tmpimg = Image.open(os.path.join(image_dir, name))
+                print("{:<16} {:<16} {:<16} {:<16}".format(name, hash, str(imagehash.phash(img.get_image())), str(imagehash.phash(tmpimg))))
+                try:
+                    img.show()
+                    tmpimg.show()
+                except:
+                    continue
+                try:
+                    if input("Continue?") == "":
+                        kill_displays()
+                        continue
+                except:
+                    kill_displays(True)
+    elif kwargs['fix_primaries']:
+        all_images = pc.session.query(models.Images).all()
+        c = 0
+        for img in all_images:
+            c += 1
+            print("%s %s" % (c, img))
+            try:
+                dhash = str(imagehash.dhash(img.get_image()))
+            except FileNotFoundError:
+                print("FILE NOT FOUND %s" % img)
+                pc.removeImage(img)
+                continue
+            if pc.instance_exists(models.Images, imageHASH=dhash):
+                print("ALREADY EXISTS: %s" % img)
+                continue
 
-    if not kwargs['no_test']:
-        extract_rows("test", full_path)
-    if not kwargs['no_train']:
-        extract_rows("train", full_path, pc)
+            img.imageHASH = dhash
+        pc.try_commit()
+    else:
+        if not os.path.exists():
+            raise ValueError(
+                "Cannot find UCLA image folder '%s' in image directory '%s'" % (
+                    ucla_dir,
+                    image_dir,
+                )
+            )
+        if not kwargs['no_test']:
+            extract_rows("test", image_dir, pc)
+        if not kwargs['no_train']:
+            extract_rows("train", image_dir, pc)
+
+def kill_displays(also_exit=False):
+    for proc in psutil.process_iter():
+        if proc.name() == "display":
+            proc.kill()
+    if also_exit:
+        sys.exit()
 
 def extract_rows(name, full_path, pc):
     """ name should be either `train` or `test` since
@@ -43,7 +98,7 @@ def extract_rows(name, full_path, pc):
             print("Inserting %s" % parsed_row['fname'])
             try:
                 pc.insertImage(
-                    path_and_name=os.path.join(full_path, "img/%s" % name, parsed_row['fname']),
+                    path_and_name=os.path.join(full_path, parsed_row['fname']),
                     source="UCLA",
                     origin="local",
                     label=parsed_row['violence'],
@@ -54,14 +109,8 @@ def extract_rows(name, full_path, pc):
                         ]
                     ))
                 )
-                with open("%sset_ucla.log" % name, "a") as f:
-                    f.write("_" * 80 + '\n')
-                    f.write("Inserting %s \n" % parsed_row['fname'])
             except Exception as e:
                 print(e)
-                with open("%sset_ucla.log" % name, "a") as f:
-                    f.write("_" * 80)
-                    f.write(str(e))
                 continue
 
 
@@ -96,6 +145,21 @@ if __name__ == "__main__":
         "--no-train",
         action="store_true",
         help="If set, will not include UCLA train set"
+    )
+    parser.add_argument(
+        "--validate-logs",
+        action="store_true",
+        help="If set, will go through an error log and open the images that failed due to integrity error"
+    )
+    parser.add_argument(
+        "--log-file",
+        type=str,
+        help="Expected if `validate-logs` is set"
+    )
+    parser.add_argument(
+        "--fix-primaries",
+        action="store_true",
+        help="If set, will set primary keys of all existing images to the dhash value of the image."
     )
 
     args = parser.parse_args()
