@@ -147,7 +147,7 @@ class Scraper:
 			img = Image.open(BytesIO(r.content))
 			#imgpath, headers = urllib.request.urlretrieve(url)
 			#img = Image.open(imgpath)
-			imgHash = str(imagehash.average_hash(img))
+			imgHash = str(imagehash.dhash(img))
 			filename = imgHash + '.' + img.format
 			path = os.path.join(folder, filename)
 			img.save(path)
