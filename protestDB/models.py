@@ -47,14 +47,15 @@ class Images(Base):
                     back_populates="images",
                 )
 
-    def get_image(self):
+    def get_image(self, image_dir_root=None):
         """ return a PIL image representation of this image """
-        return Image.open(join(image_dir, self.name))
+        image_dir_root = image_dir_root or image_dir
+        return Image.open(join(image_dir_root, self.name))
 
-    def show(self):
+    def show(self, image_dir_root):
         """ A method for showing the image represented by an instantiation of this model
         """
-        self.get_image().show()
+        self.get_image(image_dir_root=image_dir_root).show()
 
     def __repr__(self):
         return "<Image imageHASH='%s', name='%s'>" % (self.imageHASH, self.name)
