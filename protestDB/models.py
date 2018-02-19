@@ -52,7 +52,7 @@ class Images(Base):
         image_dir_root = image_dir_root or image_dir
         return Image.open(join(image_dir_root, self.name))
 
-    def show(self, image_dir_root):
+    def show(self, image_dir_root=None):
         """ A method for showing the image represented by an instantiation of this model
         """
         self.get_image(image_dir_root=image_dir_root).show()
