@@ -76,8 +76,6 @@ through the `TaggedImages` table.
 
 **Example filtering:**
 ```python
-import protestDB.models as models
-
 # Get list of all images with the tag 'protest':
 protestTag = pc.getTag("protest")
 

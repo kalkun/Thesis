@@ -44,7 +44,24 @@ class ProtestCursor:
             otherwise False
         """
         q = self.session.query(modelClass).filter_by(**kwargs)
-        return self.session.query(q.exists())
+        return q.count() > 0
+
+
+    def query(self, modelClass):
+        """ Just a short hand wrapper for getting a query on the
+            session object.
+        """
+        return self.session.query(modelClass)
+
+
+    def imageQuery(self):
+        """ Returns a query object on the `Images` table """
+        return self.query(models.Images)
+
+
+    def tagQuery(self):
+        """ Returns a query object on the `Tags` table """
+        return self.query(models.Tags)
 
 
     def get(self, modelClass, **kwargs):
