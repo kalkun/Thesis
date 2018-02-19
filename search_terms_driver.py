@@ -11,6 +11,8 @@ from serp_scraper import keyword_scraper
 
 def readParameters(filepath):
 	result = []
+	total_images_viol = 0
+	total_images_peaceful = 0
 	with open(filepath, 'r') as csvfile:
 		f = csv.reader(csvfile, delimiter = ',')
 		next(f, None)
@@ -19,8 +21,13 @@ def readParameters(filepath):
 			search_engine = row[1].strip()
 			n_images = int(row[2].strip())
 			label = float(row[3].strip())
+			if (label == 1.0): 
+				total_images_viol += n_images
+			elif(label == 0.0):
+				total_images_peaceful += n_images
 			entry = (search_term, search_engine, n_images, label)
 			result.append(entry)
+		print("we have a total of %s violent images and %s non violent images" %(total_images_viol, total_images_peaceful))
 		return result
 
 def confirm(prompt=None, resp=False):
