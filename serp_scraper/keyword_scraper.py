@@ -137,7 +137,7 @@ class Scraper:
 	def saveImageFromUrl(self, url, folder, timeout, source, pos, tags = None):
 		"""
 		Given an image, tries to download it saving it in the givel folder. The name of the file is the 
-		image average hash plus the extension detected by PIL
+		image dhash plus the extension detected by PIL
 		Params:
 			folder: the folder name
 		"""
