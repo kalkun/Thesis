@@ -63,6 +63,10 @@ class ProtestCursor:
         """ Returns a query object on the `Tags` table """
         return self.query(models.Tags)
 
+    def queryLabels(self):
+        """ Returns a query object on the `Labels` table """
+        return self.query(models.Labels)
+
 
     def get(self, modelClass, **kwargs):
         """ Returns exactly one instance or None
