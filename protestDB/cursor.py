@@ -144,7 +144,7 @@ class ProtestCursor:
         if self.instance_exists(models.Images, imageHASH=img_hash):
             return None
         else:
-            return self.insertImage(**kwargs)
+            return self.insertImage(do_commit=False, **kwargs)
 
     def __compute_imagehash(self, path_and_name, as_string=True):
         """ Returns imagehash given an image """
