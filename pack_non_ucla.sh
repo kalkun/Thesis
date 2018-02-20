@@ -2,7 +2,7 @@
 #
 # Provided with an argument indicating the images directory, will pack
 # all images that are not named with either 'test' or 'train' in their name
-# e.g. all image names from the UCLA data set. All other files in the image
+# e.g. avoid packing all image names from the UCLA data set. All other files in the image
 # directory will be packed into an `images.zip` file.
 #
 # Usage:
