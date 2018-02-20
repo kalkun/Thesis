@@ -54,12 +54,12 @@ class ProtestCursor:
         return self.session.query(modelClass)
 
 
-    def imageQuery(self):
+    def queryImages(self):
         """ Returns a query object on the `Images` table """
         return self.query(models.Images)
 
 
-    def tagQuery(self):
+    def queryTags(self):
         """ Returns a query object on the `Tags` table """
         return self.query(models.Tags)
 
