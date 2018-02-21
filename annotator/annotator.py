@@ -12,15 +12,18 @@ class Annotator:
 	Going back - b
 	"""
 
-	def __init__(self, img_folder, dbcursor):
+	def __init__(self, img_folder, dbcursor, includetoDB):
 		self.pc = dbcursor
+		self.includetoDB = includetoDB
 		self.instructions = "Welcome to the annotator tool. These are the keyboard commands for labeling:" + \
-		"\n" + "Space: unrelated" + "\n" + "For protest related images: a number between 0 - 10"
+		"\n" + "Space: protest image" + "\n" + "Enter: non-protest image" + \
+		"\n" + "Press any key to start."
 		self.folder = img_folder
 		self.imgs = self.getImagesFromDB()
 		#self.imgs_names = [x.name for x in self.imgs] # get a list of names
-		print(len(self.imgs))
-		self.current_image_index = -1
+		print("total images loaded + " + str(len(self.imgs)))
+		self.noClicks = True
+		self.current_image_index = 0
 		self.initializeWindow()
 
 	def getImagesFromDB(self):
@@ -32,7 +35,8 @@ class Annotator:
 			models.ProtestNonProtestVotes, 
 			models.ProtestNonProtestVotes.imageID== models.Images.imageHASH).\
 		filter(models.ProtestNonProtestVotes.imageID == None).\
-		filter(models.Images.source == 'Luca Rossi - ECB')
+		filter(models.Images.source == 'Luca Rossi - ECB').\
+		order_by(models.ProtestNonProtestVotes.imageID)
 		return q.all()
 
 
@@ -50,25 +54,35 @@ class Annotator:
 		self.instructions_label = tk.Label(text = self.instructions, font=("Helvetica", 16))
 		self.instructions_label.pack()
 		self.window.mainloop()
+		self.window.after(20, self.nextImage())
 
 	def keyboardCommand(self, event):
 		"""
 		Defines what to do when a keyboard key is pressed 
 		"""
-		
-		string_repr = repr(event.char)
-		print(string_repr)
-		if (string_repr == '\' \''):
-			self.labelImage(True)
-			self.nextImage()
-		elif(string_repr == '\'\\r\''):
-			self.labelImage(False)
-			self.nextImage()
-		elif (string_repr == '\'b\''):
-			self.previousImage()
+		if (self.noClicks):
+			self.noClicks = False
+			self.loadImage()
+			return
+		else:
+			string_repr = repr(event.char)
+			if (string_repr == '\' \''):
+				self.labelImage(True)
+				self.nextImage()
+			elif(string_repr == '\'\\r\''):
+				self.labelImage(False)
+				self.nextImage()
+			elif (string_repr == '\'b\''):
+				self.previousImage()
 
 	def labelImage(self, label):
-		pass
+		if (not self.includetoDB):
+			return
+		else:
+			image_to_label = self.imgs[self.current_image_index]
+			imageID = image_to_label.imageHASH
+			self.pc.insertProtestNonProtestVotes(imageID, label)
+		
 
 	def nextImage(self):
 		"""
@@ -96,14 +110,13 @@ class Annotator:
 		"""
 		Loads the current image and resize it if it does not fit the window
 		"""
+		print(self.current_image_index)
 		path = os.path.join(self.folder, self.imgs[self.current_image_index].name)
 		img = Image.open(path)
 		width, height = img.size
 		if (width > self.window.winfo_width()):
-			print("resizing width")
 			width = self.window.winfo_width()
 		if (height > self.window.winfo_height()):
-			print("resizing height")
 			height = self.window.winfo_height()
 
 		img = img.resize((width, height))
