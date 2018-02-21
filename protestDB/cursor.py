@@ -358,11 +358,12 @@ class ProtestCursor:
             string defining an imageHASH, the given image
             will be deletede from the database.
         """
-        if type(image) == models.Images:
-            self.session.delete(image)
-        else:
-            img = self.session.query(models.Image).get(image)
-            self.session.delete(img)
+        if not type(image) == models.Images:
+            image = self.session.query(models.Image).get(image)
+
+        for label in image.labels:
+            self.session.delete(label)
+        self.session.delete(image)
 
         if do_commit:
             self.try_commit()
