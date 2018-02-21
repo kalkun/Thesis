@@ -332,7 +332,6 @@ class ProtestCursor:
         """ Handle to insert protest vs non protest votes into DB.
         Right now it checks if an imageID exists in the ProtestNonProtestVotes table,
         if that is the case, it will update that record. Otherwise it will create it."""
-        print(imageID, is_Protest)
         instance = self.session.query(models.ProtestNonProtestVotes).filter_by(
             imageID = imageID
         ).one_or_none()
@@ -345,7 +344,7 @@ class ProtestCursor:
                 is_protest = is_Protest,
                 timestamp = timestamp or datetime.datetime.now(),
                 do_commit = do_commit)
-        
+
             self.session.add(instance)
 
         if do_commit:

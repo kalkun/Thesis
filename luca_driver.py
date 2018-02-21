@@ -60,7 +60,6 @@ def main(**kwargs):
                     origin = "local",
                     label=label,
                     tags = ['twitter', 'luca rossi', 'ECB', 'Frankfurt'],
-                    do_commit=False,
                 )
                 if img is None:
                     print("Not inserting: %s" % image_name)
@@ -74,6 +73,8 @@ def main(**kwargs):
                 print("Inserted rows: %s" % c)
             except IntegrityError:
                 print("Failed for %s" % image_name)
+            except OSError:
+                print("File not found for %s" % image_name)
 
         pc.try_commit()
 
