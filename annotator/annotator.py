@@ -17,11 +17,11 @@ class Annotator:
 		self.includetoDB = includetoDB
 		self.instructions = "Welcome to the annotator tool. These are the keyboard commands for labeling:" + \
 		"\n" + "Space: protest image" + "\n" + "Enter: non-protest image" + \
-		"\n" + "Press any key to start."
+		"\n" + "'b' to go back"+ "\n" + "Press any key to start."
 		self.folder = img_folder
 		self.imgs = self.getImagesFromDB()
 		#self.imgs_names = [x.name for x in self.imgs] # get a list of names
-		print("total images loaded + " + str(len(self.imgs)))
+		print("total images loaded: " + str(len(self.imgs)))
 		self.noClicks = True
 		self.current_image_index = 0
 		self.initializeWindow()
@@ -76,9 +76,13 @@ class Annotator:
 				self.previousImage()
 
 	def labelImage(self, label):
-		if (not self.includetoDB):
+		"""
+		Labels an image in the DB unless the class has been instantiated
+		no to do so. 
+		"""
+		if (not bool(self.includetoDB)):
 			return
-		else:
+		else: 
 			image_to_label = self.imgs[self.current_image_index]
 			imageID = image_to_label.imageHASH
 			self.pc.insertProtestNonProtestVotes(imageID, label)
@@ -110,7 +114,7 @@ class Annotator:
 		"""
 		Loads the current image and resize it if it does not fit the window
 		"""
-		print(self.current_image_index)
+		print("{0} out of {1} images".format(self.current_image_index, len(self.imgs)))
 		path = os.path.join(self.folder, self.imgs[self.current_image_index].name)
 		img = Image.open(path)
 		width, height = img.size

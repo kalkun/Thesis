@@ -345,8 +345,6 @@ class ProtestCursor:
                 timestamp = timestamp or datetime.datetime.now(),
                 do_commit = do_commit)
 
-            self.session.add(instance)
-
         if do_commit:
             self.try_commit()
 
