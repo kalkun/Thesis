@@ -8,6 +8,9 @@ from sqlalchemy.exc import IntegrityError
 from PIL import Image
 import imagehash
 import imghdr
+import configparser
+config = configparser.ConfigParser()
+config.read("alembic.ini")
 from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
 
@@ -17,6 +20,25 @@ def main(**kwargs):
     """ The fields: rt_count and image_name has been switched
         in the csv file, hence the odd indexing in the following
     """
+    if kwargs['remove_old']:
+        for_all = False
+        for img in pc.queryImages().filter_by(source="Luca Rossi - ECB"):
+            img_dir = config['alembic']['image_dir']
+            if not for_all:
+                confirm = input("Delete %s [Y/n/All]: " % os.path.join(img_dir, img.name))
+            if confirm.lower() == "all":
+                for_all = True
+            if confirm == 'Y' or confirm == '' or for_all :
+                print("Deleting image: %s" % img)
+                try:
+                    os.remove(os.path.join(img_dir, img.name))
+                except FileNotFoundError:
+                    print("File not found, continue")
+                pc.removeImage(img)
+            else:
+                print("Not removing image: %s" % img)
+        return
+
     with open(kwargs['csv_file'], 'r') as f:
         csvfile = csv.DictReader(f, delimiter=";")
         c = 0
@@ -78,6 +100,11 @@ if __name__ == "__main__":
         type=str,
         default="",
         help="If set, the images will be copied to this folder upon injection into the database"
+    )
+    parser.add_argument(
+        "--remove-old",
+        action="store_true",
+        help="If True, will remove all currently held images from the Luca Rossi data set from the ECB protest",
     )
 
     main(**vars(parser.parse_args()))
