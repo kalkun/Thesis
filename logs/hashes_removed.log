@@ -1,4 +1,10 @@
 # Removed images of dimension: (224, 224)
+#
+# Finding 30 hashes that dont exists in any of the datasets
+# Possibly from an early scraping:
+# files = set(os.listdir("images")
+# diffs = files.difference(set([i.name for i in pc.getImages()]))
+#
 # Then images with the following hashes
 # But not having these hashes in DB
 4323bb313328c9d3
