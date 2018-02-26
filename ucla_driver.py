@@ -83,7 +83,8 @@ def main(**kwargs):
             img.imageHASH = dhash
         pc.try_commit()
     else:
-        if not os.path.exists():
+        ucla_dir = kwargs['ucla_dir']
+        if not os.path.exists(ucla_dir):
             raise ValueError(
                 "Cannot find UCLA image folder '%s' in image directory '%s'" % (
                     ucla_dir,
@@ -91,9 +92,9 @@ def main(**kwargs):
                 )
             )
         if not kwargs['no_test']:
-            extract_rows("test", image_dir, pc)
+            extract_rows("test", ucla_dir, pc)
         if not kwargs['no_train']:
-            extract_rows("train", image_dir, pc)
+            extract_rows("train", ucla_dir, pc)
 
 def kill_displays(also_exit=False):
     for proc in psutil.process_iter():
@@ -110,13 +111,12 @@ def extract_rows(name, full_path, pc):
     with open(os.path.join(full_path, filename)) as f:
         csvreader = csv.reader(f, delimiter='\t')
         header = csvreader.__next__()
+        c = 0
         for row in csvreader:
             parsed_row = parse_row(row, header)
-            print("_" * 80)
-            print("Inserting %s" % parsed_row['fname'])
             try:
-                pc.insertImage(
-                    path_and_name=os.path.join(full_path, parsed_row['fname']),
+                img = pc.insertImageLater(
+                    path_and_name=os.path.join(full_path, "img/%s" % name, parsed_row['fname']),
                     source="UCLA",
                     origin="local",
                     label=parsed_row['violence'],
@@ -127,9 +127,20 @@ def extract_rows(name, full_path, pc):
                         ]
                     ))
                 )
+                if not img is None:
+                    c += 1
+                    print("_" * 80)
+                    print("Inserting %s %45s" % (parsed_row['fname'], c))
+                    img.name = parsed_row['fname']
+                else:
+                    print("_" * 80)
+                    print("Nothing for %s " % parsed_row['fname'])
             except Exception as e:
+                print("_" * 80)
+                print("ERROR")
                 print(e)
                 continue
+        pc.try_commit()
 
 
 def parse_row(row, header):
