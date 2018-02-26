@@ -14,5 +14,5 @@ if [ -z $1 ]; then
     echo "Missing argument of path to image directory";
 else
     find $1 -type f ! -regex '.*[test,train].*.jpg' | xargs zip images.zip
-    unzip -l images.zip | tail -n 1
+    unzip -l images.zip | tail -n 2
 fi;

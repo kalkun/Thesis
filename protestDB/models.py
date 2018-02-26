@@ -107,6 +107,7 @@ class ProtestNonProtestVotes(Base):
 
     protestVoteID = Column(Integer, primary_key=True)
     imageID       = Column(String(100), ForeignKey('Images.imageHASH'))
+    annotator     = Column(String(100), nullable=True)
     is_protest    = Column(Boolean, nullable=False)
     timestamp     = Column(DateTime, nullable=False)
 
