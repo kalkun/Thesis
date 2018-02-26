@@ -18,84 +18,129 @@ import csv
 from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
 
-def main(files, images_dir=None, **kwargs):
+#def main(files, images_dir=None, **kwargs):
+#    header = []
+#    for i in range(10):
+#        for j in range(1, 3):
+#            header.append("image_%s-%s" % (i, j))
+#    print(header)
+#    rows = []
+#    rows.append(header)
+#
+#    rows = make_pairs(files, rows, num_pairs=kwargs['k_pairs'])
+#
+#    with open(kwargs['output_csv'], "w") as f:
+#        csvwriter = csv.writer(f, delimiter=";")
+#        csvwriter.writerows(rows)
+#
+#def make_pairs(files, rows, num_pairs=10):
+#    pairs = {}
+#    # initialize pairs:
+#    for f in files:
+#        pairs[f] = []
+#
+#    pool = files * num_pairs
+#    random.shuffle(pool)
+#
+#    row = []
+#    while len(pool) > 1:
+#        print(len(pool))
+#        img_i = pool.pop(0)
+#        def get_j(img_i, pool):
+#            img_j = pool.pop(0)
+#            if img_j in pairs[img_i] or img_j == img_i:
+#                pool.append(img_j)
+#                return get_j(img_i, pool)
+#            return img_j, pool
+#
+#        img_j, pool = get_j(img_i, pool)
+#        pairs[img_i].append(img_j)
+#        pairs[img_j].append(img_i)
+#
+#        row.append(img_i)
+#        row.append(get_j(img_i, pool))
+#
+#        if len(row) == 10:
+#            rows.append(row)
+#            row = []
+#
+#
+#    print("_" * 80)
+#    for k, v in pairs.items():
+#        print("%s: %-15s" % (k, len(v)))
+#    print("_" * 80)
+#    print("All done!")
+#    return rows
+#
+#import random
+#
+def checkValid(pairs, value1, value2, threshold):
+	#print(pairs)
+	#print(value1, value2, threshold)
+    if (len(pairs[value1]) >= threshold or len(pairs[value2]) >= threshold):
+        return False
+    if (value1 in pairs[value2] or value2 in pairs[value1]):
+        return False
+    else:
+        return True
+
+def main(files, **kwargs):
+
+    n_pairs = kwargs['k_pairs']
+
+    #files = list(range(0, 1000))
+
+    pool = files * n_pairs
+    random.shuffle(pool)
     header = []
     for i in range(10):
         for j in range(1, 3):
             header.append("image_%s-%s" % (i, j))
-    print(header)
     rows = []
     rows.append(header)
 
-    rows = make_pairs(files, rows)
+    pairs = {}
+    print("_" * 80)
+    print("Starting")
+
+    for i in files:
+        pairs[i] = []
+
+    for i in files:
+        while (len(pairs[i]) < n_pairs):
+            j = pool.pop()
+            if (j == i):
+                pool = [j] + pool
+                continue
+
+            if (checkValid(pairs, i, j, n_pairs)):
+                pairs[i].append(j)
+                pairs[j].append(i)
+            else:
+                pool = [j] + pool
+                continue
+
+
+    pairwise = []
+    for k, v in pairs.items():
+        for j in v:
+            pairwise.append((k, j))
+    random.shuffle(pairwise)
+    row = []
+    for pair in pairwise:
+        row.append(pair[0])
+        row.append(pair[1])
+        if len(row) == 10:
+            rows.append(row)
+            row = []
 
     with open(kwargs['output_csv'], "w") as f:
         csvwriter = csv.writer(f, delimiter=";")
         csvwriter.writerows(rows)
 
-def make_pairs(files, rows):
-    pairs = {}
-    def all_paired():
-        for k, v in pairs.items():
-            if v < 10:
-                return False
-        return len(pairs.items()) == len(files)
 
-    def increment_pairs(name):
-        if name in pairs:
-            pairs[name] += 1
-        else:
-            pairs[name] = 1
-
-    while not all_paired():
-        bag = set(files)
-        # Remove from `bag` filenames that
-        # already includes 10 comparisons:
-        exhausted = []
-        for k, v in pairs.items():
-            if v == 10:
-                exhausted.append(k)
-
-        bag = bag.difference(set(exhausted))
-
-        if len(bag) < 10:
-            # if there are less than ten to draw from
-            # then we cannot meaningfully create more rows
-            print("_" * 80)
-            print("Less than 10 images with less than 10 pairs, exiting")
-            return rows
-
-        row = []
-
-
-
-        # create new row:
-        for i in range(10):
-            i = random.randint(0, len(bag) -1)
-            j = i
-            while j == i:
-                # just to make sure that we continue
-                # drawing random numbers even if i and
-                # j ends up being equal - also by chance.
-                j = random.randint(0, len(bag) -1)
-
-            img_i = list(bag)[i]
-            img_j = list(bag)[j]
-            # Tick the number of comparisons for
-            # image i and j:
-            increment_pairs(img_i)
-            increment_pairs(img_j)
-
-            row.append(img_i)
-            row.append(img_j)
-
-        rows.append(row)
-
+    print("All done!")
     print("_" * 80)
-    print("All paired, exiting")
-
-    return rows
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -118,6 +163,13 @@ if __name__ == "__main__":
         default="mturk-input.csv",
         type=str,
         help="The name of the output csv file (default: 'mturk-input.csv'"
+    )
+    parser.add_argument(
+        "-k",
+        "--k-pairs",
+        default=10,
+        type=int,
+        help="The number of pairs to generate for each observation"
     )
 
     args = vars(parser.parse_args())
