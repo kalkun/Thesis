@@ -49,6 +49,8 @@ def make_pairs(files, rows):
 
     while not all_paired():
         bag = set(files)
+        # Remove from `bag` filenames that
+        # already includes 10 comparisons:
         exhausted = []
         for k, v in pairs.items():
             if v == 10:
@@ -79,6 +81,8 @@ def make_pairs(files, rows):
 
             img_i = list(bag)[i]
             img_j = list(bag)[j]
+            # Tick the number of comparisons for
+            # image i and j:
             increment_pairs(img_i)
             increment_pairs(img_j)
 
