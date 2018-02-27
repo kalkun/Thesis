@@ -76,7 +76,9 @@ class TestTurkInput(unittest.TestCase):
 			img_hash = image_name[len(url):]
 			#print("img_hash: ",img_hash)
 			img = self.pc.queryImages().filter_by(name=img_hash).one()
-			vote = self.pc.get(models.ProtestNonProtestVotes, imageID = img.imageHASH)
+			# remember, this is line below is based on the assumption that there is a one to one correspondence
+			# between protestNonProtestVotes and image
+			vote = self.pc.get(models.ProtestNonProtestVotes, imageID = img.imageHASH) 
 			#print("img", img)
 			# img = self.pc.getImage(img_hash)
 			self.assertEqual(img.source, "Luca Rossi - ECB")
