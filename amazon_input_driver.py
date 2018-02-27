@@ -66,15 +66,22 @@ def main(files, **kwargs):
 
     build_url = lambda name: url + name
 
-    pairwise = []
+    pairwise = set()
     for k, v in pairs.items():
         for j in v:
-            pairwise.append((k, j))
+            pair = sorted([k, j])
+            pairwise.update([":".join(pair)])
+
+    pairwise = list(pairwise)
+
     random.shuffle(pairwise)
     row = []
     for pair in pairwise:
-        row.append(build_url(pair[0]))
-        row.append(build_url(pair[1]))
+        pair = pair.split(":")
+        img_a = pair[0]
+        img_b = pair[1]
+        row.append(build_url(img_a))
+        row.append(build_url(img_b))
         if len(row) == 20:
             rows.append(row)
             row = []
@@ -84,7 +91,11 @@ def main(files, **kwargs):
         csvwriter.writerows(rows)
 
 
-    print("All done!")
+    if kwargs['debug']:
+        for k, v in pairs.items():
+            print("%35s: %-15s" % (k, len(v)))
+    print("\nAll done!")
+    print("Number of rows: %s" % len(rows))
     print("_" * 80)
 
 
@@ -117,6 +128,11 @@ if __name__ == "__main__":
         default=10,
         type=int,
         help="The number of pairs to generate for each observation"
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Increase verbosity for debugging"
     )
 
     args = vars(parser.parse_args())
