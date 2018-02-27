@@ -18,6 +18,8 @@ import csv
 from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
 
+url = "https://s3.eu-central-1.amazonaws.com/ecb-protest/"
+
 def checkValid(pairs, value1, value2, threshold):
     if (len(pairs[value1]) >= threshold or len(pairs[value2]) >= threshold):
         return False
@@ -61,7 +63,6 @@ def main(files, **kwargs):
                 pool = [j] + pool
                 continue
 
-    url = "https://s3.eu-central-1.amazonaws.com/ecb-protest/"
 
     build_url = lambda name: url + name
 
@@ -79,7 +80,7 @@ def main(files, **kwargs):
             row = []
 
     with open(kwargs['output_csv'], "w") as f:
-        csvwriter = csv.writer(f, delimiter=";")
+        csvwriter = csv.writer(f, delimiter=",")
         csvwriter.writerows(rows)
 
 
