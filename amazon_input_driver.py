@@ -19,14 +19,12 @@ from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
 
 def checkValid(pairs, value1, value2, threshold):
-	#print(pairs)
-	#print(value1, value2, threshold)
     if (len(pairs[value1]) >= threshold or len(pairs[value2]) >= threshold):
         return False
     if (value1 in pairs[value2] or value2 in pairs[value1]):
         return False
-    else:
-        return True
+
+    return True
 
 def main(files, **kwargs):
 
@@ -45,6 +43,7 @@ def main(files, **kwargs):
     print("_" * 80)
     print("Starting")
 
+    # Initialize pairs
     for i in files:
         pairs[i] = []
 
@@ -62,6 +61,9 @@ def main(files, **kwargs):
                 pool = [j] + pool
                 continue
 
+    url = "https://s3.eu-central-1.amazonaws.com/ecb-protest/"
+
+    build_url = lambda name: url + name
 
     pairwise = []
     for k, v in pairs.items():
@@ -70,9 +72,9 @@ def main(files, **kwargs):
     random.shuffle(pairwise)
     row = []
     for pair in pairwise:
-        row.append(pair[0])
-        row.append(pair[1])
-        if len(row) == 10:
+        row.append(build_url(pair[0]))
+        row.append(build_url(pair[1]))
+        if len(row) == 20:
             rows.append(row)
             row = []
 
