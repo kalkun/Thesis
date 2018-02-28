@@ -1,13 +1,49 @@
 
 from protestDB import cursor
 from protestDB import models
-from imagehash import average_hash
+from imagehash import dhash
 import argparse
 import os
 from PIL import Image
 from collections import defaultdict
 import random
 import shutil
+
+def hamming(s1, s2):
+    """Calculate the Hamming distance between two bit strings"""
+    assert len(s1) == len(s2)
+    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
+
+def removeSimilarImages(image_list, folder_source):
+	#print ("processing hashes")
+	original_images = {}
+	original_hashes = []
+	for idx, image in enumerate(image_list):
+		#print("processing image hash ", image.name, " index ", idx, " out of ", len(image_list))
+		path = os.path.join(folder_source, image.name)
+		hashh = str(dhash(Image.open(path)))
+		original_hashes.append(hashh)
+		original_images[hashh] = image
+
+	result_hashes = list(original_hashes)
+	#print("processing comparisons")
+	for idx, hash1 in enumerate(original_hashes):
+		#print("processing hash similiarity to ", hash1, " index ", idx, " out of ", len(original_hashes))
+		for jdx in range(idx + 1, len(original_hashes)):
+			hash2 = original_hashes[jdx]
+			dist = hamming(hash1, hash2)
+			similarity = (16 - dist) * 100 / 16
+			#print(similarity)
+			if (similarity > 38):
+				try:
+					result_hashes.remove(hash2)
+				except Exception as e:
+					pass
+	result = []
+	for hashh in result_hashes:
+		result.append(original_images[hashh])
+
+	return result
 
 
 def main(folder_source, folder_dest, seed):
@@ -16,31 +52,14 @@ def main(folder_source, folder_dest, seed):
 	images = pc.query(models.Images).join(models.ProtestNonProtestVotes,models.ProtestNonProtestVotes.imageID ==
 	models.Images.imageHASH).filter(models.ProtestNonProtestVotes.is_protest == 1) # gets protest images
 
-	non_clashing_images = {}
-	clashes = defaultdict(list)
-	counter = 0
-
+	img_list = []
 	for image in images:
-		counter += 1
-		print("processing ", image.name, counter)
-		path = os.path.join(folder_source, image.name) # gets local path
-		img = Image.open(path)
-		a_hash = average_hash(img)
-		
-		if (a_hash in non_clashing_images): # this stores all the clashes if needed to visually inspect them
-			clashes[a_hash].append(image)
-			#first = img.show() #uncoment for visual inspection
-			second_path = os.path.join(folder_source,non_clashing_images[a_hash].name)
-			#second = Image.open(second_path).show() #uncoment for visual inspection
-			#input("press somenthing")  #uncoment for visual inspection
-		non_clashing_images[a_hash] = image
+		img_list.append(image)
 
-	#print(len(non_clashing_images))
-	temp_list = []
-	for img in non_clashing_images.values():
-		temp_list.append(img)
+	temp_list = removeSimilarImages(img_list, folder_source)
 
 	random.shuffle(temp_list)
+	#print("result size is ", len(temp_list))
 
 	shutil.rmtree(folder_dest)
 
