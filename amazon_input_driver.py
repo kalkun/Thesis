@@ -14,6 +14,8 @@ import os
 import random
 import argparse
 import csv
+import imagehash
+from PIL import Image
 
 from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
@@ -141,8 +143,22 @@ if __name__ == "__main__":
 
         files = []
         for line in sys.stdin:
-            fname = pc.getImage(line.strip()).name
-            files.append(fname)
+            if len(line.split(".")) == 1:
+                hash_name = line.strip()
+            else:
+                hash_name = str(
+                    imagehash.dhash(
+                        Image.open(
+                            os.path.join(args['images_dir'], line.strip())
+                        )
+                    )
+                )
+            print("hash_name: %s" % hash_name)
+            try:
+                fname = pc.getImage(hash_name).name
+                files.append(fname)
+            except AttributeError:
+                print("Skipping %s with hash: %s" % (line.strip(),hash_name))
 
         args["files"] = files
 
