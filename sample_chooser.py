@@ -1,4 +1,14 @@
 
+
+
+"""
+This script is designed to select a sample to be annotated on mechanical turk. It works by, first pulling all the images that were
+annotated as being protest related (ProtestNonProtestVotes.is_protest == 1). Then it iterates through every image and computing the hamming
+distance to every other image available. If the distance is lower then the threshold set, it removes one of the images from the dataset.
+It then shuffle the result, prints the original hashes of those images (as in the db) and saves them locally in a folder that can be specifided.
+"""
+
+
 from protestDB import cursor
 from protestDB import models
 from imagehash import dhash
@@ -10,12 +20,6 @@ import random
 import shutil
 
 
-"""
-This script is designed to select a sample to be annotated on mechanical turk. It works by, first pulling all the images that were
-annotated as being protest related (ProtestNonProtestVotes.is_protest == 1). Then it iterates through every image and computing the hamming
-distance to every other image available. If the distance is lower then the threshold set, it removes one of the images from the dataset.
-It then shuffle the result, prints the original hashes of those images (as in the db) and saves them locally in a folder that can be specifided.
-"""
 
 SIMILARITY_THRESHOLD = 38 #percent
 

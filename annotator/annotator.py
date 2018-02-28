@@ -8,7 +8,7 @@ class Annotator:
 	"""
 	This class implements a very simplistic GUI interface for labeling images. The current commands are the following:
 	Unrelated - Space
-	For giving a label for protest related images: number between 0 - 10
+	Related - enter
 	Going back - b
 	"""
 
@@ -37,6 +37,8 @@ class Annotator:
 		filter(models.ProtestNonProtestVotes.imageID == None).\
 		filter(models.Images.source == 'Luca Rossi - ECB').\
 		order_by(models.ProtestNonProtestVotes.imageID)
+		if q.count() == 0:
+			return []
 		return q.all()
 
 
@@ -114,6 +116,11 @@ class Annotator:
 		"""
 		Loads the current image and resize it if it does not fit the window
 		"""
+		#print(self.imgs)
+		if self.current_image_index >= len(self.imgs):
+			print("reached the end of unlabeld images, exiting....")
+			exit(0)
+
 		print("{0} out of {1} images".format(self.current_image_index, len(self.imgs)))
 		path = os.path.join(self.folder, self.imgs[self.current_image_index].name)
 		img = Image.open(path)

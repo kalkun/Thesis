@@ -145,3 +145,48 @@ This is a script built to automate multiple searches configured in a csv file in
 Just pass the path to the csv file as an argument to the script
 
 Attention: **When used, it will automatically add it to the db!!**
+
+
+## Sample Chooser
+
+
+This script is designed to select a sample to be annotated on mechanical turk. It works by, first pulling all the images that were annotated as being protest related (ProtestNonProtestVotes.is_protest == 1). Then it iterates through every image and computing the hamming distance to every other image available. If the distance is lower then the threshold set, it removes one of the images from the dataset. It then shuffle the result, prints the original hashes of those images (as in the db) and saves them locally in a folder that can be specifided.
+
+The seed is also set to a default in order to be reproducible, but it can be changed 
+
+### Usage
+
+```
+python sample_chooser images --dir_dest sample --seed 23023
+```
+
+
+## Test Turk Input
+
+This scripts intents to test certains properties desired on the mechanical turk input. Both the csv file and on the images that are sitting on amazon s3 bucket. The tests are as follow:
+- no pair is made with the same image
+- every image has exactly 10 pairs
+- no image occurs more than 5 times in a single hit
+- there are 1000 unique images
+- all images come from Luca Rossi's database and were labeled as protest related
+- all links on the s3 bucket are available
+
+
+## Annotator driver
+
+This scripts is a very simplistic GUI interface for labeling images. The current commands are the following:
+- Unrelated - Space
+- Related - enter
+- Going back - b
+
+### Usage
+
+```
+python annotator_driver.py images 0
+```
+
+images is the name of the folder where the images are contained and the second arguments specify is the script should save the results in the db (1) or not (0).
+
+## Amazon input driver
+
+To do

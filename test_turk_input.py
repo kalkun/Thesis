@@ -1,3 +1,20 @@
+
+
+"""
+This scripts intents to test certains properties desired on the mechanical turk input. Both the csv file
+and on the images that are sitting on amazon s3 bucket. The tests are as follow:
+- no pair is made with the same image
+- every image has exactly 10 pairs
+- no image occurs more than 5 times in a single hit
+- there are 1000 unique images
+- all images come from Luca Rossi's database and were labeled as protest related
+- all links on the s3 bucket are available
+"""
+
+
+
+
+
 import unittest
 import argparse
 import csv
@@ -8,6 +25,7 @@ import asyncio
 import aiohttp
 from functools import reduce
 from timeit import default_timer
+
 
 PATH_CSV = "mturk-input.csv"
 
