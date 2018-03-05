@@ -90,6 +90,7 @@
 
 import csv
 import argparse
+import choix
 
 from protestDB.cursor import ProtestCursor
 pc = ProtestCursor()
@@ -100,6 +101,27 @@ def get_name(url, _base=None):
 
 def get_hash(url):
     return get_name(url).split('.')[0]
+
+def as_dsv(row):
+    cols = "{:<8} {:<25} {:<25} {:5} {:5} {:5}"
+    return cols.format(*row)
+
+class image:
+    """ Just a placeholder class
+        that can hold a name and an index
+        and is hashable, comparable etc
+    """
+    def __init__(self, name, index):
+        self.name  = name
+        self.index = index
+
+    def __hash__(self):
+        return self.name.__hash__()
+
+    def __eq__(self, other):
+        if type(other) == str:
+            return other == self.name
+        return other.name == self.name
 
 
 def main(input_file, **kwargs):
@@ -113,14 +135,32 @@ def main(input_file, **kwargs):
     pair_dict = {}
     header = {}
     data = []
+    UCLA_header = ["row", "image1", "image2", "win1", "win2", "tie"]
+    ucla_header_dict = {}
+    tuples = []        # a list of tuples used for choix score computation
+    n_items = set()    # used to count number of unique items
+    unique_images = [] # in-order placement of image names matching the choix output
+
+    for k, v in enumerate(UCLA_header):
+        ucla_header_dict[v] = k
+
+    def rowToDict(row, header=None):
+        header = header or ucla_header_dict
+        row_dict = {}
+        for k, v in header.items():
+            row_dict[k] = row[v]
+        return row_dict
+
+
+
     with open(input_file, 'r') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
 
         # Parse the header row in to a dict
         # so that each key is a column name, and the value
         # is the row index
-        for k, v in enumerate(reader.__next__()):
-            header[v] = k
+        for i, x in enumerate(reader.__next__()):
+            header[x] = i
 
 
         # The image column names follows the same (weird) structure
@@ -144,33 +184,94 @@ def main(input_file, **kwargs):
                 answer = row[header.get("Answer.choice%s" % int(pair/2))]
                 vote = [ 1 if i-1 == int(answer) else 0 for i in range(3) ]
 
-                img_a, img_b = images[pair:pair+2]
-                pair_key = ";".join(sorted([img_a, img_b]))
 
+                img_a, img_b = images[pair:pair+2]
+                # Count the items:
+                if not img_a in n_items:
+                    #n_items[img_a] = "ost"
+                    n_items.update([image(name=img_a, index=len(unique_images))])
+                    unique_images.append(img_a)
+                if not img_b in n_items:
+                    n_items.update([image(name=img_b, index=len(unique_images))])
+                    unique_images.append(img_b)
+
+                pair_key = ";".join(sorted([img_a, img_b]))
                 pair_dict[pair_key] = [ x + vote[i] for i, x in enumerate(
                     pair_dict.get(pair_key, [0, 0, 0]))
                 ]
 
 
+        if kwargs['dry_run']:
+            print(as_dsv(UCLA_header))
+
         c = 0
         for k, v in pair_dict.items():
             c += 1
-            data.append(
-                [
-                    c,               # Row number
-                    k.split(";")[0], # image 1
-                    k.split(";")[1], # image 2
-                    v[0],            # win1
-                    v[2],            # win2
-                    v[1],            # tie
-                ]
-            )
-    UCLA_header = ["row", "image1", "image2", "win1", "win2", "tie"]
-    if kwargs["output_file"]:
+            row = [
+                c,               # Row number
+                k.split(";")[0], # image 1
+                k.split(";")[1], # image 2
+                v[0],            # win1
+                v[2],            # win2
+                v[1],            # tie
+            ]
+            data.append(row)
+            row_dict = rowToDict(row, ucla_header_dict)
+
+            # Add to list of tuples:
+            indices = { i.name: i.index for i in n_items }
+            img_a   = row_dict.get("image1")
+            img_b   = row_dict.get("image2")
+            index_a = indices[img_a]
+            index_b = indices[img_b]
+
+            if vote[0] == 1:
+                tuples.append((index_a, index_b))
+                tuples.append((index_a, index_b))
+            elif vote[1] == 1:
+                tuples.append((index_b, index_a))
+                tuples.append((index_b, index_a))
+            elif vote[2] == 1:
+                tuples.append((index_a, index_b))
+                tuples.append((index_b, index_a))
+            else:
+                raise ValueError(
+                    "Expected vote to be set at either of three options"
+                )
+
+            assert len(indices.items()) == len(n_items), "You fucked it up, Cowboy!"
+
+
+
+            if kwargs['dry_run']:
+                print(as_dsv(row))
+
+
+            if not kwargs['no_db'] and not kwargs['dry_run']:
+
+                pc.insertComparison(
+                    imageID_1   = row_dict.get("image1"),
+                    imageID_2   = row_dict.get("image2"),
+                    win1        = row_dict.get("win1"),
+                    win2        = row_dict.get("win2"),
+                    tie         = row_dict.get("tie"),
+                    source      = "Luca Rossi - ECB",
+                )
+
+    if kwargs["output_file"] and not kwargs['dry_run']:
         with open(kwargs['output_file'], "w") as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerow(UCLA_header)
             writer.writerows(data)
+
+    print("_" * 80)
+    print("n_items: %s" % len(n_items))
+    print("Computing choix pairwise scores...")
+    scores = choix.opt_pairwise(len(n_items), tuples)
+    for t in [(unique_images[i], scores[i]) for i in range(len(n_items)) ]:
+        print(t)
+    print("_" * 80)
+
 
 
 ################################################################################
@@ -197,6 +298,18 @@ if __name__ == "__main__":
                    "equivalent rows into the database, however, if set, a      "
                    "csvfile in the same format as the UCLA file                "
                    "`pairwise_annot.csv` will be written to                    "
+    )
+    parser.add_argument(
+        "--no-db",
+        action = "store_true",
+        help   = " If set, will not insert anything into the db. If no output file "
+                 " is provided, then is equivalent to setting --dry-run            "
+    )
+    parser.add_argument(
+        "--dry-run",
+        action  = "store_true",
+        help    =  " If set, will not do anything, but will output the potential "
+                   " content of a file to stdout                                 "
     )
     main(
         **vars(parser.parse_args())
