@@ -217,3 +217,20 @@ or using standard input:
 ```
 cat <file_with_filenames.txt> | ./amazon_input_driver.py
 ```
+
+
+### Annomaly detection 
+
+
+This script has two purposes. First is to calculate a divergency measure defined as "the percentage of votes that deviate from the most frequent vote across the whole data set". The second purpouse is, given a worker, visually inspects his votes.
+
+#### Usage
+
+To output in standard out using a csv like format the pairs "workerid" -> "divergency measure"
+```
+python annomaly_detection.py my_csv.csv
+```
+To visually inspect the votes of a given worker
+```
+python annomaly_detection.py my_csv.csv --worker_id 13412412 
+```
