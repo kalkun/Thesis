@@ -91,16 +91,18 @@
 import csv
 import argparse
 import choix
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
 
-from protestDB.cursor import ProtestCursor
-pc = ProtestCursor()
+from protestDB import cursor, models
+pc = cursor.ProtestCursor()
 
 base = "https://s3.eu-central-1.amazonaws.com/ecb-protest/"
 def get_name(url, _base=None):
     return url.replace(_base or base, '')
 
-def get_hash(url):
-    return get_name(url).split('.')[0]
+def get_hash(url, _base=None):
+    return get_name(url, _base=_base).split('.')[0]
 
 def as_dsv(row):
     cols = "{:<8} {:<25} {:<25} {:5} {:5} {:5}"
@@ -205,6 +207,7 @@ def main(input_file, **kwargs):
             print(as_dsv(UCLA_header))
 
         c = 0
+        indices = { i.name: i.index for i in n_items }
         for k, v in pair_dict.items():
             c += 1
             row = [
@@ -219,7 +222,6 @@ def main(input_file, **kwargs):
             row_dict = rowToDict(row, ucla_header_dict)
 
             # Add to list of tuples:
-            indices = { i.name: i.index for i in n_items }
             img_a   = row_dict.get("image1")
             img_b   = row_dict.get("image2")
             index_a = indices[img_a]
@@ -239,7 +241,7 @@ def main(input_file, **kwargs):
                     "Expected vote to be set at either of three options"
                 )
 
-            assert len(indices.items()) == len(n_items), "You fucked it up, Cowboy!"
+            assert len(indices.items()) == len(n_items), "You fucked it up, cowboy!"
 
 
 
@@ -249,14 +251,21 @@ def main(input_file, **kwargs):
 
             if not kwargs['no_db'] and not kwargs['dry_run']:
 
-                pc.insertComparison(
+                comparison = pc.insertComparison(
                     imageID_1   = row_dict.get("image1"),
                     imageID_2   = row_dict.get("image2"),
                     win1        = row_dict.get("win1"),
                     win2        = row_dict.get("win2"),
                     tie         = row_dict.get("tie"),
-                    source      = "Luca Rossi - ECB",
+                    source      = "Luca Rossi - ECB, 1000",
+                    do_commit   = False,
                 )
+                print("Inserting:\n\t%s" % comparison)
+
+    # commit comparisons:
+    if not kwargs['no_db'] and not kwargs['dry_run']:
+        pc.try_commit()
+
 
     if kwargs["output_file"] and not kwargs['dry_run']:
         with open(kwargs['output_file'], "w") as f:
@@ -267,10 +276,49 @@ def main(input_file, **kwargs):
     print("_" * 80)
     print("n_items: %s" % len(n_items))
     print("Computing choix pairwise scores...")
-    scores = choix.opt_pairwise(len(n_items), tuples)
-    for t in [(unique_images[i], scores[i]) for i in range(len(n_items)) ]:
-        print(t)
+    scores          = choix.opt_pairwise(len(n_items), tuples)
+    v               = np.matrix(scores)
+    scaler          = MinMaxScaler()
+    scaled          = scaler.fit_transform(v.T)
+
+    print(scaled)
+
+    # Pair image names with the violence score for the image:
+    maximum = -1
+    index = None
+    for t in [(unique_images[i], scaled[i][0]) for i in range(len(n_items)) ]:
+        img_hash = get_hash(t[0], '')
+        violence = t[1]
+        if violence > maximum:
+            maximum = violence
+            index = img_hash
+
+
+        exists = pc.instance_exists(models.Images, imageHASH=img_hash)
+        if not exists:
+            raise ValueError("Image with hash: %s, does not exists!" % img_hash)
+
+        label = pc.insertLabel(
+            img_hash,
+            violence,
+            source = "Luca Rossi - ECB, 1000"
+            do_commit=False
+        )
+        if kwargs['dry_run'] or kwargs['no_db'] or not kwargs['insert_labels']:
+            print("Would insert:\n\t%s" % label)
+        else:
+            print("Inserting:\n\t%s" % label)
+
+    if kwargs['dry_run'] or kwargs['no_db']:
+        pc.session.rollback()
+    elif kwargs['insert_labels']:
+        pc.try_commit()
+    else:
+        print("\nWill not commit insertion of labels, use '--insert-labels' to commit labels to db")
+        pc.session.rollback()
+
     print("_" * 80)
+    print("Most violent: %s at %s" % (index, maximum))
 
 
 
@@ -311,6 +359,12 @@ if __name__ == "__main__":
         help    =  " If set, will not do anything, but will output the potential "
                    " content of a file to stdout                                 "
     )
+    parser.add_argument(
+        "--insert-labels",
+        action  = "store_true",
+        help    = " If set, will also insert the computed labels into the database"
+    )
+
     main(
         **vars(parser.parse_args())
     )

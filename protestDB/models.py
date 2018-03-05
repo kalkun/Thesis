@@ -145,6 +145,7 @@ class Labels(Base):
 
     labelID     = Column(Integer, primary_key=True)
     imageID     = Column(String(100), ForeignKey('Images.imageHASH'))
+    source      = Column(String(100))
     timestamp   = Column(DateTime, nullable=False)
     label       = Column(Float, nullable=False)
 
