@@ -107,20 +107,20 @@ img.show()
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
 
-## Serp Scraper
+### Serp Scraper
 
 This code defines a commandline interface for scraping images.
 
-### Get usage information:
+#### Get usage information:
 ```
 python serp_driver.py --help
 ```
 Otherwise the general idea is to provide a path to a directory where the images scraped will be saved, the key words to be scraped and the search engines (currently supports google and bing). Look in the help for additional arguments
 
-### Limits
+#### Limits
 Bing has a limit of 210 images where google goes up to 800 in principle.
 
-### Usage
+#### Usage
 
 Minimum arguments
 ```
@@ -132,8 +132,26 @@ All arguments
 python serp_driver.py images --sr google bing --key_words "jenifer anistion" "cats" --n_images 100 --timeout 10
 ```
 
+### Luca Driver
+This script is for insertion of image dataset from Luca Rossi into the schema format of the `protestDB`.
 
-## Serp Search terms scraper
+For general usage reference see:
+```
+./luca_driver.py --help
+```
+Arguments should include `--image-dir` and `--csv-file`, then the script will open a connection to the database via the `protestDB` wrapper and insert records and references to the images accordingly.
+
+If `--destination-dir` is set, then the images will also be moved to this folder.
+
+### UCLA Driver
+
+This script inserts from the UCLA dataset into the `protestDB`. 
+For general usage see:
+```
+./ucla_driver.py --help
+```
+
+### Serp Search terms scraper
 
 This is a script built to automate multiple searches configured in a csv file in the following format:
 
@@ -147,21 +165,21 @@ Just pass the path to the csv file as an argument to the script
 Attention: **When used, it will automatically add it to the db!!**
 
 
-## Sample Chooser
+### Sample Chooser
 
 
 This script is designed to select a sample to be annotated on mechanical turk. It works by, first pulling all the images that were annotated as being protest related (ProtestNonProtestVotes.is_protest == 1). Then it iterates through every image and computing the hamming distance to every other image available. If the distance is lower then the threshold set, it removes one of the images from the dataset. It then shuffle the result, prints the original hashes of those images (as in the db) and saves them locally in a folder that can be specifided.
 
 The seed is also set to a default in order to be reproducible, but it can be changed 
 
-### Usage
+#### Usage
 
 ```
 python sample_chooser images --dir_dest sample --seed 23023
 ```
 
 
-## Test Turk Input
+### Test Turk Input
 
 This scripts intents to test certains properties desired on the mechanical turk input. Both the csv file and on the images that are sitting on amazon s3 bucket. The tests are as follow:
 - no pair is made with the same image
@@ -172,14 +190,14 @@ This scripts intents to test certains properties desired on the mechanical turk 
 - all links on the s3 bucket are available
 
 
-## Annotator driver
+### Annotator driver
 
 This scripts is a very simplistic GUI interface for labeling images. The current commands are the following:
 - Unrelated - Space
 - Related - enter
 - Going back - b
 
-### Usage
+#### Usage
 
 ```
 python annotator_driver.py images 0
@@ -187,6 +205,15 @@ python annotator_driver.py images 0
 
 images is the name of the folder where the images are contained and the second arguments specify is the script should save the results in the db (1) or not (0).
 
-## Amazon input driver
+### Amazon input driver
+The amazon input driver, `amazon_input_driver.py` requires either a path to a folder with filenames, or the names can be piped via standard input.
 
-To do
+The two ways of invoking this script is illustrated in the following:
+
+```
+./amazon_input_driver.py --files <file with filenames>
+```
+or using standard input:
+```
+cat <file_with_filenames.txt> | ./amazon_input_driver.py
+```

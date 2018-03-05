@@ -22,18 +22,18 @@ def main(**kwargs):
     pc = ProtestCursor()
 
     if kwargs['validate_logs']:
-        r_hash = re.compile("[0-9a-zA-Z]{16}")
-        r_name = re.compile("(test|train)-[0-9]+.jpg")
+        r_hash   = re.compile("[0-9a-zA-Z]{16}")
+        r_name   = re.compile("(test|train)-[0-9]+.jpg")
         log_file = kwargs['log_file']
         with open(log_file, "r") as f:
             print("{:<16} {:<16} {:<16} {:<16}".format("Name", "aHash", "pHash 1", "pHash 2"))
             for line in f:
                 if not "IntegrityError" in line:
                     continue
-                line = line.strip()
-                hash = r_hash.search(line).group(0)
-                name = r_name.search(line).group(0)
-                img = pc.getImage(hash)
+                line   = line.strip()
+                hash   = r_hash.search(line).group(0)
+                name   = r_name.search(line).group(0)
+                img    = pc.getImage(hash)
                 tmpimg = Image.open(os.path.join(image_dir, name))
                 print("{:<16} {:<16} {:<16} {:<16}".format(name, hash, str(imagehash.phash(img.get_image())), str(imagehash.phash(tmpimg))))
                 try:
@@ -49,7 +49,7 @@ def main(**kwargs):
                     kill_displays(True)
     elif kwargs['fix_primaries']:
         all_images = pc.session.query(models.Images).all()
-        c = 0
+        c          = 0
         for img in all_images:
             c += 1
             sys.stdout.write('\r')
@@ -59,7 +59,7 @@ def main(**kwargs):
             sys.stdout.write("[%-50s] %d%%" % ('='*int(step*50), step*100))
             sys.stdout.flush()
             try:
-                o = img.get_image()
+                o     = img.get_image()
                 dhash = str(imagehash.dhash(o))
                 ahash = str(imagehash.average_hash(o))
             except FileNotFoundError:
@@ -116,11 +116,11 @@ def extract_rows(name, full_path, pc):
             parsed_row = parse_row(row, header)
             try:
                 img = pc.insertImageLater(
-                    path_and_name=os.path.join(full_path, "img/%s" % name, parsed_row['fname']),
-                    source="UCLA",
-                    origin="local",
-                    label=parsed_row['violence'],
-                    tags=["UCLA-%s" % name] + list(filter(
+                    path_and_name = os.path.join(full_path, "img/%s" % name, parsed_row['fname']),
+                    source        = "UCLA",
+                    origin        = "local",
+                    label         = parsed_row['violence'],
+                    tags          = ["UCLA-%s" % name] + list(filter(
                         lambda x: not x is None,
                         [ k if v == 1 else None
                           for k, v in parsed_row.items()
@@ -161,34 +161,34 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--ucla-dir",
-        default="UCLA-protest",
-        type=str,
-        help="The name of the UCLA image directory (default: 'UCLA-protest')"
+        default = "UCLA-protest",
+        type    = str,
+        help    = "The name of the UCLA image directory (default: 'UCLA-protest')"
     )
     parser.add_argument(
         "--no-test",
-        action="store_true",
-        help="If set, will not include the UCLA test set"
+        action = "store_true",
+        help   = "If set, will not include the UCLA test set"
     )
     parser.add_argument(
         "--no-train",
-        action="store_true",
-        help="If set, will not include UCLA train set"
+        action = "store_true",
+        help   = "If set, will not include UCLA train set"
     )
     parser.add_argument(
         "--validate-logs",
-        action="store_true",
-        help="If set, will go through an error log and open the images that failed due to integrity error"
+        action = "store_true",
+        help   = "If set, will go through an error log and open the images that failed due to integrity error"
     )
     parser.add_argument(
         "--log-file",
-        type=str,
-        help="Expected if `validate-logs` is set"
+        type = str,
+        help = "Expected if `validate-logs` is set"
     )
     parser.add_argument(
         "--fix-primaries",
-        action="store_true",
-        help="If set, will set primary keys of all existing images to the dhash value of the image."
+        action = "store_true",
+        help   = "If set, will set primary keys of all existing images to the dhash value of the image."
     )
 
     args = parser.parse_args()
