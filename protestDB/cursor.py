@@ -220,7 +220,9 @@ class ProtestCursor:
                 )
             )
 
-        img_hash = path_and_name if origin == 'test' else self.__compute_imagehash(path_and_name)
+        img_hash = path_and_name if origin == 'test' else self.__compute_imagehash(
+                path_and_name
+            )
 
         img = self.update_or_create(
             models.Images,

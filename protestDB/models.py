@@ -1,5 +1,6 @@
 from sqlalchemy import (
     Boolean,
+    CheckConstraint,
     Column,
     DateTime,
     Float,
@@ -7,6 +8,7 @@ from sqlalchemy import (
     Integer,
     String,
     Table,
+    UniqueConstraint,
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -85,17 +87,33 @@ class Comparisons(Base):
     A model class for comparison based votes
     """
 
-    __tablename__ = "Votes"
+    __tablename__ = "Comparisons"
 
-    comparisonID = Column(Integer, primary_key=True)
-    imageID_1    = Column(String(100), ForeignKey('Images.imageHASH'))
-    imageID_2    = Column(String(100), ForeignKey('Images.imageHASH'))
-    vote         = Column(Integer, nullable=False)
-    timestamp    = Column(DateTime, nullable=False)
+    comparisonID  = Column(Integer, primary_key=True)
+    imageID_1     = Column(String(100), ForeignKey('Images.imageHASH'))
+    imageID_2     = Column(String(100), ForeignKey('Images.imageHASH'))
+    win1          = Column(Integer, nullable=False)
+    win2          = Column(Integer, nullable=False)
+    tie           = Column(Integer, nullable=False)
+    source        = Column(String(100))
+    timestamp     = Column(DateTime, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint('imageID_1', 'imageID_2', name="pair"),
+        CheckConstraint('imageID_1 <> imageID_2', name='check-is-different'),
+        CheckConstraint('max(imageID_1, imageID_2) = imageID_2', name='ordered-pair'),
+    )
 
     def __repr__(self):
-        return "<Votes id='%s', imageID_1='%s', imageID_2='%s', vote='%s'>" % (
-                self.voteID, self.imageID_1, self.imageID_2, vote)
+        return ("<Votes id='%s', imageID_1='%s', imageID_2='%s', win1='%s', "
+               "win2='%s', tie='%s'>") % (
+                    self.comparisonID,
+                    self.imageID_1,
+                    self.imageID_2,
+                    self.win1,
+                    self.win2,
+                    self.tie
+                )
 
 
 class ProtestNonProtestVotes(Base):
