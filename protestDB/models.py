@@ -78,7 +78,7 @@ class Tags(Base):
             )
 
     def __repr__(self):
-        return "<Tags id='%s', tagName='%s'" % (
+        return "<Tags tagID=%s, tagName='%s'" % (
                 self.tagID, self.tagName)
 
 
@@ -105,8 +105,8 @@ class Comparisons(Base):
     )
 
     def __repr__(self):
-        return ("<Votes id='%s', imageID_1='%s', imageID_2='%s', win1='%s', "
-               "win2='%s', tie='%s'>") % (
+        return ("<Votes comparisonID=%s, imageID_1='%s', imageID_2='%s', win1=%s, "
+               "win2=%s, tie=%s>") % (
                     self.comparisonID,
                     self.imageID_1,
                     self.imageID_2,
@@ -130,7 +130,8 @@ class ProtestNonProtestVotes(Base):
     timestamp     = Column(DateTime, nullable=False)
 
     def __repr__(self):
-        return "<ProtestNonProtestVotes id='%s', imageID='%s', is_protest='%s', timestamp='%s'>" % (
+        return ("<ProtestNonProtestVotes protestVoteID=%s, imageID='%s', "
+               "is_protest=%s, timestamp='%s'>") % (
                 self.protestVoteID, self.imageID, self.is_protest, self.timestamp)
 
 
@@ -148,5 +149,5 @@ class Labels(Base):
     label       = Column(Float, nullable=False)
 
     def __repr__(self):
-        return "<Labels labelID='%s', imageID='%s', label='%s'>" % (
+        return "<Labels labelID=%s, imageID='%s', label='%s'>" % (
                 self.labelID, self.imageID, self.label)

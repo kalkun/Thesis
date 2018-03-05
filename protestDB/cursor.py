@@ -101,7 +101,7 @@ class ProtestCursor:
 
 
 
-    def get_or_create(self, modelClass, do_commit=True, **kwargs):
+    def get_or_create(self, modelClass, do_commit=True, timestamp=None, **kwargs):
         """ If object exists it will just be returned,
             otherwise it will be created first, then returned.
 
@@ -111,8 +111,13 @@ class ProtestCursor:
             **kwargs
         ).one_or_none()
 
+        # Ignore timestamp, when checking if
+        # instance already exists:
         if not instance is None:
             return instance
+
+        if not timestamp is None:
+            kwargs["timestamp"] = timestamp
 
         instance = modelClass(**kwargs)
         self.session.add(instance)
@@ -161,26 +166,28 @@ class ProtestCursor:
         path_and_name,
         source,
         origin,
-        url=None,
-        position=None,
-        timestamp=None,
-        label=None,
-        tags=None,
-        do_commit=True,
+        url            = None,
+        position       = None,
+        timestamp      = None,
+        label          = None,
+        tags           = None,
+        do_commit      = True,
     ):
         """ Creates new image row in Image table
             Arguments are:
-                `path_and_name` The path and name to the image file, can be relative or absolute.
+                `path_and_name` The path and name to the image file, can be relative
+                                or absolute.
                 `source`        The source of the image. E.g. 'google' or 'UCLA'.
                 `origin`        Enum of:
                                 ```
                                     test | local | online
                                 ```
-                                where online should only be used
-                                        if file is not locally stored and image is to be retrieved
-                                        using the `url` argument.
+                                where online should only be used if file is not
+                                locally stored and image is to be retrieved using the
+                                `url` argument.
                 `url`           Should be set if `origin` is online.
-                `position`      The position of an image search that the image appeared in.
+                `position`      The position of an image search that the image
+                                appeared in.
                 `timestamp`     Optional, will be set to current timestamp otherwise.
                 `label`         A label indicating whether the image is violent or not.
                 `tags`          An optional list of tags associated with the image.
@@ -188,7 +195,8 @@ class ProtestCursor:
 
         if not origin in ['test', 'local', 'online']:
             raise ValueError(
-                "origin must be either: 'local', 'online', or 'test'. Found: %s" % origin
+                "origin must be either: 'local', 'online', or 'test'. Found: %s" %
+                    origin
             )
 
         if origin == 'online' and url is None:
@@ -220,9 +228,7 @@ class ProtestCursor:
                 )
             )
 
-        img_hash = path_and_name if origin == 'test' else self.__compute_imagehash(
-                path_and_name
-            )
+        img_hash = path_and_name if origin == 'test' else self.__compute_imagehash(path_and_name)
 
         img = self.update_or_create(
             models.Images,
@@ -267,7 +273,7 @@ class ProtestCursor:
         """ Inserts a label for an image in the scale [0, 1]
             where 1 indicates the most violent, and 0 no violence.
         """
-        self.get_or_create(
+        return self.get_or_create(
             models.Labels,
             imageID     = imageId,
             label       = label,
@@ -318,10 +324,10 @@ class ProtestCursor:
         """ Small handle to insert a comparison vote """
         return self.get_or_create(
             models.Comparisons,
-            imageID_1=imageID_1,
-            imageID_2=imageID_2,
-            timestamp=timestamp or datetime.datetime.now(),
-            do_commit=do_commit,
+            imageID_1           = imageID_1,
+            imageID_2           = imageID_2,
+            timestamp           = timestamp or datetime.datetime.now(),
+            do_commit           = do_commit,
         )
 
     def insertProtestNonProtestVotes(
@@ -341,16 +347,44 @@ class ProtestCursor:
         if not instance is None:
             setattr(instance, "is_protest", is_Protest)
         else:
-            instance = self.get_or_create(models.ProtestNonProtestVotes,
-                imageID = imageID,
-                is_protest = is_Protest,
-                timestamp = timestamp or datetime.datetime.now(),
-                do_commit = do_commit)
+            instance = self.get_or_create(
+                models.ProtestNonProtestVotes,
+                    imageID    = imageID,
+                    is_protest = is_Protest,
+                    timestamp  = timestamp or datetime.datetime.now(),
+                    do_commit  = do_commit
+                )
 
         if do_commit:
             self.try_commit()
 
         return instance
+
+    def insertComparison(
+        self,
+        imageID_1,
+        imageID_2,
+        win1,
+        win2,
+        tie,
+        source,
+        timestamp=None,
+        do_commit=True,
+    ):
+        first_img  = min(imageID_1, imageID_2)
+        second_img = max(imageID_1, imageID_2)
+
+        return self.get_or_create(
+            models.Comparisons,
+            imageID_1 = first_img,
+            imageID_2 = second_img,
+            win1      = win1,
+            win2      = win2,
+            tie       = tie,
+            source    = source,
+            timestamp = timestamp or datetime.datetime.now(),
+            do_commit = do_commit,
+        )
 
     def remove(
         self,
