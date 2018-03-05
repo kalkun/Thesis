@@ -107,6 +107,22 @@ img.show()
 See the class `ProtestCursor` in the file protestDB.engine for
 documentation on the possible parameters and their meaning.
 
+## Drivers
+The `*driver.py` files in the project root generally has in common that they operate on the database through the `ProtestCursor` class, however, otherwise they generally don't have anything in common.
+They are intentionally silos representing different tasks on the database.
+
+The following table provides an overview of the driver files:
+
+| file                     | Purpose                                                           |
+| ------------------------ | ----------------------------------------------------------------  |
+| `annotator_driver.py`    | Simple GUI for labelling images as protest or non-protest related |
+| `amazon_input_driver.py` | Builds a CSV file compatible with MTurk                           |
+| `luca_driver.py`         | CLI for inserting Luca Rossi database from ECB protest into DB    |
+| `score_driver.py`        | Computes the pairwise Bradley-Terry score on MTurk batch ouptut   |
+| `search_terms_driver.py` | Automate multiple search term configurations                      |
+| `serp_driver.py`         | CLI for scraping images                                           |
+| `ucla_driver.py`         | CLI for inserting UCLA dataset into DB                            |
+
 ### Serp Scraper
 
 This code defines a commandline interface for scraping images.
@@ -206,6 +222,7 @@ python annotator_driver.py images 0
 images is the name of the folder where the images are contained and the second arguments specify is the script should save the results in the db (1) or not (0).
 
 ### Amazon input driver
+This CLI script will output a csv file compatible with the input provided to Amazon mechanical turk.
 The amazon input driver, `amazon_input_driver.py` requires either a path to a folder with filenames, or the names can be piped via standard input.
 
 The two ways of invoking this script is illustrated in the following:
