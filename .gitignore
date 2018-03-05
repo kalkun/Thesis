@@ -8,3 +8,6 @@ images
 *.pyc
 *zip
 sample
+.Rproj.user
+.Rhistory
+.Rproj
