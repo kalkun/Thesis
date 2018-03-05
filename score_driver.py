@@ -301,8 +301,8 @@ def main(input_file, **kwargs):
         label = pc.insertLabel(
             img_hash,
             violence,
-            source = "Luca Rossi - ECB, 1000"
-            do_commit=False
+            source = "Luca Rossi - ECB, 1000",
+            do_commit=False,
         )
         if kwargs['dry_run'] or kwargs['no_db'] or not kwargs['insert_labels']:
             print("Would insert:\n\t%s" % label)

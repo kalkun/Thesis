@@ -247,7 +247,8 @@ class ProtestCursor:
             self.insertLabel(
                 img.imageHASH,
                 label,
-                do_commit=do_commit,
+                source    = source,
+                do_commit = do_commit,
             )
 
         if not tags is None:
@@ -267,8 +268,9 @@ class ProtestCursor:
         self,
         imageId,
         label,
-        timestamp=None,
-        do_commit=True,
+        source,
+        timestamp = None,
+        do_commit = True,
     ):
         """ Inserts a label for an image in the scale [0, 1]
             where 1 indicates the most violent, and 0 no violence.
@@ -277,6 +279,7 @@ class ProtestCursor:
             models.Labels,
             imageID     = imageId,
             label       = label,
+            source      = source,
             timestamp   = timestamp or datetime.datetime.now(),
             do_commit   = do_commit,
         )
