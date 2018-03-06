@@ -239,7 +239,7 @@ cat <file_with_filenames.txt> | ./amazon_input_driver.py
 ### Annomaly detection 
 
 
-This script has two purposes. First is to calculate a divergency measure defined as "the percentage of votes that deviate from the most frequent vote across the whole data set". The second purpouse is, given a worker, visually inspects his votes.
+This script has two purposes. First is to calculate a divergency measure defined as "the percentage of votes that deviate from the most frequent vote across  the whole data set". The second purpouse is, given a worker, visually inspects his votes.
 
 #### Usage
 
