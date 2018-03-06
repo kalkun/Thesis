@@ -137,11 +137,11 @@ def main(input_file, **kwargs):
     pair_dict = {}
     header = {}
     data = []
-    UCLA_header = ["row", "image1", "image2", "win1", "win2", "tie"]
+    UCLA_header      = ["row", "image1", "image2", "win1", "win2", "tie"]
     ucla_header_dict = {}
-    tuples = []        # a list of tuples used for choix score computation
-    n_items = set()    # used to count number of unique items
-    unique_images = [] # in-order placement of image names matching the choix output
+    tuples           = []    # a list of tuples used for choix score computation
+    n_items          = set() # used to count number of unique items
+    unique_images    = []    # in-order placement of image names matching the choix output
 
     for k, v in enumerate(UCLA_header):
         ucla_header_dict[v] = k
@@ -192,10 +192,14 @@ def main(input_file, **kwargs):
                 # Count the items:
                 if not img_a in n_items:
                     #n_items[img_a] = "ost"
-                    n_items.update([image(name=img_a, index=len(unique_images))])
+                    n_items.update([
+                        image(name=img_a, index=len(unique_images))
+                    ])
                     unique_images.append(img_a)
                 if not img_b in n_items:
-                    n_items.update([image(name=img_b, index=len(unique_images))])
+                    n_items.update([
+                        image(name=img_b, index=len(unique_images))
+                    ])
                     unique_images.append(img_b)
 
                 # Compute key, uniquely for this pair of images:
@@ -216,7 +220,6 @@ def main(input_file, **kwargs):
 
         #Check indices:
         for i in n_items:
-            #print("i.name == unique_images[i.index]: %s == %s" % (i.name, unique_images[i.index]))
             assert i.name == unique_images[i.index], "Enough of your mumbo jumbo!"
 
         assert len(indices.items()) == len(n_items), "You fucked it up, cowboy!"
@@ -294,15 +297,9 @@ def main(input_file, **kwargs):
     print(scaled)
 
     # Pair image names with the violence score for the image:
-    maximum = -1
-    index = None
     for t in [(unique_images[i], scaled[i][0]) for i in range(len(n_items)) ]:
         img_hash = get_hash(t[0], '')
         violence = t[1]
-        if violence > maximum:
-            maximum = violence
-            index = img_hash
-
 
         exists = pc.instance_exists(models.Images, imageHASH=img_hash)
         if not exists:
@@ -328,7 +325,6 @@ def main(input_file, **kwargs):
         pc.session.rollback()
 
     print("_" * 80)
-    print("Most violent: %s at %s" % (index, maximum))
 
 
 
@@ -344,35 +340,37 @@ if __name__ == "__main__":
         "--input-file",
         metavar = "file",
         type    = str,
-        help    = "The MTurk batch file with HIT results"
+        help    = "The MTurk batch file with HIT results."
     )
     parser.add_argument(
         "-o",
         "--output-file",
         metavar = "file",
         type    = str,
-        help    =  "The filename to send the output to. In general this is not "
-                   "needed as the outcome typically is to insert the           "
-                   "equivalent rows into the database, however, if set, a      "
-                   "csvfile in the same format as the UCLA file                "
-                   "`pairwise_annot.csv` will be written to                    "
+        help    = " The filename to send the output to. In general this is not       "
+                  " needed as the outcome typically is to insert the                 "
+                  " equivalent rows into the database, however, if set, a            "
+                  " csvfile in the same format as the UCLA file                      "
+                  " `pairwise_annot.csv` will be written to.                         "
+                  " The output is equivalent to what is inserted into the comparison "
+                  " table.                                                           "
     )
     parser.add_argument(
         "--no-db",
         action = "store_true",
         help   = " If set, will not insert anything into the db. If no output file "
-                 " is provided, then is equivalent to setting --dry-run            "
+                 " is provided, then is equivalent to setting --dry-run.           "
     )
     parser.add_argument(
         "--dry-run",
         action  = "store_true",
         help    =  " If set, will not do anything, but will output the potential "
-                   " content of a file to stdout                                 "
+                   " content of a file to stdout.                                "
     )
     parser.add_argument(
         "--insert-labels",
         action  = "store_true",
-        help    = " If set, will also insert the computed labels into the database"
+        help    = " If set, will also insert the computed labels into the database."
     )
 
     main(
