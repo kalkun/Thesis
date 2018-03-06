@@ -189,7 +189,6 @@ def main(input_file, **kwargs):
                 # The image pair sits adjacent in the row of HITs:
                 img_a, img_b = images[pair:pair+2]
 
-
                 # Count the items:
                 if not img_a in n_items:
                     #n_items[img_a] = "ost"
@@ -241,21 +240,19 @@ def main(input_file, **kwargs):
             index_a = indices[img_a]
             index_b = indices[img_b]
 
-            if vote[0] == 1:
-                tuples.append((index_a, index_b))
-                tuples.append((index_a, index_b))
-            elif vote[1] == 1:
-                tuples.append((index_b, index_a))
-                tuples.append((index_b, index_a))
-            elif vote[2] == 1:
-                tuples.append((index_a, index_b))
-                tuples.append((index_b, index_a))
-            else:
-                raise ValueError(
-                    "Expected vote to be set at either of three options"
-                )
 
+            ### Insert number of wins and ties for the pair:
+            for win1 in range(row_dict.get("win1")):
+                tuples.append((index_a, index_b))
+                tuples.append((index_a, index_b))
 
+            for win2 in range(row_dict.get("win2")):
+                tuples.append((index_b, index_a))
+                tuples.append((index_b, index_a))
+
+            for tie in range(row_dict.get("tie")):
+                tuples.append((index_a, index_b))
+                tuples.append((index_b, index_a))
 
 
             if kwargs['dry_run']:
@@ -265,8 +262,8 @@ def main(input_file, **kwargs):
             if not kwargs['no_db'] and not kwargs['dry_run']:
 
                 comparison = pc.insertComparison(
-                    imageID_1   = row_dict.get("image1"),
-                    imageID_2   = row_dict.get("image2"),
+                    imageID_1   = get_hash(row_dict.get("image1"), ""),
+                    imageID_2   = get_hash(row_dict.get("image2"), ""),
                     win1        = row_dict.get("win1"),
                     win2        = row_dict.get("win2"),
                     tie         = row_dict.get("tie"),
