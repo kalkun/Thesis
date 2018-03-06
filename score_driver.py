@@ -4,10 +4,14 @@
 " pairwise comparisons.
 "
 " The input is the Batch csv output from MTurk
-" and the output will be of the format:
+" if output file is provided, the output will be of the format:
 "   ```
 "   #row, image1, image2, win1, win2, tie
 "   ```
+" In any case, unless `--dry-run` or `--no-db` is set,
+" the computed scores and the parsed pairwise comparisons
+" will be inserted into the database.
+"
 " Where win1 indicates the total number that image1
 " was selected as the most violent in the comparisons
 " between the two images - similarly for `win2` but with
@@ -138,16 +142,13 @@ def main(input_file, **kwargs):
     header = {}
     data = []
     UCLA_header      = ["row", "image1", "image2", "win1", "win2", "tie"]
-    ucla_header_dict = {}
+    ucla_header_dict = { v: k for k, v in enumerate(UCLA_header) }
     tuples           = []    # a list of tuples used for choix score computation
     n_items          = set() # used to count number of unique items
     unique_images    = []    # in-order placement of image names matching the choix output
 
-    for k, v in enumerate(UCLA_header):
-        ucla_header_dict[v] = k
-
     def rowToDict(row, header=None):
-        header = header or ucla_header_dict
+        header   = header or ucla_header_dict
         row_dict = {}
         for k, v in header.items():
             row_dict[k] = row[v]
@@ -161,9 +162,7 @@ def main(input_file, **kwargs):
         # Parse the header row in to a dict
         # so that each key is a column name, and the value
         # is the row index
-        for i, x in enumerate(reader.__next__()):
-            header[x] = i
-
+        header = { v: k for k, v in enumerate(next(reader)) }
 
         # The image column names follows the same (weird) structure
         # so we can just generate the names of all of them:
