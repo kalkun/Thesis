@@ -186,8 +186,10 @@ def main(input_file, **kwargs):
                 answer = row[header.get("Answer.choice%s" % int(pair/2))]
                 vote = [ 1 if i-1 == int(answer) else 0 for i in range(3) ]
 
-
+                # The image pair sits adjacent in the row of HITs:
                 img_a, img_b = images[pair:pair+2]
+
+
                 # Count the items:
                 if not img_a in n_items:
                     #n_items[img_a] = "ost"
@@ -197,7 +199,10 @@ def main(input_file, **kwargs):
                     n_items.update([image(name=img_b, index=len(unique_images))])
                     unique_images.append(img_b)
 
+                # Compute key, uniquely for this pair of images:
                 pair_key = ";".join(sorted([img_a, img_b]))
+
+                # Sum up current score:
                 pair_dict[pair_key] = [ x + vote[i] for i, x in enumerate(
                     pair_dict.get(pair_key, [0, 0, 0]))
                 ]
@@ -206,8 +211,17 @@ def main(input_file, **kwargs):
         if kwargs['dry_run']:
             print(as_dsv(UCLA_header))
 
+
         c = 0
         indices = { i.name: i.index for i in n_items }
+
+        #Check indices:
+        for i in n_items:
+            #print("i.name == unique_images[i.index]: %s == %s" % (i.name, unique_images[i.index]))
+            assert i.name == unique_images[i.index], "Enough of your mumbo jumbo!"
+
+        assert len(indices.items()) == len(n_items), "You fucked it up, cowboy!"
+
         for k, v in pair_dict.items():
             c += 1
             row = [
@@ -241,7 +255,6 @@ def main(input_file, **kwargs):
                     "Expected vote to be set at either of three options"
                 )
 
-            assert len(indices.items()) == len(n_items), "You fucked it up, cowboy!"
 
 
 
