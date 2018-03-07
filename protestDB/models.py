@@ -13,10 +13,11 @@ from sqlalchemy import (
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from PIL import Image
-from os.path import join
+import os
 import configparser
 config = configparser.ConfigParser()
-config.read("alembic.ini")
+config_path = os.path.dirname(os.path.abspath(__file__))
+config.read(os.path.join(config_path, "../alembic.ini"))
 image_dir  = config['alembic']['image_dir']
 
 Base = declarative_base()
@@ -52,7 +53,7 @@ class Images(Base):
     def get_image(self, image_dir_root=None):
         """ return a PIL image representation of this image """
         image_dir_root = image_dir_root or image_dir
-        return Image.open(join(image_dir_root, self.name))
+        return Image.open(path.join(image_dir_root, self.name))
 
     def show(self, image_dir_root=None):
         """ A method for showing the image represented by an instantiation of this model

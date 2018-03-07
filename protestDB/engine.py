@@ -1,9 +1,11 @@
 from sqlalchemy import create_engine
 from sqlite3 import dbapi2 as sqlite
 
+import os
 import configparser
 config = configparser.ConfigParser()
-config.read("alembic.ini")
+config_path = os.path.dirname(os.path.abspath(__file__))
+config.read(os.path.join(config_path, "../alembic.ini"))
 db_name=config['alembic']['db_name']
 
 class Connection:
