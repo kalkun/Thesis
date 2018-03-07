@@ -16,8 +16,8 @@ from PIL import Image
 import os
 import configparser
 config = configparser.ConfigParser()
-config_path = os.path.dirname(os.path.abspath(__file__))
-config.read(os.path.join(config_path, "../alembic.ini"))
+self_path = os.path.dirname(os.path.abspath(__file__))
+config.read(os.path.join(self_path, "alembic.ini"))
 image_dir  = config['alembic']['image_dir']
 
 Base = declarative_base()
