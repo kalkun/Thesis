@@ -316,22 +316,6 @@ class ProtestCursor:
 
         return tag
 
-    def insertComparison(
-        self,
-        imageID_1,
-        imageID_2,
-        vote,
-        timestamp=None,
-        do_commit=True,
-    ):
-        """ Small handle to insert a comparison vote """
-        return self.get_or_create(
-            models.Comparisons,
-            imageID_1           = imageID_1,
-            imageID_2           = imageID_2,
-            timestamp           = timestamp or datetime.datetime.now(),
-            do_commit           = do_commit,
-        )
 
     def insertProtestNonProtestVotes(
         self,
