@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import datetime
 from os.path import basename, splitext, exists as file_exists
 from sqlalchemy.orm import sessionmaker
@@ -11,6 +12,8 @@ import imagehash
 from protestDB import models
 from protestDB.engine import Connection
 
+class NoActiveVirtualEnvironment(Exception):
+    pass
 
 class ProtestCursor:
     """ This class defines common methods
@@ -18,6 +21,24 @@ class ProtestCursor:
         through SQLAlchemy
     """
     def __init__(self):
+        if sys.base_prefix == sys.prefix:
+            """ Inside a virtual env, the `sys.prefix`
+                points to a different locatoin than the
+                `sys.base_prefix`.
+
+                This check is the result of the following
+                extended investigation into the existence of a
+                few but certainly too many duplicate Image entries
+                in the database.
+                See https://trello.com/c/PuMhnTSq/102-duplicate-images
+            """
+            raise NoActiveVirtualEnvironment(
+                "Activate your virtual environment, "
+                "also check that `pip install -r requirements.txt` "
+                "has been run recently!"
+            )
+
+
         self.session = sessionmaker(
             bind=Connection.setupEngine()
         )()
