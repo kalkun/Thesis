@@ -68,11 +68,11 @@ class ProtestCursor:
         return q.count() > 0
 
 
-    def query(self, modelClass):
+    def query(self, *modelClasses):
         """ Just a short hand wrapper for getting a query on the
             session object.
         """
-        return self.session.query(modelClass)
+        return self.session.query(*modelClasses)
 
 
     def queryImages(self):
@@ -415,7 +415,7 @@ class ProtestCursor:
             will be deletede from the database.
         """
         if not type(image) == models.Images:
-            image = self.session.query(models.Image).get(image)
+            image = self.session.query(models.Images).get(image)
 
         for label in image.labels:
             self.session.delete(label)
