@@ -7,40 +7,72 @@ import csv
 from protestDB import cursor
 from protestDB import models
 
-PATH_TO_FILE = "ucla_files/pairwise_annot.csv"
+PATH_TO_FILE = "misc/pairwise_annot.csv"
 
 def main(csv_path, add_to_db):
 
 	pc = cursor.ProtestCursor()
+	imgs = pc.getImages()
+	img_name_hash = {}
+	images_not_found = set()
+
+	# store a mapping between name and hash
+
+	for im in imgs:
+		img_name_hash[im.name] = im.imageHASH
 
 
 	with open(csv_path, 'r') as f:
 		reader = csv.reader(f, delimiter = ',', quotechar = '"')
 		header = {}
 		header_input = next(reader)
+		log = open("logs/comparisons_images_not_found.txt", "w")
 		for k, v in enumerate(header_input):
 			header[v] = k
-		for row in reader:
+		
+		for indx, row in enumerate(reader):
 			img1_name = row[header["image1"]]
 			img2_name = row[header["image2"]]
 			win1 = row[header["win1"]]
 			win2 = row[header["win2"]]
 			tie = row[header["tie"]]
 
-			#print(img1_name)
 
-			try:
-				img1_hash = pc.queryImages().filter(models.Images.name == img1_name).one_or_none().imageHASH
-			except Exception as e:
-				print(img1_name)
+			if img1_name not in img_name_hash:
+				print(img1_name, " could not be retrieved")
+				images_not_found.update([img1_name])	
+				continue
+			else:
+				img1_hash = img_name_hash[img1_name]
 
-			try:
-				img2_hash = pc.queryImages().filter(models.Images.name == img1_name).one_or_none().imageHASH
-			except Exception as e:
-				print(img2_name)
 
-			#print (img1, img2, win1, win2, tie)
+			if img2_name not in img_name_hash:
+				print(img2_name, " could not be retrieved")
+				images_not_found.update([img2_name])	
+				continue
+			else:
+				img2_hash = img_name_hash[img2_name]
 
+
+			print ("inserting pair number ", indx, ": ", img1_name, img2_name, win1, win2, tie)
+			pc.insertComparison(
+			imageID_1 = img1_hash,
+            imageID_2 = img2_hash,
+            win1      = win1,
+            win2      = win2,
+            tie       = tie,
+            source    = "UCLA_original",
+            do_commit = False
+        )
+		
+		if add_to_db:
+			pc.try_commit()
+
+	for img in images_not_found:
+		log.write(img)
+		log.write("\n")
+
+	log.close()
 
 
 

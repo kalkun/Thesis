@@ -382,6 +382,11 @@ class ProtestCursor:
         first_img  = min(imageID_1, imageID_2)
         second_img = max(imageID_1, imageID_2)
 
+        if first_img != imageID_1:
+            tmp = win1
+            win1 = win2
+            win2 = tmp
+
         return self.get_or_create(
             models.Comparisons,
             imageID_1 = first_img,
