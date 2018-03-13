@@ -30,18 +30,17 @@ def checkValid(pairs, value1, value2, threshold):
 
     return True
 
-def main(files, **kwargs):
-
-    n_pairs = kwargs['k_pairs']
-
+def create_random_pairs(files, n_pairs):
+    """
+        Returns a dictionary where each key is a file
+        the value is a list of other files to pair with
+        so that each file is paired with n_pairs other
+        files.
+        Pairs are created randomly between all files in
+        `files`.
+    """
     pool = files * n_pairs
     random.shuffle(pool)
-    header = []
-    for i in range(10):
-        for j in range(1, 3):
-            header.append("image_%s-%s" % (i, j))
-    rows = []
-    rows.append(header)
 
     pairs = {}
     print("_" * 80)
@@ -52,19 +51,79 @@ def main(files, **kwargs):
         pairs[i] = []
 
     for i in files:
-        while (len(pairs[i]) < n_pairs):
+        while len(pairs[i]) < n_pairs:
             j = pool.pop()
-            if (j == i):
+            if j == i:
                 pool = [j] + pool
                 continue
 
-            if (checkValid(pairs, i, j, n_pairs)):
+            if checkValid(pairs, i, j, n_pairs):
                 pairs[i].append(j)
                 pairs[j].append(i)
             else:
                 pool = [j] + pool
                 continue
 
+    return pairs
+
+def create_from(A, B, n_pairs):
+    """
+    Creates pairs such that for all
+    pairs (a, b) a is in A and b is in B
+
+    Requires that A and B are of equal lengths
+    """
+    assert len(A) == len(B), "A and B must be of equal lenghts"
+
+    pairs = {}
+    # initialize pairs:
+    for i in A + B:
+        pairs[i] = []
+    A = A * n_pairs
+    B = B * n_pairs
+
+    for a in A:
+        while len(pairs[a]) < n_pairs:
+            b = B.pop()
+            assert a != b, "Found a violation {} and {} are equal".format(a, b)
+
+            if checkValid(pairs, a, b, n_pairs):
+                # create the pair:
+                pairs[a].append(b)
+                pairs[b].append(a)
+            else:
+                # Put back b into B:
+                B = [b] + B
+
+    return pairs
+
+
+def main(files=None, A=None, B=None, **kwargs):
+    """ A and B is not command line supported, import this driver
+        as a module, and call its main function directly to use
+        this feature.
+    """
+
+    if files is None and A is None and B is None:
+        raise ValueError("Either provide a list of files "
+                         "or otherwise two pools A and B "
+                         "of files"
+        )
+
+    n_pairs = kwargs['k_pairs']
+
+    if files is None:
+        pairs = create_from(A, B, n_pairs)
+    else:
+        pairs = create_random_pairs(files, n_pairs)
+
+
+    header = []
+    for i in range(10):
+        for j in range(1, 3):
+            header.append("image_%s-%s" % (i, j))
+    rows = []
+    rows.append(header)
 
     build_url = lambda name: url + name
 
