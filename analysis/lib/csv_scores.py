@@ -10,7 +10,6 @@ import pandas as pd
 import collections
 import random
 import time
-import matplotlib.pyplot as plt
 import choix
 from sklearn.preprocessing import MinMaxScaler
 import os
@@ -47,17 +46,20 @@ def GenrateChoixData(df, idx_to_int):
             pairs.append((id2, id1))
     return pairs
 
-def GenerateChoixScores(df, csvPath):
+def GenerateChoixScores(df_in, csvPath = ''):
     """ Given a data frame, it calculates the Choix scores for those pairs and 
     outputs it to a csv file given in the csvPath argument"""
-    int_to_idx, idx_to_int = MapImagesToIndexes(df)
+    int_to_idx, idx_to_int = MapImagesToIndexes(df_in)
     n_items = len(idx_to_int)
-    pairs = GenrateChoixData(df, idx_to_int)
+    pairs = GenrateChoixData(df_in, idx_to_int)
     start_time = time.time()
     params = choix.opt_pairwise(n_items, pairs)
     df = pd.DataFrame(params)
     df['fname'] = [int_to_idx[i] for i in df.index]
-    df.to_csv(csvPath)
+    if csvPath != '':
+        df.to_csv(csvPath)
+    else:
+        return df
     print(time.time() - start_time)
     
 def ReadScoresFromCsv(csvPath):
