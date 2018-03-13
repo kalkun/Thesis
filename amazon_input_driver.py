@@ -81,10 +81,13 @@ def create_from(A, B, n_pairs):
         pairs[i] = []
     A = A * n_pairs
     B = B * n_pairs
+    random.shuffle(A)
+    random.shuffle(B)
 
     for a in A:
         while len(pairs[a]) < n_pairs:
             b = B.pop()
+
             assert a != b, "Found a violation {} and {} are equal".format(a, b)
 
             if checkValid(pairs, a, b, n_pairs):
