@@ -251,3 +251,28 @@ To visually inspect the votes of a given worker
 ```
 python annomaly_detection.py my_csv.csv --worker_id 13412412 
 ```
+
+
+### UCLA Comparison Driver
+
+This guy is responsible for inserting the UCLA format like csv into the db as comparisons.
+
+#### Usage
+
+```
+python ucla_comparison_driver.py my_csv.csv --db
+```
+
+### UCLA Scores Driver
+
+After having the UCLA comparisons in the db, you can use this script to calculate and save the scores in
+the db. The script will first plot the scores, and if set with the db flag, it will save the scores in 
+the label table. Because it takes a hell of a time to compute the scores, this script will always 
+output it first to a csv file. If you pass a csv file that already exists, will assume that those are 
+the cached scores and will use those.
+
+#### Usage
+
+```
+python ucla_scores_driver.py my_csv.csv --db
+```
