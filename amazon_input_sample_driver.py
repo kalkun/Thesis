@@ -91,7 +91,7 @@ def main(**kwargs):
         len(luca_image_ids)
     )
 
-    sample_A, sample_B = ucla_image_ids.sample(n=n_samples), luca_image_ids.sample(n=n_samples)
+    sample_A, sample_B = ucla_image_ids.sample(n=kwargs['n_samples']), luca_image_ids.sample(n=kwargs['n_samples'])
     sample_A, sample_B = list(sample_A.imageid), list(sample_B.imageid)
 
     print("Writing total of {} samples to {}".format(
