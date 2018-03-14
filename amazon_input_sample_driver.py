@@ -14,9 +14,11 @@
 " randomly drawn images
 "
 """
+import os
 import random
 import argparse
 import pandas as pd
+from shutil import copyfile
 from sqlalchemy import not_
 
 from protestDB import cursor, models
@@ -107,6 +109,14 @@ def main(**kwargs):
             f.write(line)
             f.write("\n")
 
+    # Translate image ids to image names:
+    sample_A = [ pc.getImage(h).name for h in sample_A ]
+    sample_B = [ pc.getImage(h).name for h in sample_B ]
+
+    # if copy is set, will copy all images to the given directory:
+    if not kwargs['copy_to_dir'] is None:
+        for img in sample_A + sample_B:
+            copyfile("images/" + img, os.path.join(kwargs['copy_to_dir'], img))
 
     amazon_input_driver.main(
         A=sample_A,
@@ -126,6 +136,12 @@ if __name__ == "__main__":
                     "from Luca and UCLA. So, if nothing else is specified, "
                     "this file and the `mturk-input.csv` file are the "
                     "important ones."
+    )
+
+    parser.add_argument(
+        "--copy-to-dir",
+        type=str,
+        help="If set, will copy the sample images to this directory"
     )
 
     parser.add_argument(
