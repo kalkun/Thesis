@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-" This file depends on the `amazon_input_sample_driver
+" This file depends on the `amazon_input_driver
 "
 " It is not made for a general case, but instead for the
 " specific caase of drawing N samples from the UCLA dataset
@@ -91,7 +91,7 @@ def main(**kwargs):
         len(luca_image_ids)
     )
 
-    sample_A, sample_B = ucla_image_ids.sample(n=100), luca_image_ids.sample(n=100)
+    sample_A, sample_B = ucla_image_ids.sample(n=n_samples), luca_image_ids.sample(n=n_samples)
     sample_A, sample_B = list(sample_A.imageid), list(sample_B.imageid)
 
     print("Writing total of {} samples to {}".format(
