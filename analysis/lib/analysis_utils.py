@@ -40,7 +40,7 @@ class ResizeSequence(Sequence):
         # if the end batch extends the length of the dataframe
         # make sure to take the remainder from the beginning
         if end >= len(self.dataframe):
-            remainder = self.dataframe.iloc[0:(end - len(self.dataframe)) +1]
+            remainder = self.dataframe.iloc[: (end - len(self.dataframe))]
             batch     = batch.append(remainder)
 
         # Extract images names,
