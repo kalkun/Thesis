@@ -53,7 +53,7 @@ class ResizeSequence(Sequence):
                 ),
                 (224, 224, 3),
                 mode="constant" # It's the default, but it'll give a warning if not set :/
-            )
+            ) / 255             # normalizing
             for name in batch.name.values
         ])
 
