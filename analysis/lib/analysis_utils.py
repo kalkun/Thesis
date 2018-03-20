@@ -20,7 +20,7 @@ class ResizeSequence(Sequence):
         target values.
     """
 
-    def __init__(self, dataframe, batch_size=128, targets=['label', ['police', 'sign']], image_dir="../images/"):
+    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/"):
         self.dataframe  = dataframe
         self.batch_size = batch_size
         self.ys         = targets
@@ -59,10 +59,9 @@ class ResizeSequence(Sequence):
             for name in batch.name.values
         ])
 
-        return BUG
+        ys = [batch[y].values for y in self.ys]
 
-
-
+        return imgs, ys
 
 
 def BuildMaskedLoss(loss_function, mask_value):
