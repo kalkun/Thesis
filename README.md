@@ -113,15 +113,18 @@ They are intentionally silos representing different tasks on the database.
 
 The following table provides an overview of the driver files:
 
-| file                     | Purpose                                                           |
-| ------------------------ | ----------------------------------------------------------------  |
-| `annotator_driver.py`    | Simple GUI for labelling images as protest or non-protest related |
-| `amazon_input_driver.py` | Builds a CSV file compatible with MTurk                           |
-| `luca_driver.py`         | CLI for inserting Luca Rossi database from ECB protest into DB    |
-| `score_driver.py`        | Computes the pairwise Bradley-Terry score on MTurk batch ouptut   |
-| `search_terms_driver.py` | Automate multiple search term configurations                      |
-| `serp_driver.py`         | CLI for scraping images                                           |
-| `ucla_driver.py`         | CLI for inserting UCLA dataset into DB                            |
+| file                            | Purpose                                                           |
+| ------------------------        | ----------------------------------------------------------------  |
+| `annotator_driver.py`           | Simple GUI for labelling images as protest or non-protest related |
+| `amazon_input_driver.py`        | Builds a CSV file compatible with MTurk                           |
+| `amazon_input_sample_driver.py` | Generates combined sample of 2\*N samples from two datasets       |
+| `luca_driver.py`                | CLI for inserting Luca Rossi database from ECB protest into DB    |
+| `mturk_score_driver.py`         | Computes the pairwise Bradley-Terry score on MTurk batch ouptut   |
+| `search_terms_driver.py`        | Automate multiple search term configurations                      |
+| `serp_driver.py`                | CLI for scraping images                                           |
+| `ucla_comparisons_driver.py`    | Used to insert scores from UCLA into the db based on csv file     |
+| `ucla_driver.py`                | CLI for inserting UCLA dataset into DB                            |
+| `ucla_score_driver.py`          | Calculate images scores, plot and possibly write them to db       |
 
 ### Serp Scraper
 
