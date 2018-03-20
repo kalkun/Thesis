@@ -11,6 +11,8 @@ from keras.utils import Sequence
 from skimage.transform import resize
 from sklearn import preprocessing as skpreprocess
 from keras import backend as K
+import matplotlib.pyplot as plt
+from sklearn import metrics
 
 class ResizeSequence(Sequence):
     """ Accepts a pandas dataframe object, and yields
@@ -129,3 +131,19 @@ def MinMax(df, column):
     scaler = skpreprocess.MinMaxScaler()
     df_result[column] = scaler.fit_transform(v.T)
     return df_result
+
+def PlotROC(attr, target, pred):
+    """Plot a ROC curve and show the accuracy score and the AUC"""
+    fig, ax = plt.subplots()
+    auc = metrics.roc_auc_score(target, pred)
+    acc = metrics.accuracy_score(target, (pred >= 0.5).astype(int))
+    fpr, tpr, _ = metrics.roc_curve(target, pred)
+    plt.plot(fpr, tpr, lw = 2, label = attr.title())
+    plt.legend(loc = 4, fontsize = 15)
+    plt.title(('ROC Curve for {attr} (Accuracy = {acc:.3f}, AUC = {auc:.3f})'
+               .format(attr = attr.title(), acc= acc, auc = auc)),
+              fontsize = 15)
+    plt.xlabel('False Positive Rate', fontsize = 15)
+    plt.ylabel('True Positive Rate', fontsize = 15)
+    plt.show()
+    #return fig
