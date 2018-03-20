@@ -9,6 +9,8 @@ import numpy as np
 from imageio import imread
 from keras.utils import Sequence
 from skimage.transform import resize
+from sklearn import preprocessing as skpreprocess
+from keras import backend as K
 
 class ResizeSequence(Sequence):
     """ Accepts a pandas dataframe object, and yields
@@ -18,7 +20,7 @@ class ResizeSequence(Sequence):
         target values.
     """
 
-    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/"):
+    def __init__(self, dataframe, batch_size=128, targets=['label', ['police', 'sign']], image_dir="../images/"):
         self.dataframe  = dataframe
         self.batch_size = batch_size
         self.ys         = targets
@@ -57,10 +59,74 @@ class ResizeSequence(Sequence):
             for name in batch.name.values
         ])
 
-        # Extract values from target columns:
-        targets = np.array([
-            batch[y].values
-            for y in self.ys
-        ]).transpose()
+        return BUG
 
-        return imgs, targets
+
+
+
+
+def BuildMaskedLoss(loss_function, mask_value):
+    """Builds a loss function that masks based on targets
+
+    Args:
+        loss_function: The loss function to mask
+        mask_value: The value to mask in the targets
+
+    Returns:
+        function: a loss function that acts like loss_function with masked inputs
+    """
+
+    def MaskedLossFunction(y_true, y_pred):
+        mask = K.cast(K.not_equal(y_true, mask_value), K.floatx())
+        return loss_function(y_true * mask, y_pred * mask)
+
+    return MaskedLossFunction
+
+
+def LrUpdateUCLA(epoch, lr):
+    """mimics the way that UCLA updates their learning rate
+
+    Args:
+        epoch: The current epoch
+        lr: TThe current learning rate
+
+    Returns:
+        function: The new learning rate
+    """
+    new_lr = lr * (0.4 ** (epoch // 4))
+    return new_lr
+
+
+def ClipDFColumn(df, column, cutpoint):
+    """Clips a df column at a specified cutpoint. The function will return a modified
+    copy of the original pandas df.
+
+    Args:
+        df: The pandas dataframe
+        column: The column name as a string
+        cutpoint: a scalar
+
+    Returns:
+        a modified copy of the original pandas df
+    """
+    df_result = df.copy()
+    ix_large = df_result[df_result[column] > cutpoint].index
+    df_result.loc[ix_large, column] = cutpoint
+    return df_result
+
+def MinMax(df, column):
+    """ Performs a min max operation into a dataframe column specified using a string
+    
+    Args:
+        df: The pandas dataframe
+        column: The column name as a string
+
+    Returns:
+        a modified copy of the original pandas df
+    
+    """
+    df_result = df.copy()
+    v = np.matrix(df_result[column])
+    scaler = skpreprocess.MinMaxScaler()
+    df_result[column] = scaler.fit_transform(v.T)
+    return df_result
