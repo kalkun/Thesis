@@ -54,6 +54,37 @@ Set the path for the `*.db` SQLite file in the `alembic.ini` file. The syntax is
 This module will create the database file given by `config.py` if it does not exists
 once the library is imported.
 
+**Example of extraction fully joined table of tags, images and label**
+The tags have been expanded such that each possible tag value is a column and the entries
+are either True or False, essentially forming a sparse vector of tags for each row.
+```
+from protestDB import cursor, models
+
+pc = cursor.ProtestCursor()
+
+all_images = pc.getLabelledImages()
+
+# `getLabelledImages accepts *args and **kwargs
+# which are used by `filter` and `filter_by` respectively:
+
+# images from UCLA:
+ucla = pc.getLabelledImages(source="UCLA")
+
+# images from either Bing or Google and
+# label is `1` and it is tagged riots:
+from sqlalchemy import and_, or_
+bingog = pc.getLabelledImages(
+    and_(
+        or_(
+            models.Images.source == "google",
+            models.Images.source == "bing"
+        ),
+        models.Labels.label == 1
+    )
+)
+```
+
+
 **Example insertion:**
 ```python
 from protestDB.cursor import ProtestCursor

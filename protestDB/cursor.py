@@ -3,11 +3,12 @@
 import sys
 import datetime
 from os.path import basename, splitext, exists as file_exists
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import join as sql_join, sessionmaker
 from sqlalchemy import exc
 from PIL import Image
 import imghdr
 import imagehash
+import pandas as pd
 
 from protestDB import models
 from protestDB.engine import Connection
@@ -97,6 +98,63 @@ class ProtestCursor:
             ```
         """
         return self.session.query(modelClass).filter_by(**kwargs).one_or_none()
+
+    def getLabelledImages(self, *args, **kwargs):
+        """ Extracts the join between Images, Labels and Tags
+            If `sparse_tags` is True, will tagname column into a sparse
+            matrix where the possible tag names are converted to columns
+            and the value in each row is either 0 or 1
+
+            Returns a Pandas.DataFrame
+        """
+        images = self.query(
+            models.Images,
+            models.Labels.label
+        ).select_from(
+            sql_join(
+                models.Images,
+                models.Labels,
+                models.Images.imageHASH == models.Labels.imageID,
+                isouter=True
+            )
+        ).filter(*args).filter_by(**kwargs)
+
+        images_df = pd.read_sql(
+            images.statement,
+            self.session.bind,
+            index_col="imageHASH"
+        )
+
+
+        if getattr(kwargs, 'sparse_tags', True):
+
+            with_tags = self.query(
+                models.Images,
+                models.Tags.tagName
+            ).join(
+                models.Tags,
+                models.Images.tags
+            )
+
+
+            tag_df = pd.read_sql(with_tags.statement, self.session.bind, index_col="imageHASH")
+
+            header = tag_df.tagName.unique()
+            new_df = pd.DataFrame(columns=header)
+
+            for col in header:
+                new_df[col] = tag_df.tagName == col
+
+            new_df = new_df.groupby('imageHASH').sum() > 0 # make sure tags are only counted once
+
+            return images_df.join(new_df)
+
+        # Since `sparse_targs=False` - The tags will not be included:
+        return images_df
+
+
+
+
 
 
     def getImage(self, imagehash):
@@ -446,3 +504,4 @@ class ProtestCursor:
                 self.session.query(tmpTable).delete()
 
         self.try_commit()
+
