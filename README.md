@@ -71,7 +71,7 @@ all_images = pc.getLabelledImages()
 ucla = pc.getLabelledImages(source="UCLA")
 
 # images from either Bing or Google and
-# label is `1` and it is tagged riots:
+# label is `1`:
 from sqlalchemy import and_, or_
 bingog = pc.getLabelledImages(
     and_(
