@@ -57,7 +57,7 @@ once the library is imported.
 **Example of extraction fully joined table of tags, images and label**
 The tags have been expanded such that each possible tag value is a column and the entries
 are either True or False, essentially forming a sparse vector of tags for each row.
-```
+```python
 from protestDB import cursor, models
 
 pc = cursor.ProtestCursor()
