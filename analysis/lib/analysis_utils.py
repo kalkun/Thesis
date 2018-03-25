@@ -175,7 +175,7 @@ def minMax(df, column):
     df_result.loc[not_nulls, column] = scaler.fit_transform(v.T)
     return df_result
 
-def plotROC(attr, target, pred):
+def plotROC(attr, target, pred, save_as=None):
     """Plot a ROC curve and show the accuracy score and the AUC"""
     fig, ax = plt.subplots()
     auc = metrics.roc_auc_score(target, pred)
@@ -188,4 +188,7 @@ def plotROC(attr, target, pred):
               fontsize = 15)
     plt.xlabel('False Positive Rate', fontsize = 15)
     plt.ylabel('True Positive Rate', fontsize = 15)
-    plt.show()
+    if not save_as is None:
+        plt.savefig(save_as)
+    else:
+        plt.show()
