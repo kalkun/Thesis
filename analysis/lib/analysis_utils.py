@@ -65,8 +65,44 @@ class ResizeSequence(Sequence):
 
         return imgs, ys
 
+def getSplits(df, train_size, val_size, test_size):
+    """ Builds train, validation and test set
 
-def BuildMaskedLoss(loss_function, mask_value):
+        Args:
+            df: DataFrame object to split
+            train_size: size of training set
+            val_size: size of validation set
+            test_size: size of test set
+
+        Returns:
+            tuple: The 3 elements are the train, validation and test
+                   set respectively.
+    """
+    size = len(df)
+
+    # size is considered a percentage if less than 1:
+    train_size = int(train_size * size) if train_size < 1 else train_size
+    val_size = int(val_size * size) if val_size < 1 else val_size
+    test_size = int(test_size * size) if test_size < 1 else test_size
+
+    train_val_idx = np.random.choice(
+        a=range(size),
+        size=train_size + val_size,
+        replace=False
+    )
+    train_idx = train_val_idx[:train_size]
+    val_idx = train_val_idx[train_size:]
+
+    train = df.iloc[train_idx]
+    val = df.iloc[val_idx]
+    test = df.drop(train.index).drop(val.index) # test is equal to the leftover
+
+    assert len(train) + len(val) + len(test) == len(df)
+
+    return train, val, test
+
+
+def buildMaskedLoss(loss_function, mask_value):
     """Builds a loss function that masks based on targets
 
     Args:
@@ -77,14 +113,14 @@ def BuildMaskedLoss(loss_function, mask_value):
         function: a loss function that acts like loss_function with masked inputs
     """
 
-    def MaskedLossFunction(y_true, y_pred):
+    def maskedLossFunction(y_true, y_pred):
         mask = K.cast(K.not_equal(y_true, mask_value), K.floatx())
         return loss_function(y_true * mask, y_pred * mask)
 
-    return MaskedLossFunction
+    return maskedLossFunction
 
 
-def LrUpdateUCLA(epoch, lr):
+def lrUpdateUCLA(epoch, lr):
     """mimics the way that UCLA updates their learning rate
 
     Args:
@@ -98,7 +134,7 @@ def LrUpdateUCLA(epoch, lr):
     return new_lr
 
 
-def ClipDFColumn(df, column, cutpoint):
+def clipDFColumn(df, column, cutpoint):
     """Clips a df column at a specified cutpoint. The function will return a modified
     copy of the original pandas df.
 
@@ -115,24 +151,27 @@ def ClipDFColumn(df, column, cutpoint):
     df_result.loc[ix_large, column] = cutpoint
     return df_result
 
-def MinMax(df, column):
+def minMax(df, column):
     """ Performs a min max operation into a dataframe column specified using a string
-    
+        All NaN values are ignored.
+
     Args:
         df: The pandas dataframe
         column: The column name as a string
 
     Returns:
         a modified copy of the original pandas df
-    
+
     """
     df_result = df.copy()
-    v = np.matrix(df_result[column])
+    not_nulls = df[column].isnull() == False
+
+    v = np.matrix(df_result.loc[not_nulls, column]) #.as_matrix()
     scaler = skpreprocess.MinMaxScaler()
-    df_result[column] = scaler.fit_transform(v.T)
+    df_result.loc[not_nulls, column] = scaler.fit_transform(v.T)
     return df_result
 
-def PlotROC(attr, target, pred):
+def plotROC(attr, target, pred):
     """Plot a ROC curve and show the accuracy score and the AUC"""
     fig, ax = plt.subplots()
     auc = metrics.roc_auc_score(target, pred)
@@ -146,4 +185,3 @@ def PlotROC(attr, target, pred):
     plt.xlabel('False Positive Rate', fontsize = 15)
     plt.ylabel('True Positive Rate', fontsize = 15)
     plt.show()
-    #return fig
