@@ -65,7 +65,7 @@ class ResizeSequence(Sequence):
 
         return imgs, ys
 
-def getSplits(df, train_size, val_size, test_size):
+def getSplits(df, train_size, val_size, test_size, seed=None):
     """ Builds train, validation and test set
 
         Args:
@@ -73,6 +73,7 @@ def getSplits(df, train_size, val_size, test_size):
             train_size: size of training set
             val_size: size of validation set
             test_size: size of test set
+            seed: Optional argument to seed the random function
 
         Returns:
             tuple: The 3 elements are the train, validation and test
@@ -84,6 +85,9 @@ def getSplits(df, train_size, val_size, test_size):
     train_size = int(train_size * size) if train_size < 1 else train_size
     val_size = int(val_size * size) if val_size < 1 else val_size
     test_size = int(test_size * size) if test_size < 1 else test_size
+
+    if not seed is None:
+        np.random.seed(seed)
 
     train_val_idx = np.random.choice(
         a=range(size),
