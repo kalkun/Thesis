@@ -310,3 +310,8 @@ the cached scores and will use those.
 ```
 python ucla_scores_driver.py my_csv.csv --db
 ```
+
+### SSHing into the amazon servers
+```
+ssh ubuntu@ec2-34-244-72-111.eu-west-1.compute.amazonaws.com
+```
