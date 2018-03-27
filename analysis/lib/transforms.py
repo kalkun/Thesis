@@ -257,6 +257,7 @@ def lighting(image):
     alpha = np.random.normal(loc=0.0, scale=alphastd, size=(3,1))
     rgb = alpha * (eigval.reshape([3, 1]) * eigvec)
 
-    image = image + rgb.sum(axis=0)
+    # Some images are might be RGBA, which would fail
+    image = image.convert("RGB") + rgb.sum(axis=0)
 
     return image
