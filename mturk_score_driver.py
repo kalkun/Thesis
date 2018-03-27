@@ -138,6 +138,8 @@ def main(input_file, **kwargs):
     # The keys will be unique per image pair comparison,
     # the values will be a list of 3 entries with the format:
     # [win1, win2, tie]
+    if not kwargs['no_db'] and not kwargs['label']:
+        raise ValueError("you must specify a label for the comparisons if inserting into the db")   
     pair_dict = {}
     header = {}
     data = []
@@ -269,7 +271,7 @@ def main(input_file, **kwargs):
                     win1        = row_dict.get("win1"),
                     win2        = row_dict.get("win2"),
                     tie         = row_dict.get("tie"),
-                    source      = "Luca Rossi - ECB, 1000",
+                    source      = kwargs['label'],
                     do_commit   = False,
                 )
                 print("Inserting:\n\t%s" % comparison)
@@ -307,7 +309,7 @@ def main(input_file, **kwargs):
         label = pc.insertLabel(
             img_hash,
             violence,
-            source = "Luca Rossi - ECB, 1000",
+            source = kwargs['label'],
             do_commit=False,
         )
         if kwargs['dry_run'] or kwargs['no_db'] or not kwargs['insert_labels']:
@@ -355,6 +357,12 @@ if __name__ == "__main__":
                   " table.                                                           "
     )
     parser.add_argument(
+        "--label",
+        metavar = "label",
+        type = str,
+        help = "the label used on the comparisons table for every comparison  and label"
+        " inserted in the db")
+    parser.add_argument(
         "--no-db",
         action = "store_true",
         help   = " If set, will not insert anything into the db. If no output file "
@@ -371,6 +379,7 @@ if __name__ == "__main__":
         action  = "store_true",
         help    = " If set, will also insert the computed labels into the database."
     )
+
 
     main(
         **vars(parser.parse_args())
