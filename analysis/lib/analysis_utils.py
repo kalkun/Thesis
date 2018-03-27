@@ -8,7 +8,7 @@ import sys
 import numpy as np
 from imageio import imread
 from keras.utils import Sequence
-from skimage.transform import resize
+from skimage.transform import resize as skimage_resize
 from sklearn import preprocessing as skpreprocess
 from keras import backend as K
 import matplotlib.pyplot as plt
@@ -72,7 +72,7 @@ class ResizeSequence(Sequence):
             shape = (224, 224, 3)
             img = np.array(img)
             if not img.shape == shape:
-                img = resize(img, (224, 224, 3))
+                img = skimage_resize(img, (224, 224, 3))
 
             imgs.append(img)
 
