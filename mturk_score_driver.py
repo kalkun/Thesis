@@ -97,16 +97,25 @@ import argparse
 import choix
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-
 from protestDB import cursor, models
+import os
+import imagehash
+from PIL import Image
+
 pc = cursor.ProtestCursor()
 
 base = "https://s3.eu-central-1.amazonaws.com/ecb-protest/"
 def get_name(url, _base=None):
     return url.replace(_base or base, '')
 
-def get_hash(url, _base=None):
-    return get_name(url, _base=_base).split('.')[0]
+def get_hash(url, _base=None, image_dir = "images"):
+    file_name = get_name(url, _base=_base)
+    file_path = os.path.join(image_dir, file_name)
+    hash_str = str(imagehash.dhash(Image.open(file_path)))
+    print("image hash is ", hash_str, "image_name is ", file_name)
+    return hash_str
+
+
 
 def as_dsv(row):
     cols = "{:<8} {:<25} {:<25} {:5} {:5} {:5}"
