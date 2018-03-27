@@ -311,7 +311,12 @@ the cached scores and will use those.
 python ucla_scores_driver.py my_csv.csv --db
 ```
 
-### SSHing into the amazon servers
+### Communicating with the EC2 instances
+SSH
 ```
-ssh ubuntu@ec2-34-244-72-111.eu-west-1.compute.amazonaws.com
+ssh ubuntu@Public DNS
+```
+SCP
+```
+scp ubuntu@Public DNS:~/Thesis_2018/analysis/logs/UCLA_validation_log.csv UCLA_validation_log.csv
 ```
