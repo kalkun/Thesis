@@ -12,13 +12,45 @@ def _get_PIL_object(img_array):
     if isinstance(img_array, PIL.Image.Image):
         return img_array
 
-    return PIL.Image.fromarray(img_array)
+    return PIL.Image.fromarray(img_array.astype('uint8'))
+
 
 def _get_np_array(image):
     if isinstance(image, np.ndarray):
         return image
 
     return np.array(image)
+
+def resize(image, size=256):
+    """ Resize image according to `size`
+        if size is an integer a square is returend
+
+        Args:
+            `image`: The image to resize
+            `size`: A tuple or an integer of the output
+                    size
+    """
+    image = _get_PIL_object(image)
+
+    return image.resize(size if type(size) == tuple else (size, size))
+
+def centerCrop(image, size=224):
+    """ Crops image to `size` around center
+        if size is an integer a square is returned
+
+        Args:
+            `image`: The image to crop
+            `size`: A tuple or an integer of the output
+                    size
+    """
+    cx, cy = image.width //2, image.height //2
+    if type(size) == tuple:
+        x, y = size
+    else:
+        x, y = size, size
+
+    return image.crop((cx-x//2, cy-y//2, cx+x//2, cy+y//2))
+
 
 def randomCrop(image, min_percent=8, max_percent=100):
     """
@@ -54,6 +86,7 @@ def randomCrop(image, min_percent=8, max_percent=100):
     right, lower = int(left+new_w), int(upper+new_h)
 
     return image.crop((left, upper, right, lower))
+
 
 def randomResize(image, aspect_ratio=(3/4, 4/3)):
     """ Returns an image randomly rezised to an
@@ -104,6 +137,7 @@ def randomRotation(image, degrees=30):
 
     rotate = random.randrange(*degrees)
     return image.rotate(rotate, resample=PIL.Image.BILINEAR)
+
 
 def randomHorizontalFlip(image, prob=.5):
     """ Randomly flips the image
@@ -191,3 +225,38 @@ def normalize(image, use_imagenet=True):
     std=[0.229, 0.224, 0.225]
 
     return (image - mean) / std
+
+
+def lighting(image):
+    """ Fancy PCA or Alexnet style lighting
+
+        From [Alex Krizhevsky, 2012]:
+        > "Specifically, we perform PCA on the set of RGB pixel values throughout
+        > the ImageNet training set. To each training image we add multiples of
+        > the found principial components, with magnitudes proportional to the
+        > corresponding eigenvalues times a random variable drawn from a Gaussian
+        > with mean zero and standard deviation 0.1."
+
+        Args:
+            `image`: The image to be fancy with
+
+        Returns:
+            Numpy array of the transformed image matrix
+    """
+    image = _get_np_array(image)
+    shape = image.shape
+
+    alphastd = 0.1
+    eigval = np.array([0.2175, 0.0188, 0.0045])
+    eigvec = np.array([
+        [-0.5675,  0.7192,  0.4009],
+        [-0.5808, -0.0045, -0.8140],
+        [-0.5836, -0.6948,  0.4203]
+    ])
+
+    alpha = np.random.normal(loc=0.0, scale=alphastd, size=(3,1))
+    rgb = alpha * (eigval.reshape([3, 1]) * eigvec)
+
+    image = image + rgb.sum(axis=0)
+
+    return image
