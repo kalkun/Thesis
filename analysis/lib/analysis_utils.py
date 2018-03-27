@@ -70,6 +70,7 @@ class ResizeSequence(Sequence):
                 img = transform(img)
 
             shape = (224, 224, 3)
+            img = np.array(img)
             if not img.shape == shape:
                 img = resize(img, (224, 224, 3))
 

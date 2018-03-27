@@ -102,7 +102,7 @@ def randomRotation(image, degrees=30):
     else:
         degrees = list(degrees)
 
-    rotate = random.randrange(degrees)
+    rotate = random.randrange(*degrees)
     return image.rotate(rotate, resample=PIL.Image.BILINEAR)
 
 def randomHorizontalFlip(image, prob=.5):
@@ -133,12 +133,12 @@ def randomResizedCrop(image, square=224):
     """
     image = _get_PIL_object(image)
 
-    image = RandomCrop(image)
-    image = RandomResize(image)
+    image = randomCrop(image)
+    image = randomResize(image)
     return image.resize((square, square))
 
 
-def rolorJitter(image, brightness=.4, contrast=.4, saturation=.4):
+def colorJitter(image, brightness=.4, contrast=.4, saturation=.4):
     """ Randomly change the brightness, contrast, and saturation
         of an image.
         See: http://pytorch.org/docs/master/torchvision/transforms.html#torchvision.transforms.ColorJitter
