@@ -14,19 +14,30 @@ from keras import backend as K
 import matplotlib.pyplot as plt
 from sklearn import metrics
 
-class ResizeSequence(Sequence):
-    """ Accepts a pandas dataframe object, and yields
-        tuples of resized, normalized images in size of
-        `batch_size`.
-        `ys` is a list of column names to extract from dataframe and use as
-        target values.
-    """
+from .transforms import *
 
-    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/"):
+class ResizeSequence(Sequence):
+
+    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/", transforms=[normalize]):
+        """ Accepts a pandas dataframe object, and yields
+            tuples of resized, normalized images in size of.
+
+            Beware, that unless transforms are set, images are passed
+            as is, except resized. This includes normalizations.
+
+            Args:
+                `dataframe`: A pandas DataFrame to generate batches from
+                `batch_size`: Size of batches to generate
+                `ys`: A list column names to treat as targets
+                `image_dir`: The path to the image directory
+                `transforms`: A list of transformations to use
+
+        """
         self.dataframe  = dataframe
         self.batch_size = batch_size
         self.ys         = targets
         self.image_dir  = image_dir
+        self.transforms = transforms
 
         assert os.path.isdir(image_dir), (
                 "Directory not found %s.\nCurrent dir is %s" %
@@ -47,23 +58,50 @@ class ResizeSequence(Sequence):
             remainder = self.dataframe.iloc[: (end - len(self.dataframe))]
             batch     = batch.append(remainder)
 
-        # Extract images names,
-        # load and resize images for every
-        # image in the current batch:
-        imgs = np.array([
-            resize(
-                imread(
-                    os.path.join(self.image_dir, name)
-                ),
-                (224, 224, 3),
-                mode="constant" # It's the default, but it'll give a warning if not set :/
-            ) / 255             # normalizing
-            for name in batch.name.values
-        ])
+        """ Load images, then apply any provided
+            transformation functions. If the images
+            are not in correct shape, then resizing is
+            done to fit the input layer
+        """
+        imgs = []
+        for name in batch.name.values:
+            img = imread(os.path.join(self.image_dir, name))
+            for transform in self.transforms:
+                img = transform(img)
+
+            shape = (224, 224, 3)
+            if not img.shape == shape:
+                img = resize(img, (224, 224, 3))
+
+            imgs.append(img)
+
+        imgs = np.array(imgs)
 
         ys = [batch[y].values for y in self.ys]
 
         return imgs, ys
+
+def getExperimentName(notebook, datalength, epochs, init_lr, *args):
+    """ Provides a standardized way of naming
+        log files and model files so that the hyper parameters
+        are part of the naming
+
+        Args:
+            `notebook`: Name of the notebook runing the expiriment
+            `datalength`: Length of dataset
+            `epochs`: Number of epochs
+            *args: A list of other defining terms for the experiment
+
+        Returns:
+            A string to be used as name for .hdf5 and .log files
+    """
+    notebook = os.path.basename(notebook).split(".")[0]
+    name = "{}_datalen-{}_epochs-{}_init_lr-{}".format(
+        notebook, datalength, epochs, init_lr
+    )
+    return name + "_" + "_".join(args)
+
+
 
 def getSplits(df, train_size, val_size, test_size, seed=None):
     """ Builds train, validation and test set
