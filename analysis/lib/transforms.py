@@ -12,14 +12,14 @@ def _get_PIL_object(img_array):
     if isinstance(img_array, PIL.Image.Image):
         return img_array
 
-    return PIL.Image.fromarray(img_array.astype('uint8'))
+    return PIL.Image.fromarray(img_array.astype('uint8')).convert("RGB") # guarantees RGB
 
 
 def _get_np_array(image):
     if isinstance(image, np.ndarray):
         return image
 
-    return np.array(image)
+    return np.array(image)[:,:,:3] # guarantees RGB
 
 def resize(image, size=256):
     """ Resize image according to `size`
@@ -32,7 +32,7 @@ def resize(image, size=256):
     """
     image = _get_PIL_object(image)
 
-    return image.resize(size if type(size) == tuple else (size, size))
+    return image.resize(size if type(size) == tuple else (size, size), resample=PIL.Image.BILINEAR)
 
 def centerCrop(image, size=224):
     """ Crops image to `size` around center
@@ -136,7 +136,7 @@ def randomRotation(image, degrees=30):
         degrees = list(degrees)
 
     rotate = random.randrange(*degrees)
-    return image.rotate(rotate, resample=PIL.Image.BILINEAR)
+    return image.rotate(rotate, resample=PIL.Image.NEAREST) # as pytorch does it
 
 
 def randomHorizontalFlip(image, prob=.5):
@@ -160,7 +160,7 @@ def randomHorizontalFlip(image, prob=.5):
 
 
 def randomResizedCrop(image, square=224):
-    """ Does a random crop of .8 to 1.0 of the original image
+    """ Does a random crop of .08 to 1.0 of the original image
         then random aspect ratio between 3/4 and 4/3,
         thereafter resize the image to a square of size:
         `square x square`
@@ -207,24 +207,37 @@ def colorJitter(image, brightness=.4, contrast=.4, saturation=.4):
     return image
 
 
-def normalize(image, use_imagenet=True):
-    """ Normalize the images
+def normalizeStandardScore(image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]):
+    """ Normalize the images using the Zscore normalization. assumes the PIL image mode to be RGB
 
         Args:
-            `image`: The image to normalize
-            `use_imagenet`: A boolean indicating
-                            whether to use the
-                            mean and std from
-                            imagenet
+            `image`: The image to normalized
+            `mean`: A list of 3 values containing the mean values for the RGB channels respectively 
+            to be normalized.
+            `std`: A list of 3 values containing the standard deviation values for the RGB channels respectively 
+            to be normalized.
         Returns:
             The normalized image as a PIL image object
     """
-    image = _get_np_array(image) / 255
 
-    mean=[0.485, 0.456, 0.406]
-    std=[0.229, 0.224, 0.225]
+    assert (len(mean) == 3 and len(std) == 3), "mean and std should have three values each"
+
+    image = _get_np_array(image)
 
     return (image - mean) / std
+
+def normalizeMinMax(image):
+    """ Normalize the image between 0 and 1. Assumes the PIL image mode
+    to be RGB
+
+        Args:
+            `image` The image to be normalized
+        Returns:
+            The normalized image as a PIL image object
+    """
+
+
+    return _get_np_array(image) / 255.0
 
 
 def lighting(image):
@@ -243,6 +256,9 @@ def lighting(image):
         Returns:
             Numpy array of the transformed image matrix
     """
+
+    # Some images are might be RGBA, which would fail
+    
     image = _get_np_array(image)
     shape = image.shape
 
@@ -257,7 +273,9 @@ def lighting(image):
     alpha = np.random.normal(loc=0.0, scale=alphastd, size=(3,1))
     rgb = alpha * (eigval.reshape([3, 1]) * eigvec)
 
-    # Some images are might be RGBA, which would fail
-    image = image.convert("RGB") + rgb.sum(axis=0)
+
+    image = image + rgb.sum(axis=0)
+    
+    
 
     return image

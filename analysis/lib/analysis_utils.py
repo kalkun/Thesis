@@ -18,7 +18,7 @@ from .transforms import *
 
 class ResizeSequence(Sequence):
 
-    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/", transforms=[normalize]):
+    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/", transforms=[normalizeMinMax]):
         """ Accepts a pandas dataframe object, and yields
             tuples of resized, normalized images in size of.
 
@@ -72,7 +72,7 @@ class ResizeSequence(Sequence):
             shape = (224, 224, 3)
             img = np.array(img)
             if not img.shape == shape:
-                img = skimage_resize(img, (224, 224, 3))
+                img = skimage_resize(img, shape)
 
             imgs.append(img)
 
