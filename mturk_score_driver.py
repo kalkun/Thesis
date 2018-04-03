@@ -112,7 +112,15 @@ def get_hash(url, _base=None, image_dir = "images"):
     file_name = get_name(url, _base=_base)
     file_path = os.path.join(image_dir, file_name)
     hash_str = str(imagehash.dhash(Image.open(file_path)))
-    print("image hash is ", hash_str, "image_name is ", file_name)
+
+    exists = pc.instance_exists(models.Images, imageHASH=hash_str)
+    if not exists:
+        hash_str = file_name.split(".")[0]
+        exists = pc.instance_exists(models.Images, imageHASH=hash_str)
+        if not exists:
+            raise ValueError("Image with hash: %s, does not exists!" % hash_str)
+        return hash_str
+
     return hash_str
 
 
@@ -147,8 +155,8 @@ def main(input_file, **kwargs):
     # The keys will be unique per image pair comparison,
     # the values will be a list of 3 entries with the format:
     # [win1, win2, tie]
-    if not kwargs['no_db'] and not kwargs['label']:
-        raise ValueError("you must specify a label for the comparisons if inserting into the db")   
+    if not kwargs['no_db'] and not kwargs['source'] and not kwargs['dry_run']:
+        raise ValueError("you must specify a source for the comparisons if inserting into the db")
     pair_dict = {}
     header = {}
     data = []
@@ -280,7 +288,7 @@ def main(input_file, **kwargs):
                     win1        = row_dict.get("win1"),
                     win2        = row_dict.get("win2"),
                     tie         = row_dict.get("tie"),
-                    source      = kwargs['label'],
+                    source      = kwargs['source'],
                     do_commit   = False,
                 )
                 print("Inserting:\n\t%s" % comparison)
@@ -308,17 +316,14 @@ def main(input_file, **kwargs):
 
     # Pair image names with the violence score for the image:
     for t in [(unique_images[i], scaled[i][0]) for i in range(len(n_items)) ]:
+        img_name = get_name(t[0], '')
         img_hash = get_hash(t[0], '')
         violence = t[1]
-
-        exists = pc.instance_exists(models.Images, imageHASH=img_hash)
-        if not exists:
-            raise ValueError("Image with hash: %s, does not exists!" % img_hash)
 
         label = pc.insertLabel(
             img_hash,
             violence,
-            source = kwargs['label'],
+            source = kwargs['source'],
             do_commit=False,
         )
         if kwargs['dry_run'] or kwargs['no_db'] or not kwargs['insert_labels']:
@@ -366,10 +371,10 @@ if __name__ == "__main__":
                   " table.                                                           "
     )
     parser.add_argument(
-        "--label",
-        metavar = "label",
+        "--source",
+        metavar = "source",
         type = str,
-        help = "the label used on the comparisons table for every comparison  and label"
+        help = "the source used on the comparisons table for every comparison and label"
         " inserted in the db")
     parser.add_argument(
         "--no-db",
