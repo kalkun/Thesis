@@ -13,6 +13,10 @@ from sklearn import preprocessing as skpreprocess
 from keras import backend as K
 import matplotlib.pyplot as plt
 from sklearn import metrics
+from keras import models as Kmodels
+from keras import backend as Kbackend
+from keras import applications as Kapplications
+from keras import layers as Klayers
 
 from .transforms import *
 
@@ -101,6 +105,84 @@ def getExperimentName(notebook, datalength, epochs, init_lr, *args):
         notebook, datalength, epochs, init_lr
     )
     return name + "_" + "_".join(args)
+
+
+
+def getKSplits(df, n_splits, seed = None):
+
+    """ Splits a dataframe into n_splits number of splits randomly.
+
+        Args:
+            `df`: The pandas data frame to be split
+            `n_splits`: The number of splits
+            `seed`: the seed, if None it will be auto generated. Default = None
+
+        Returns:
+            A list of the splits as pandas data frames 
+    """
+
+    result = []
+
+    # None random seed is same as not setting it
+    df_shuffled = df.sample(len(df), random_state = seed)
+
+    fold_size = int(len(df) / n_splits)
+
+    for i in range(n_splits):
+        if i == n_splits - 1: # last iteration
+            df_fold = df_shuffled[fold_size * (i): len(df)] # gets remainder
+        else:
+            df_fold = df_shuffled[fold_size * (i):fold_size * (i + 1) ] # python starts indexing at 0
+        result.append(df_fold)
+
+    return result
+
+
+def getKSplitsStratified(df, n_splits, classColumn, seed = None):
+    """ Splits a dataframe into n_splits number of splits randomly and assures that
+    the each split maintains the original class balance.
+
+    Args:
+        `df`: The pandas data frame to be split
+        `n_splits`: The number of splits
+        'classColumn': The name of the column in the data frame corresponding to the class that needs to
+            have its balance maintained. This column should have a binary value of 0 or 1 or
+            True or False
+        `seed`: the seed, if None it will be auto generated. Default = None
+
+    Returns:
+        A list of the splits as pandas data frames 
+    """
+    df_class1 = df[df[classColumn] == True]
+    df_class2 = df[df[classColumn] == False]
+
+    k_folds_class1 = getKSplits(df_class1, n_splits, seed)
+    k_folds_class2 = getKSplits(df_class2, n_splits, seed)
+
+    # combine 
+    k_folds_combined = []
+    for i in range(n_splits):
+        combined_fold = k_folds_class1[i].append(k_folds_class2[i])
+        k_folds_combined.append(combined_fold)
+
+    return k_folds_combined
+
+
+
+def initializeUCLAModel():
+
+    img_input = Klayers.Input(shape=(224,224,3), name='img_input')
+
+    resnet_model = Kapplications.ResNet50(include_top=False, weights = 'imagenet') (img_input)
+
+    flatten = Klayers.Flatten()(resnet_model)
+
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(flatten)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(flatten)
+    visual_out = Klayers.Dense(10, activation='sigmoid', name='visual_out')(flatten)
+
+    return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out, visual_out])
+
 
 
 
