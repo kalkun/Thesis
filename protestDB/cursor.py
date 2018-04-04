@@ -4,7 +4,7 @@ import sys
 import datetime
 from os.path import basename, splitext, exists as file_exists
 from sqlalchemy.orm import join as sql_join, sessionmaker
-from sqlalchemy import exc
+from sqlalchemy import exc, or_
 from PIL import Image
 import imghdr
 import imagehash
@@ -99,13 +99,75 @@ class ProtestCursor:
         """
         return self.session.query(modelClass).filter_by(**kwargs).one_or_none()
 
-    def getLabelledImages(self, *args, **kwargs):
+
+    def getLabelledImages(self, label_source="combined", *args, **kwargs):
+        """ Wrapper for extracting only the images that has a
+            defined associated label
+
+            Args:
+                `label_source`: Defines the source of the labels to use
+                                (Default: "combined")
+                args: List of arguments sent to the `filter` function
+                kwargs: keyword arguments to send to `filter_by`
+
+            Returns:
+                A pandas DataFrame object
+        """
+        return self._getJoinedImages(
+            models.Labels.source == label_source
+        )
+
+
+    def getLabelledImagesAndNonProtest(self, label_source="combined", *args, **kwargs):
+        """ Wrapper for extracting the images that has a defined
+            associated label equal to `label_source` AND images that
+            are not related to protests at all, i.e. they dont violate
+            the `label_source` since their label is not defined
+
+            Args:
+                `label_source`: The source for the labels to use
+                                (Default: "combined")
+                args: List of arguments sent to the `filter` function
+                kwargs: keyword arguments to send to `filter_by`
+
+            Returns:
+                A pandas DataFrame object
+        """
+        return self._getJoinedImages(
+            or_(
+                models.Labels.source == label_source,
+                models.Labels.label == None
+            ),
+            *args,
+            **kwargs
+        )
+
+
+    def _getJoinedImages(
+            self,
+            *args,
+            sparse_tags=True,
+            **kwargs
+        ):
         """ Extracts the join between Images, Labels and Tags
             If `sparse_tags` is True, will tagname column into a sparse
             matrix where the possible tag names are converted to columns
             and the value in each row is either 0 or 1
 
-            Returns a Pandas.DataFrame
+            NOTE: Calling this directly with no arguments, may return
+                  duplicates with respect to the task. E.g. Images with
+                  two different labels such as UCLA images with original
+                  labels and a combined label computed together with ITU
+                  images.
+
+            Args:
+                `sparse_tags`: Bool indicating wether to extract tags as columns
+                               (Default: True)
+                args: list of arguments to sent to the `filter`
+                kwargs: keyword arguments, generally sent to `filter_by`
+
+            Returns:
+                A Pandas DataFrame object
         """
         images = self.query(
             models.Images,
@@ -126,7 +188,7 @@ class ProtestCursor:
         )
 
 
-        if getattr(kwargs, 'sparse_tags', True):
+        if sparse_tags:
 
             with_tags = self.query(
                 models.Images,
