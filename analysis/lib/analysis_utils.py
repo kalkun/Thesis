@@ -163,7 +163,8 @@ def getKSplitsStratified(df, n_splits, classColumn, seed = None):
     k_folds_combined = []
     for i in range(n_splits):
         combined_fold = k_folds_class1[i].append(k_folds_class2[i])
-        k_folds_combined.append(combined_fold)
+        combined_fold_shuffled = combined_fold.sample(len(combined_fold), random_state = seed)
+        k_folds_combined.append(combined_fold_shuffled)
 
     return k_folds_combined
 
