@@ -114,7 +114,9 @@ class ProtestCursor:
                 A pandas DataFrame object
         """
         return self._getJoinedImages(
-            models.Labels.source == label_source
+            models.Labels.source == label_source,
+            *args,
+            **kwargs
         )
 
 
@@ -122,7 +124,7 @@ class ProtestCursor:
         """ Wrapper for extracting the images that has a defined
             associated label equal to `label_source` AND images that
             are not related to protests at all, i.e. they dont violate
-            the `label_source` since their label is not defined
+            the `label_source` since their label is not defined.
 
             Args:
                 `label_source`: The source for the labels to use
