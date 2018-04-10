@@ -169,6 +169,33 @@ def getKSplitsStratified(df, n_splits, classColumn, seed = None):
     return k_folds_combined
 
 
+def getKSplitsTwoClassesStratified(df, n_splits, classColumn1, classColumn2, seed = None):
+
+    """ This function currently executes the same job as "getKSplitsStratified" but in two classes
+    TODO: Make it general for n classes
+
+    """
+
+    df_class1 = df[(df[classColumn1] == False) & (df[classColumn2] == False)]
+    df_class2 = df[(df[classColumn1] == True) & (df[classColumn2] == True)]
+    df_class3 = df[(df[classColumn1] == True) & (df[classColumn2] == False)]
+    df_class4 = df[(df[classColumn1] == False) & (df[classColumn2] == True)]
+
+    k_folds_class1 = getKSplits(df_class1, n_splits, seed)
+    k_folds_class2 = getKSplits(df_class2, n_splits, seed)
+    k_folds_class3 = getKSplits(df_class3, n_splits, seed)
+    k_folds_class4 = getKSplits(df_class4, n_splits, seed)
+
+    # combine 
+    k_folds_combined = []
+    for i in range(n_splits):
+        combined_fold = k_folds_class1[i].append(k_folds_class2[i]).append(k_folds_class3[i]).append(k_folds_class4[i])
+        combined_fold_shuffled = combined_fold.sample(len(combined_fold), random_state = seed)
+        k_folds_combined.append(combined_fold_shuffled)
+
+    return k_folds_combined
+
+
 
 def initializeUCLAModel():
 
@@ -183,6 +210,20 @@ def initializeUCLAModel():
     visual_out = Klayers.Dense(10, activation='sigmoid', name='visual_out')(flatten)
 
     return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out, visual_out])
+
+
+def initializeUCLAModelWithoutVisual():
+
+    img_input = Klayers.Input(shape=(224,224,3), name='img_input')
+
+    resnet_model = Kapplications.ResNet50(include_top=False, weights = 'imagenet') (img_input)
+
+    flatten = Klayers.Flatten()(resnet_model)
+
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(flatten)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(flatten)
+
+    return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out])
 
 
 
