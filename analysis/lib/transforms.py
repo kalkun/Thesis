@@ -74,7 +74,7 @@ def randomCrop(image, min_percent=8, max_percent=100):
     just need to know where to start from:
     """
     w, h = image.size
-    scale = random.randint(8, 100) / 100
+    scale = random.randint(min_percent, max_percent) / 100
     new_w = w * scale
     new_h = h * scale
 
@@ -159,16 +159,34 @@ def randomHorizontalFlip(image, prob=.5):
     return image
 
 
-def randomResizedCrop(image, square=224):
+def randomResizedCrop(
+        image,
+        square=224,
+        aspect_ratio=(3/4, 4/3),
+        min_percent=8,
+        max_percent=100):
     """ Does a random crop of .08 to 1.0 of the original image
         then random aspect ratio between 3/4 and 4/3,
         thereafter resize the image to a square of size:
         `square x square`
+
+        Args:
+            `image` : Required positional argument representing one image
+            `square`: The dimensions of the output image provided as one
+                      integer, meaning the output image size is
+                      width = height = square.
+            `aspect_ratio`: The aspect ratio that the image is resized to.
+            `min_percent`: The minimum size of the crop given as an integer
+                           indicating a percentage of the original image.
+            `max_percent`: Maximum size of the crop.
+
+        Returns:
+            PIL image object after the transformations has been applied.
     """
     image = _get_PIL_object(image)
 
-    image = randomCrop(image)
-    image = randomResize(image)
+    image = randomCrop(image, min_percent=min_percent, max_percent=max_percent)
+    image = randomResize(image, aspect_ratio=aspect_ratio)
     return image.resize((square, square))
 
 
@@ -212,9 +230,9 @@ def normalizeStandardScore(image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224,
 
         Args:
             `image`: The image to normalized
-            `mean`: A list of 3 values containing the mean values for the RGB channels respectively 
+            `mean`: A list of 3 values containing the mean values for the RGB channels respectively
             to be normalized.
-            `std`: A list of 3 values containing the standard deviation values for the RGB channels respectively 
+            `std`: A list of 3 values containing the standard deviation values for the RGB channels respectively
             to be normalized.
         Returns:
             The normalized image as a PIL image object
@@ -258,7 +276,7 @@ def lighting(image):
     """
 
     # Some images are might be RGBA, which would fail
-    
+
     image = _get_np_array(image)
     shape = image.shape
 
@@ -275,7 +293,7 @@ def lighting(image):
 
 
     image = image + rgb.sum(axis=0)
-    
-    
+
+
 
     return image
