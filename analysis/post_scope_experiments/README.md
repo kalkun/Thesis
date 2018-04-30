@@ -7,13 +7,13 @@ results.
 The experiments that are thought to be here, are represented
 by inidividual notebooks with the following ideas:
 
-- Using initial training with search engine results
-- Other base network than resnet e.g. Xception or InceptionResNet
-- Changing output neuron (linear)
-- Add fully connected layers at the end + dropout
-- Reduce resizing (data augmentation)
-- Optimizers (using Adam instead of SGD)
-- Freeze the first _m_ layers
+- [ ] Using initial training with search engine results
+- [ ] Other base network than resnet e.g. Xception or InceptionResNet
+- [X] Changing output neuron (linear)
+- [X] Add fully connected layers at the end + dropout
+- [ ] Reduce resizing (data augmentation)
+- [ ] Optimizers (using Adam instead of SGD)
+- [ ] Freeze the first _m_ layers
 
 
 These experiments are generally in two different categories:
