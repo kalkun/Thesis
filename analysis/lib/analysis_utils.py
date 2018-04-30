@@ -22,7 +22,7 @@ from .transforms import *
 
 class ResizeSequence(Sequence):
 
-    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../images/", transforms=[normalizeMinMax]):
+    def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../../images/", transforms=[normalizeMinMax]):
         """ Accepts a pandas dataframe object, and yields
             tuples of resized, normalized images in size of.
 
@@ -118,7 +118,7 @@ def getKSplits(df, n_splits, seed = None):
             `seed`: the seed, if None it will be auto generated. Default = None
 
         Returns:
-            A list of the splits as pandas data frames 
+            A list of the splits as pandas data frames
     """
 
     result = []
@@ -151,7 +151,7 @@ def getKSplitsStratified(df, n_splits, classColumn, seed = None):
         `seed`: the seed, if None it will be auto generated. Default = None
 
     Returns:
-        A list of the splits as pandas data frames 
+        A list of the splits as pandas data frames
     """
     df_class1 = df[df[classColumn] == True]
     df_class2 = df[df[classColumn] == False]
@@ -159,7 +159,7 @@ def getKSplitsStratified(df, n_splits, classColumn, seed = None):
     k_folds_class1 = getKSplits(df_class1, n_splits, seed)
     k_folds_class2 = getKSplits(df_class2, n_splits, seed)
 
-    # combine 
+    # combine
     k_folds_combined = []
     for i in range(n_splits):
         combined_fold = k_folds_class1[i].append(k_folds_class2[i])
@@ -186,7 +186,7 @@ def getKSplitsTwoClassesStratified(df, n_splits, classColumn1, classColumn2, see
     k_folds_class3 = getKSplits(df_class3, n_splits, seed)
     k_folds_class4 = getKSplits(df_class4, n_splits, seed)
 
-    # combine 
+    # combine
     k_folds_combined = []
     for i in range(n_splits):
         combined_fold = k_folds_class1[i].append(k_folds_class2[i]).append(k_folds_class3[i]).append(k_folds_class4[i])
