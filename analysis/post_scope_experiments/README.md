@@ -12,7 +12,7 @@ by inidividual notebooks with the following ideas:
 - [X] Changing output neuron (linear)
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
-- [ ] Optimizers (using Adam instead of SGD)
+- [X] Optimizers (using Adam instead of SGD)
 - [ ] Freeze the first _m_ layers
 
 
