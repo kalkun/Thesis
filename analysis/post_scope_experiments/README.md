@@ -27,17 +27,17 @@ These experiments are generally in two different categories:
 - [ ] Using initial training with search engine results
 - [ ] Other base network than resnet e.g. Xception or InceptionResNet
 - [ ] Changing output neuron (linear)
-- [X] Add fully connected layers at the end + dropout
+- [ ] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
 - [ ] Optimizers (using Adam instead of SGD)
-- [ ] Freeze the first _m_ layers (First 5 conv layers)
+- [X] Freeze the first _m_ layers (First 5 conv layers)
 
 ##### Completed
 
 - [ ] Using initial training with search engine results
 - [ ] Other base network than resnet e.g. Xception or InceptionResNet
 - [ ] Changing output neuron (linear)
-- [ ] Add fully connected layers at the end + dropout
+- [X] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
 - [ ] Optimizers (using Adam instead of SGD)
 - [ ] Freeze the first _m_ layers (First 5 conv layers)
