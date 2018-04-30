@@ -13,7 +13,7 @@ by inidividual notebooks with the following ideas:
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
 - [X] Optimizers (using Adam instead of SGD)
-- [ ] Freeze the first _m_ layers
+- [X] Freeze the first _m_ layers (First 5 conv layers)
 
 
 These experiments are generally in two different categories:
