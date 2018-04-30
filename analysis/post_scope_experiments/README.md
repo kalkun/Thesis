@@ -14,3 +14,8 @@ by inidividual notebooks with the following ideas:
 - Reduce resizing (data augmentation)
 - Optimizers (using Adam instead of SGD)
 - Freeze the first _m_ layers
+
+
+These experiments are generally in two different categories:
+ 1. Experiments based on `UCLA_model_UCLA_dataset_without_visual_attributes.ipynb`
+ 2. Experiments that are a different approach to the setup.
