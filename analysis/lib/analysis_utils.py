@@ -300,8 +300,7 @@ def lrUpdateUCLA(epoch, lr):
     Returns:
         function: The new learning rate
     """
-    #new_lr = lr * (0.4 ** (epoch // 4))
-    if epoch % 4 == 0:
+    if (1 + epoch) % 4 == 0:
         return lr * 0.4
     else:
         return lr
@@ -312,7 +311,7 @@ def xceptionLrUpdate(epoch, lr):
         is a decay of rate 0.94 every second epoch, which
         is much less than what is presented by UCLA
     """
-    if epoch % 2 == 0:
+    if (1 + epoch) % 2 == 0:
         return lr * 0.94
     else:
         return lr
