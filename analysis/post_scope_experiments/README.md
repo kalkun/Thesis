@@ -27,7 +27,7 @@ These experiments are generally in two different categories:
 ##### Running
 
 - [X] Using initial training with search engine results
-- [ ] Other base network than resnet e.g. Xception or InceptionResNet
+- [X] Other base network than resnet e.g. Xception or InceptionResNet
 - [ ] Changing output neuron (linear)
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
