@@ -29,8 +29,8 @@ These experiments are generally in two different categories:
 - [ ] Changing output neuron (linear)
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
-- [X] Optimizers (using Adam instead of SGD)
-- [X] Freeze the first _m_ layers (First 5 conv layers)
+- [ ] Optimizers (using Adam instead of SGD)
+- [ ] Freeze the first _m_ layers (First 5 conv layers)
 
 ##### Completed
 
@@ -39,5 +39,5 @@ These experiments are generally in two different categories:
 - [ ] Changing output neuron (linear)
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
-- [ ] Optimizers (using Adam instead of SGD)
-- [ ] Freeze the first _m_ layers (First 5 conv layers)
+- [X] Optimizers (using Adam instead of SGD)
+- [X] Freeze the first _m_ layers (First 5 conv layers)
