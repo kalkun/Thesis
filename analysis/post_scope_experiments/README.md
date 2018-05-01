@@ -10,6 +10,7 @@ by inidividual notebooks with the following ideas:
 
 - [X] Using initial training with search engine results
 - [X] Other base network than resnet (Xception)
+- [X] Other base network than resnet (Densenet)
 - [X] ~~Changing output neuron (linear)~~
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
@@ -27,7 +28,8 @@ These experiments are generally in two different categories:
 ##### Running
 
 - [X] Using initial training with search engine results
-- [X] Other base network than resnet e.g. Xception or InceptionResNet
+- [ ] Other base network than resnet (Xception)
+- [ ] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
@@ -39,7 +41,8 @@ These experiments are generally in two different categories:
 ##### Completed before removing learning rate bug
 
 - [ ] Using initial training with search engine results
-- [ ] Other base network than resnet e.g. Xception or InceptionResNet
+- [ ] ~~Other base network than resnet (Xception)~~
+- [ ] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
@@ -51,7 +54,8 @@ These experiments are generally in two different categories:
 ##### Completed after removing learning rate bug
 
 - [ ] Using initial training with search engine results
-- [ ] Other base network than resnet e.g. Xception or InceptionResNet
+- [ ] ~~Other base network than resnet (Xception)~~
+- [ ] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
