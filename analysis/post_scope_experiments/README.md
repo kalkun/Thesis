@@ -28,8 +28,8 @@ These experiments are generally in two different categories:
 ##### Running
 
 - [X] Using initial training with search engine results
-- [ ] Other base network than resnet (Xception)
-- [ ] Other base network than resnet (Densenet)
+- [ ] ~~Other base network than resnet (Xception)~~
+- [X] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
