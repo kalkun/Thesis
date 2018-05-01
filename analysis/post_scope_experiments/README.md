@@ -33,7 +33,7 @@ These experiments are generally in two different categories:
 - [ ] Reduce resizing (data augmentation)
 - [ ] Optimizers (using Adam instead of SGD)
 - [ ] Freeze the first _m_ layers (First 5 conv layers)
-- [X] Experiment without any auxilliary tasks
+- [ ] Experiment without any auxilliary tasks
 - [ ] Experiment wihtout protest label but with visual attributes
 
 ##### Completed
@@ -45,5 +45,5 @@ These experiments are generally in two different categories:
 - [X] Reduce resizing (data augmentation)
 - [X] Optimizers (using Adam instead of SGD)
 - [X] Freeze the first _m_ layers (First 5 conv layers)
-- [ ] Experiment without any auxilliary tasks
+- [X] Experiment without any auxilliary tasks
 - [ ] Experiment wihtout protest label but with visual attributes
