@@ -26,7 +26,7 @@ These experiments are generally in two different categories:
 
 ##### Running
 
-- [ ] Using initial training with search engine results
+- [X] Using initial training with search engine results
 - [ ] Other base network than resnet e.g. Xception or InceptionResNet
 - [ ] Changing output neuron (linear)
 - [ ] Add fully connected layers at the end + dropout
@@ -45,5 +45,5 @@ These experiments are generally in two different categories:
 - [X] Reduce resizing (data augmentation)
 - [X] Optimizers (using Adam instead of SGD)
 - [X] Freeze the first _m_ layers (First 5 conv layers)
-- [ ] Experiment without any auxilliary tasks
+- [X] Experiment without any auxilliary tasks
 - [ ] Experiment wihtout protest label but with visual attributes
