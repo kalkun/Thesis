@@ -8,14 +8,14 @@ results.
 The experiments that are thought to be here, are represented
 by inidividual notebooks with the following ideas:
 
-- [ ] Using initial training with search engine results
+- [X] Using initial training with search engine results
 - [ ] Other base network than resnet e.g. Xception or InceptionResNet
 - [X] Changing output neuron (linear)
 - [X] Add fully connected layers at the end + dropout
 - [X] Reduce resizing (data augmentation)
 - [X] Optimizers (using Adam instead of SGD)
 - [X] Freeze the first _m_ layers (First 5 conv layers)
-- [ ] Experiment without any auxilliary tasks
+- [X] Experiment without any auxilliary tasks
 - [ ] Experiment wihtout protest label but with visual attributes
 
 
