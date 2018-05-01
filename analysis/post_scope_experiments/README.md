@@ -53,6 +53,7 @@ These experiments are generally in two different categories:
 
 ##### Completed after removing learning rate bug
 
+- [ ] Original UCLA wihtout visual attributes
 - [ ] Using initial training with search engine results
 - [ ] ~~Other base network than resnet (Xception)~~
 - [ ] Other base network than resnet (Densenet)
