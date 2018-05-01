@@ -47,3 +47,15 @@ These experiments are generally in two different categories:
 - [X] Freeze the first _m_ layers (First 5 conv layers)
 - [X] Experiment without any auxilliary tasks
 - [ ] Experiment wihtout protest label but with visual attributes
+
+##### Completed after removing learning rate bug
+
+- [ ] Using initial training with search engine results
+- [ ] Other base network than resnet e.g. Xception or InceptionResNet
+- [ ] Changing output neuron (linear)
+- [ ] Add fully connected layers at the end + dropout
+- [ ] Reduce resizing (data augmentation)
+- [ ] Optimizers (using Adam instead of SGD)
+- [ ] Freeze the first _m_ layers (First 5 conv layers)
+- [ ] Experiment without any auxilliary tasks
+- [ ] Experiment wihtout protest label but with visual attributes
