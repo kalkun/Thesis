@@ -21,6 +21,7 @@ from keras import layers as Klayers
 from .transforms import *
 
 class ResizeSequence(Sequence):
+    """ A sequence generator of batches with images resized to 224 x 224 """
 
     def __init__(self, dataframe, batch_size=128, targets=['label'], image_dir="../../images/", transforms=[normalizeMinMax]):
         """ Accepts a pandas dataframe object, and yields
@@ -34,7 +35,9 @@ class ResizeSequence(Sequence):
                 `batch_size`: Size of batches to generate
                 `ys`: A list column names to treat as targets
                 `image_dir`: The path to the image directory
-                `transforms`: A list of transformations to use
+                `transforms`: A list of transformations to use. A transform
+                              function accepts exactly one positional parameter,
+                              the `img`, and returns a PIL image object.
 
         """
         self.dataframe  = dataframe
