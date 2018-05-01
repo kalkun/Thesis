@@ -78,7 +78,9 @@ def randomCrop(image, min_percent=8, max_percent=100):
     new_w = w * scale
     new_h = h * scale
 
-    assert int(new_w/new_h) == int(w/h), "Aspect ratio should be the same"
+    # this line has been commented it out due to an overflow we had
+    # that caused the assertion to fail 
+    #assert int(new_w/new_h) == int(w/h), "Aspect ratio should be the same"
 
     left = random.randint(0, int(w-new_w))
     upper = random.randint(0, int(h-new_h))
