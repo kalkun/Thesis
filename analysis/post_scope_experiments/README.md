@@ -56,7 +56,7 @@ These experiments are generally in two different categories:
 - [ ] Original UCLA wihtout visual attributes
 - [ ] Using initial training with search engine results
 - [ ] ~~Other base network than resnet (Xception)~~
-- [ ] Other base network than resnet (Densenet)
+- [X] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [ ] Add fully connected layers at the end + dropout
 - [ ] Reduce resizing (data augmentation)
