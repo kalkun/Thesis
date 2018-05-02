@@ -18,6 +18,7 @@ by inidividual notebooks with the following ideas:
 - [X] Freeze the first _m_ layers (First 5 conv layers)
 - [X] Experiment without any auxilliary tasks
 - [ ] Experiment without protest label but with visual attributes
+- [X] Experiment with two FC layers and dropout, one for each task
 
 
 These experiments are generally in two different categories:
