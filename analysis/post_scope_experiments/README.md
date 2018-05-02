@@ -31,8 +31,8 @@ These experiments are generally in two different categories:
 - [ ] ~~Other base network than resnet (Xception)~~
 - [ ] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
-- [ ] Add fully connected layers at the end + dropout
-- [X] Reduce resizing (data augmentation)
+- [X] Add fully connected layers at the end + dropout
+- [ ] Reduce resizing (data augmentation)
 - [ ] Optimizers (using Adam instead of SGD)
 - [ ] Freeze the first _m_ layers (First 5 conv layers)
 - [ ] Experiment without any auxilliary tasks
@@ -53,7 +53,7 @@ These experiments are generally in two different categories:
 
 ##### Completed after removing learning rate bug
 
-- [ ] Original UCLA wihtout visual attributes
+- [X] Original UCLA wihtout visual attributes
 - [X] Using initial training with search engine results
 - [ ] ~~Other base network than resnet (Xception)~~
 - [X] Other base network than resnet (Densenet)
