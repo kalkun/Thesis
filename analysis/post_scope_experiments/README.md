@@ -49,11 +49,11 @@ These experiments are generally in two different categories:
 - [X] Optimizers (using Adam instead of SGD)
 - [X] Freeze the first _m_ layers (First 5 conv layers)
 - [X] Experiment without any auxilliary tasks
-- [ ] ~~Experiment wihtout protest label but with visual attributes~~
+- [ ] ~~Experiment without protest label but with visual attributes~~
 
 ##### Completed after removing learning rate bug
 
-- [X] Original UCLA wihtout visual attributes
+- [X] Original UCLA without visual attributes
 - [X] Using initial training with search engine results
 - [ ] ~~Other base network than resnet (Xception)~~
 - [X] Other base network than resnet (Densenet)
@@ -63,5 +63,5 @@ These experiments are generally in two different categories:
 - [ ] ~~Optimizers (using Adam instead of SGD)~~
 - [ ] ~~Freeze the first _m_ layers (First 5 conv layers)~~
 - [ ] Experiment without any auxilliary tasks
-- [ ] Experiment wihtout protest label but with visual attributes
+- [ ] Experiment without protest label but with visual attributes
 - [ ] Experiment with two FC layers and dropout, one for each task
