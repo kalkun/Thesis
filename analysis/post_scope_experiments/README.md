@@ -32,7 +32,7 @@ These experiments are generally in two different categories:
 - [ ] Other base network than resnet (Densenet)
 - [ ] ~~Changing output neuron (linear)~~
 - [X] Add fully connected layers at the end + dropout
-- [ ] Reduce resizing (data augmentation)
+- [X] Reduce resizing (data augmentation)
 - [ ] Optimizers (using Adam instead of SGD)
 - [ ] Freeze the first _m_ layers (First 5 conv layers)
 - [ ] Experiment without any auxilliary tasks
