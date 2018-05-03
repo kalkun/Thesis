@@ -19,7 +19,7 @@ by inidividual notebooks with the following ideas:
 - [X] Experiment without any auxilliary tasks
 - [X] Experiment without protest label but with visual attributes
 - [X] Experiment with two FC layers and dropout, one for each task
-- [ ] Experiment training the network first on auxilliary tasks and then on the main task
+- [X] Experiment training the network first on auxilliary tasks and then on the main task
 
 These experiments are generally in two different categories:
  1. Experiments based on `UCLA_model_UCLA_dataset_without_visual_attributes.ipynb`
@@ -28,17 +28,7 @@ These experiments are generally in two different categories:
 
 ##### Running
 
-- [ ] Using initial training with search engine results
-- [ ] ~~Other base network than resnet (Xception)~~
-- [ ] Other base network than resnet (Densenet)
-- [ ] ~~Changing output neuron (linear)~~
-- [ ] Add fully connected layers at the end + dropout
-- [ ] Reduce resizing (data augmentation)
-- [ ] Optimizers (using Adam instead of SGD)
-- [ ] Freeze the first _m_ layers (First 5 conv layers)
-- [ ] Experiment without any auxilliary tasks
-- [ ] Experiment without protest label but with visual attributes
-- [ ] Experiment training the network first on auxilliary tasks and then on the main task
+- [X] Experiment training the network first on auxilliary tasks and then on the main task
 
 
 ##### Completed before removing learning rate bug
