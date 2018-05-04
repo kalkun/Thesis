@@ -20,6 +20,7 @@ by inidividual notebooks with the following ideas:
 - [X] Experiment without protest label but with visual attributes
 - [X] Experiment with two FC layers and dropout, one for each task
 - [X] Experiment training the network first on auxilliary tasks and then on the main task
+- [X] Experiment training the network on multitask and then on only main task
 
 These experiments are generally in two different categories:
  1. Experiments based on `UCLA_model_UCLA_dataset_without_visual_attributes.ipynb`
@@ -29,6 +30,7 @@ These experiments are generally in two different categories:
 ##### Running
 
 - [X] Experiment training the network first on auxilliary tasks and then on the main task
+- [X] Experiment training the network on multitask and then on only main task
 
 
 ##### Completed before removing learning rate bug
