@@ -21,6 +21,7 @@ by inidividual notebooks with the following ideas:
 - [X] Experiment with two FC layers and dropout, one for each task
 - [X] Experiment training the network first on auxilliary tasks and then on the main task
 - [X] Experiment training the network on multitask and then on only main task
+- [X] Freeze all layers of ResNet
 
 These experiments are generally in two different categories:
  1. Experiments based on `UCLA_model_UCLA_dataset_without_visual_attributes.ipynb`
@@ -61,3 +62,4 @@ These experiments are generally in two different categories:
 - [X] Experiment with two FC layers and dropout, one for each task
 - [ ] Experiment training the network first on auxilliary tasks and then on the main task
 - [X] Experiment training the network on multitask and then on only main task
+- [X] Freeze all layers of ResNet
