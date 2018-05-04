@@ -30,7 +30,7 @@ These experiments are generally in two different categories:
 
 ##### Running
 
-- [X] Experiment training the network first on auxilliary tasks and then on the main task
+- [ ] Experiment training the network first on auxilliary tasks and then on the main task
 
 
 ##### Completed before removing learning rate bug
@@ -60,6 +60,6 @@ These experiments are generally in two different categories:
 - [X] Experiment without any auxilliary tasks
 - [X] Experiment without protest label but with visual attributes
 - [X] Experiment with two FC layers and dropout, one for each task
-- [ ] Experiment training the network first on auxilliary tasks and then on the main task
+- [X] Experiment training the network first on auxilliary tasks and then on the main task
 - [X] Experiment training the network on multitask and then on only main task
 - [X] Freeze all layers of ResNet
