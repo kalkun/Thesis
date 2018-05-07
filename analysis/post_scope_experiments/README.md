@@ -33,7 +33,8 @@ by inidividual notebooks with the following ideas:
 
 ##### Running
 
-- [X] All frozen layers of ResNet and fully connected layer with .5 dropout
+- [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
+- [X] Fully connected for each multitask and reduced transform
 
 ##### Completed before removing learning rate bug
 
@@ -65,7 +66,7 @@ by inidividual notebooks with the following ideas:
 - [X] [Experiment training the network first on auxilliary tasks and then on the main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_evaluation.png)
 - [X] [Experiment training the network on multitask and then on only main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_multitask_evaluation.png)
 - [X] [Freeze all layers of ResNet](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_freeze_all_evaluation.png)
-- [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
+- [X] All frozen layers of ResNet and fully connected layer with .5 dropout
 
 ##### Completed second iteration (combining experiments)
-- [X] Fully connected for each multitask and reduced transform
+- [ ] Fully connected for each multitask and reduced transform
