@@ -71,5 +71,5 @@ by inidividual notebooks with the following ideas:
 - [X] All frozen layers of ResNet and fully connected layer with .5 dropout
 
 ##### Completed second iteration (combining experiments)
-- [X] Fully connected for each multitask and reduced transform
+- [X] [Fully connected for each multitask and reduced transform](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_evaluation.png)
 - [ ] Fully connected for each multitask and reduced transform while using both protest and visual attributes
