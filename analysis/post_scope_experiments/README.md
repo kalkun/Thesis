@@ -68,7 +68,7 @@ by inidividual notebooks with the following ideas:
 - [X] [Experiment training the network first on auxilliary tasks and then on the main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_evaluation.png)
 - [X] [Experiment training the network on multitask and then on only main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_multitask_evaluation.png)
 - [X] [Freeze all layers of ResNet](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_freeze_all_evaluation.png)
-- [X] All frozen layers of ResNet and fully connected layer with .5 dropout
+- [X] [All frozen layers of ResNet and fully connected layer with .5 dropout](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_freeze_all_fc_evaluation.png)
 
 ##### Completed second iteration (combining experiments)
 - [X] [Fully connected for each multitask and reduced transform](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_evaluation.png)
