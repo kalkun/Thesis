@@ -59,7 +59,7 @@ These experiments are generally in two different categories:
 - [ ] ~~Freeze the first _m_ layers (First 5 conv layers)~~
 - [X] ~~Experiment without any auxilliary tasks~~
 - [X] [Experiment without protest label but with visual attributes](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_w_visual_attributes_no_protest_evaluation.png)
-- [X] [Experiment with two FC layers and dropout, one for each task]((https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_ADD_FC_DROPOUT_EACH_TASK_evaluation.png))
+- [X] [Experiment with two FC layers and dropout, one for each task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_ADD_FC_DROPOUT_EACH_TASK_evaluation.png)
 - [X] [Experiment training the network first on auxilliary tasks and then on the main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_evaluation.png)
 - [X] [Experiment training the network on multitask and then on only main task](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_two_round_train_multitask_evaluation.png)
 - [X] [Freeze all layers of ResNet](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_freeze_all_evaluation.png)
