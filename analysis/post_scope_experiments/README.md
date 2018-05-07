@@ -39,7 +39,7 @@ by inidividual notebooks with the following ideas:
 
 - [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
 - [ ] Fully connected for each multitask and reduced transform
-    - [X] While using both protest and visual attributes
+    - [ ] While using both protest and visual attributes
     - [X] Using only visual attributes and violence labels  
 
 ##### Completed before removing learning rate bug
@@ -77,6 +77,6 @@ by inidividual notebooks with the following ideas:
 ##### Completed second iteration (combining experiments)
 - [X] [Fully connected for each multitask and reduced transform](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_evaluation.png)
 	- [X] [Same but weighting loss 1:100 instead of 1:10](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_weight1-100_evaluation.png)
-    - [X] While using both protest and visual attributes
+    - [ ] While using both protest and visual attributes
     - [X] Using only visual attributes and violence labels 
     - [ ] Regularizing the dense protest layer
