@@ -40,7 +40,7 @@ These experiments are generally in two different categories:
 - [ ] ~~Other base network than resnet (Densenet)~~
 - [ ] ~~Changing output neuron (linear)~~
 - [X] Add fully connected layers at the end + dropout
-![https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_ADD_FC_DROPOUT_EACH_TASK_evaluation.png](Violence plot)
+ ![https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_ADD_FC_DROPOUT_EACH_TASK_evaluation.png](Violence plot)
 - [X] Reduce resizing (data augmentation)
 - [X] Optimizers (using Adam instead of SGD)
 - [X] Freeze the first _m_ layers (First 5 conv layers)
