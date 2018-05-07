@@ -31,7 +31,7 @@ These experiments are generally in two different categories:
 
 ##### Running
 
-- [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
+- [X] All frozen layers of ResNet and fully connected layer with .5 dropout
 
 ##### Completed before removing learning rate bug
 
@@ -39,7 +39,7 @@ These experiments are generally in two different categories:
 - [ ] ~~Other base network than resnet (Xception)~~
 - [ ] ~~Other base network than resnet (Densenet)~~
 - [ ] ~~Changing output neuron (linear)~~
-- [X] Add fully connected layers at the end + dropout
+- [X] [Add fully connected layers at the end + dropout](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_ADD_FC_DROPOUT_evaluation.png)
 - [X] [Reduce resizing (data augmentation)](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_reduced_augmentation_evaluation.png)
 - [X] [Optimizers (using Adam instead of SGD)](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_adam_optimizer_evaluation.png)
 - [X] [Freeze the first _m_ layers (First 5 conv layers)](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/UCLA_model_freeze_m_evaluation.png)
