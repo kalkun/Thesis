@@ -35,7 +35,7 @@ by inidividual notebooks with the following ideas:
 ##### Running
 
 - [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
-- [X] Fully connected for each multitask and reduced transform
+- [ ] Fully connected for each multitask and reduced transform
 - [X] Fully connected for each multitask and reduced transform while using both protest and visual attributes
 
 ##### Completed before removing learning rate bug
@@ -71,5 +71,5 @@ by inidividual notebooks with the following ideas:
 - [X] All frozen layers of ResNet and fully connected layer with .5 dropout
 
 ##### Completed second iteration (combining experiments)
-- [ ] Fully connected for each multitask and reduced transform
+- [X] Fully connected for each multitask and reduced transform
 - [ ] Fully connected for each multitask and reduced transform while using both protest and visual attributes
