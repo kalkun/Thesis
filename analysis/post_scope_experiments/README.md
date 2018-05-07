@@ -30,6 +30,7 @@ by inidividual notebooks with the following ideas:
 - [X] Freeze all layers of ResNet
 - [X] All frozen layers of ResNet and fully connected layer with .5 dropout
 - [X] Fully connected for each multitask and reduced transform
+	- [X] Same but weighting loss 1:100 instead of 1:10
 - [X] Fully connected for each multitask and reduced transform while using both protest and visual attributes
 
 ##### Running
@@ -72,4 +73,5 @@ by inidividual notebooks with the following ideas:
 
 ##### Completed second iteration (combining experiments)
 - [X] [Fully connected for each multitask and reduced transform](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_evaluation.png)
+	- [X] Same but weighting loss 1:100 instead of 1:10
 - [ ] Fully connected for each multitask and reduced transform while using both protest and visual attributes
