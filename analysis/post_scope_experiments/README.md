@@ -81,3 +81,9 @@ by inidividual notebooks with the following ideas:
     - [X] [While using both protest and visual attributes](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_visuals_evaluation.png)
     - [X] [Using only visual attributes and violence labels](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_without_protest_evaluation.png)
     - [X] Regularizing the dense protest layer
+
+##### Completed final cross validation
+- Fully connected for each multitask and reduced transform
+    - [ ] Using both protest and visual attributes as auxilliaries
+    - [ ] Using only visual attributes as auxilliary task
+- Rerun of original results validation
