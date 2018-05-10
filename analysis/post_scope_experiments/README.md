@@ -87,4 +87,4 @@ by inidividual notebooks with the following ideas:
 - Fully connected for each multitask and reduced transform
     - [ ] Using both protest and visual attributes as auxilliaries
     - [ ] Using only visual attributes as auxilliary task
-- [ ] Rerun of original results validation
+- [X] Rerun of original results validation
