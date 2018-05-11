@@ -198,9 +198,7 @@ def getKSplitsTwoClassesStratified(df, n_splits, classColumn1, classColumn2, see
 
     return k_folds_combined
 
-
-
-def initializeUCLAModel():
+def getBase(inp_shape=(224, 224, 3)):
 
     img_input = Klayers.Input(shape=(224,224,3), name='img_input')
 
@@ -208,26 +206,75 @@ def initializeUCLAModel():
 
     flatten = Klayers.Flatten()(resnet_model)
 
-    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(flatten)
-    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(flatten)
-    visual_out = Klayers.Dense(10, activation='sigmoid', name='visual_out')(flatten)
+    return flatten, img_input
+
+
+def initializeUCLAModel():
+
+#    img_input = Klayers.Input(shape=(224,224,3), name='img_input')
+#
+#    resnet_model = Kapplications.ResNet50(include_top=False, weights = 'imagenet') (img_input)
+#
+#    flatten = Klayers.Flatten()(resnet_model)
+
+    base, img_input = getBase()
+
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(base)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(base)
+    visual_out = Klayers.Dense(10, activation='sigmoid', name='visual_out')(base)
 
     return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out, visual_out])
 
 
 def initializeUCLAModelWithoutVisual():
 
-    img_input = Klayers.Input(shape=(224,224,3), name='img_input')
+#    img_input = Klayers.Input(shape=(224,224,3), name='img_input')
+#
+#    resnet_model = Kapplications.ResNet50(include_top=False, weights = 'imagenet') (img_input)
+#
+#    flatten = Klayers.Flatten()(resnet_model)
 
-    resnet_model = Kapplications.ResNet50(include_top=False, weights = 'imagenet') (img_input)
+    base, img_input = getBase()
 
-    flatten = Klayers.Flatten()(resnet_model)
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(base)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(base)
 
-    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(flatten)
-    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(flatten)
+    print("_" * 80)
+    print(type(img_input))
+    print("_" * 80)
+    return Kmodels.Model(inputs=img_input, outputs=[protest_out, violence_out])
+
+def initializeWithFullyConnectedLayers():
+
+    base, img_input = getBase()
+
+    fully_connected_violence = Klayers.Dense(1000, activation='relu')(base)
+    dropout_violence = Klayers.Dropout(.5)(fully_connected_violence)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(dropout_violence)
+
+    fully_connected_protest = Klayers.Dense(1000, activation= 'relu') (base)
+    dropout_protest = Klayers.Dropout(.5) (fully_connected_protest)
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(dropout_protest)
+
+    fully_connected_visuals = Klayers.Dense(1000, activation= 'relu') (base)
+    dropout_visuals = Klayers.Dropout(.5)(fully_connected_visuals)
+    visual_out = Klayers.Dense(10, activation='sigmoid', name='visual_out')(dropout_visuals)
+
+    return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out, visual_out])
+
+def initializeWithFullyConnectedLayersNoVisuals():
+
+    base, img_input = getBase()
+
+    fully_connected_violence = Klayers.Dense(1000, activation='relu')(base)
+    dropout_violence = Klayers.Dropout(.5)(fully_connected_violence)
+    violence_out = Klayers.Dense(1, activation='sigmoid', name='violence_out')(dropout_violence)
+
+    fully_connected_protest = Klayers.Dense(1000, activation= 'relu') (base)
+    dropout_protest = Klayers.Dropout(.5) (fully_connected_protest)
+    protest_out = Klayers.Dense(1, activation='sigmoid', name='protest_out')(dropout_protest)
 
     return Kmodels.Model(inputs= img_input, outputs=[protest_out, violence_out])
-
 
 
 
