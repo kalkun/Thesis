@@ -85,6 +85,6 @@ by inidividual notebooks with the following ideas:
 
 ##### Completed final cross validation
 - Fully connected for each multitask and reduced transform
-    - [ ] Using both protest and visual attributes as auxilliaries
+    - [X] Using both protest and visual attributes as auxilliaries
     - [ ] Using only visual attributes as auxilliary task
 - [X] Rerun of original results validation
