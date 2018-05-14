@@ -45,11 +45,10 @@ These experiments are generally in two different categories:
 	- [X] [Same but weighting loss 1:100 instead of 1:10](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_weight1-100_evaluation.png)
     - [X] [While using both protest and visual attributes](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_visuals_evaluation.png)
     - [X] [Using only visual attributes and violence labels](https://github.itu.dk/lukl/Thesis_2018/raw/master/analysis/post_scope_experiments/plots/fully_con_reduced_transform_without_protest_evaluation.png)
-    - [X] Regularizing the dense protest layer
     - [X] ~~Regularizing the dense protest layer~~
 
 ##### Completed final cross validation
 - Fully connected for each multitask and reduced transform
-    - [X] Using both protest and visual attributes as auxilliaries
-    - [X] Using only visual attributes as auxilliary task
-- [X] Rerun of original results validation
+    - [X] [Using both protest and visual attributes as auxilliaries](https://github.itu.dk/lukl/Thesis_2018/blob/master/analysis/post_scope_experiments/fully_con_reduced_transform_visuals_cross_validation_evaluation.ipynb)
+    - [X] [Using only visual attributes as auxilliary task](https://github.itu.dk/lukl/Thesis_2018/blob/master/analysis/post_scope_experiments/fully_con_reduced_transform_cross_validation_evaluation.ipynb)
+- [X] [Rerun of original results validation](https://github.itu.dk/lukl/Thesis_2018/blob/master/analysis/post_scope_experiments/UCLA_results_validation_cross_validation_evaluation.ipynb)
