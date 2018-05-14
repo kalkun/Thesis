@@ -8,41 +8,6 @@ These experiments are generally in two different categories:
  1. Experiments based on `UCLA_model_UCLA_dataset_without_visual_attributes.ipynb`
  2. Experiments that are a different approach to the setup.
 
-
-
-##### Implemented
-The experiments that are thought to be here, are represented
-by inidividual notebooks with the following ideas:
-
-- [X] Using initial training with search engine results
-- [X] Other base network than resnet (Xception)
-- [X] Other base network than resnet (Densenet)
-- [X] ~~Changing output neuron (linear)~~
-- [X] Add fully connected layers at the end + dropout
-- [X] Reduce resizing (data augmentation)
-- [X] Optimizers (using Adam instead of SGD)
-- [X] Freeze the first _m_ layers (First 5 conv layers)
-- [X] Experiment without any auxilliary tasks
-- [X] Experiment without protest label but with visual attributes
-- [X] Experiment with two FC layers and dropout, one for each task
-- [X] Experiment training the network first on auxilliary tasks and then on the main task
-- [X] Experiment training the network on multitask and then on only main task
-- [X] Freeze all layers of ResNet
-- [X] All frozen layers of ResNet and fully connected layer with .5 dropout
-- [X] Fully connected for each multitask and reduced transform
-	- [X] Same but weighting loss 1:100 instead of 1:10
-    - [X] While using both protest and visual attributes
-    - [X] Using only visual attributes and violence labels 
-    - [X] Regularizing the dense protest layer
-
-##### Running
-
-- [ ] All frozen layers of ResNet and fully connected layer with .5 dropout
-- [ ] Fully connected for each multitask and reduced transform
-    - [ ] While using both protest and visual attributes
-    - [ ] Using only visual attributes and violence labels  
-    - [ ] Regularizing the dense protest layer
-
 ##### Completed before removing learning rate bug
 
 - [ ] ~~Using initial training with search engine results~~
@@ -86,5 +51,5 @@ by inidividual notebooks with the following ideas:
 ##### Completed final cross validation
 - Fully connected for each multitask and reduced transform
     - [X] Using both protest and visual attributes as auxilliaries
-    - [ ] Using only visual attributes as auxilliary task
+    - [X] Using only visual attributes as auxilliary task
 - [X] Rerun of original results validation
