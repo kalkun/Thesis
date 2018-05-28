@@ -26,7 +26,7 @@ ln -s `pwd`/protestDB venv/lib/python3.5/site-packages/protestDB
 The above command assumes that the current directory is the project root folder.
 
 Configurations are set in `alembic.ini`. Especially the following two fields are relevant to set:
-```
+```python
 # DB name: 
 db_name = protest_images.db
 
@@ -54,7 +54,7 @@ Set the path for the `*.db` SQLite file in the `alembic.ini` file. The syntax is
 This module will create the database file given by `config.py` if it does not exists
 once the library is imported.
 
-**Example of extraction fully joined table of tags, images and label**
+**Example of extracting fully joined table of tags, images and labels**
 The tags have been expanded such that each possible tag value is a column and the entries
 are either True or False, essentially forming a sparse vector of tags for each row.
 ```python
@@ -179,7 +179,11 @@ python serp_driver.py images --key_words "jenifer anistion" "cats"
 
 All arguments
 ```
-python serp_driver.py images --sr google bing --key_words "jenifer anistion" "cats" --n_images 100 --timeout 10
+python serp_driver.py images \
+  --sr google bing \
+  --key_words "jenifer anistion" "cats" \
+  --n_images 100 \
+  --timeout 10
 ```
 
 ### Luca Driver
@@ -253,7 +257,7 @@ This scripts is a very simplistic GUI interface for labeling images. The current
 python annotator_driver.py images 0
 ```
 
-images is the name of the folder where the images are contained and the second arguments specify is the script should save the results in the db (1) or not (0).
+`images` is the name of the folder where the images are contained and the second argument specify if the script should save the results in the db (1) or not (0).
 
 ### Amazon input driver
 This CLI script will output a csv file compatible with the input provided to Amazon mechanical turk.
@@ -314,9 +318,9 @@ python ucla_scores_driver.py my_csv.csv --db
 ### Communicating with the EC2 instances
 SSH
 ```
-ssh ubuntu@Public DNS
+ssh ubuntu@<Public DNS>
 ```
 SCP
 ```
-scp ubuntu@Public DNS:~/Thesis_2018/analysis/logs/UCLA_validation_log.csv UCLA_validation_log.csv
+scp UCLA_validation_log.csv ubuntu@<Public DNS>:<path>
 ```
